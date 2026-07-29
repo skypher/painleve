@@ -1,0 +1,7 @@
+# LaTeX build intermediates
+*.aux
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz

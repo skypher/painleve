@@ -1,0 +1,43 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{1}
+
+\bibitem{Andreief1886}
+C.~Andr{\'e}ief, \emph{Note sur une relation entre les int{\'e}grales
+  d{\'e}finies des produits des fonctions}, M{\'e}moires de la Soci{\'e}t{\'e}
+  des Sciences Physiques et Naturelles de Bordeaux \textbf{2} (1886), 1--14.
+
+\bibitem{ClarksonEtAl2025}
+Peter~A. Clarkson, Anton~V. Dzhamay, Andrew N.~W. Hone, and Ben Mitchell,
+  \emph{Special solutions of a discrete {Painlev{\'e}} equation for quantum
+  minimal surfaces}, Theoretical and Mathematical Physics \textbf{224} (2025),
+  1359--1397.
+
+\bibitem{CornalbaTaylor1999}
+Lorenzo Cornalba and Washington Taylor, IV, \emph{Holomorphic curves from
+  matrices}, Nuclear Physics B \textbf{536} (1999), no.~3, 513--552.
+
+\bibitem{DixonFerrar1933}
+A.~L. Dixon and W.~L. Ferrar, \emph{Integrals for the product of two {Bessel}
+  functions}, The Quarterly Journal of Mathematics \textbf{os-4} (1933), no.~1,
+  193--208.
+
+\bibitem{FelderHoppe2025}
+Giovanni Felder and Jens Hoppe, \emph{Orthogonal polynomials with complex
+  densities and quantum minimal surfaces}, SIGMA \textbf{21} (2025), 103, 13
+  pages.
+
+\bibitem{Forrester2018}
+Peter~J. Forrester, \emph{Meet {Andr{\'e}ief}, {Bordeaux} 1886, and {Andreev},
+  {Kharkov} 1882--83}, 2018, arXiv:1806.10411.
+
+\bibitem{GradshteynRyzhik2015}
+I.~S. Gradshteyn and I.~M. Ryzhik, \emph{Table of integrals, series, and
+  products}, eighth ed., Academic Press, Amsterdam, 2015.
+
+\end{thebibliography}

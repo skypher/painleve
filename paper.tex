@@ -1,0 +1,690 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[final]{microtype}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage[
+  letterpaper,
+  top=1.05in,
+  bottom=1.08in,
+  inner=1.12in,
+  outer=1.12in,
+  headheight=14pt,
+  headsep=18pt
+]{geometry}
+\usepackage{xcolor}
+\definecolor{AMSBlue}{HTML}{174A72}
+\definecolor{AMSCite}{HTML}{7A3E20}
+\usepackage[
+  colorlinks=true,
+  linkcolor=AMSBlue,
+  citecolor=AMSCite,
+  urlcolor=AMSBlue,
+  pdfborder={0 0 0},
+  breaklinks=true
+]{hyperref}
+
+\hypersetup{
+  pdftitle={Positivity of the Quartic Solution of a Higher Discrete Painleve Equation},
+  pdfsubject={Quartic discrete Painleve recurrence and quantum minimal surfaces},
+  pdfkeywords={discrete Painleve equation, quartic potential, orthogonal polynomials, positivity}
+}
+\urlstyle{same}
+
+\linespread{1.025}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks[2]
+\raggedbottom
+
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\fall}[1]{^{\underline{#1}}}
+
+\title[Positivity of the quartic solution]
+{Positivity of the Quartic Solution of a Higher\\
+Discrete Painlev\'e Equation}
+
+% Add author, affiliation, and contact information before submission.
+\author{}
+\date{}
+
+\subjclass[2020]{Primary 34M55; Secondary 33C45, 15B52, 53A10}
+\keywords{discrete Painlev\'e equation, indefinite orthogonal polynomials,
+quartic potential, total positivity, quantum minimal surface}
+
+\begin{document}
+
+\begin{abstract}
+We prove positivity of the solution of the quartic discrete
+Painlev\'e-type recurrence arising from the quantum minimal surface
+\(w_2=w_1^3\).  The initial data are given by a product of Bessel
+functions of orders \(\pm\frac14\).  The proof converts the Bessel
+amplitude into a positive Laplace integral and introduces two auxiliary
+quartic source variables.  The four residue classes modulo \(4\) then
+reduce to a single family of bi-moment matrices.  A triangular
+factorization, followed by Andr\'eief's identity, fixes the strict sign
+of every relevant principal minor.  Consequently all signed
+orthogonal-polynomial norms are positive, and their consecutive ratios
+give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Discrete Painlev\'e-type recurrences occur in matrix regularizations of
+minimal surfaces and in the recurrence coefficients of orthogonal
+polynomials.  For the quantum minimal surface associated with the
+holomorphic curve \(w_2=w_1^{d-1}\), Felder and Hoppe
+\cite{FelderHoppe2025} constructed an indefinite Hermitian form whose
+orthogonal-polynomial norm ratios obey
+\[
+V_n+\frac1{a^2}\sum_{j=0}^{d-2}
+\prod_{k=0}^{d-2}V_{n+j-k}=\frac{n+1}{a}.
+\]
+This connects the discrete equation with the operator formulation of
+quantum minimal surfaces originating in \cite{CornalbaTaylor1999}; see
+also \cite{ClarksonEtAl2025} for special solutions in the cubic case.
+
+For \(d=4\), after setting \(v_n=V_n/a\) and
+\(\epsilon=a^{-2}\), the recurrence becomes
+\begin{equation}
+v_n\left(
+1+v_{n-1}v_{n-2}
++v_{n+1}v_{n-1}
++v_{n+2}v_{n+1}
+\right)
+=(n+1)\epsilon ,
+\qquad n\geq0,
+\label{eq:quartic-recurrence}
+\end{equation}
+where \(v_n=0\) for \(n<0\).  The two initial values are determined by
+\begin{equation}
+v_0=-\frac1a\frac{h'(a)}{h(a)},
+\qquad
+v_1=-\frac1a\frac{h''(a)}{h'(a)},
+\label{eq:initial-values}
+\end{equation}
+with
+\begin{equation}
+\begin{split}
+h(a)=\frac{\pi^2a}{4}\bigg[
+&J_{-1/4}\left(\frac{a^2}{4}\right)^2
+-\sqrt2\,J_{-1/4}\left(\frac{a^2}{4}\right)
+J_{1/4}\left(\frac{a^2}{4}\right)\\
+&+J_{1/4}\left(\frac{a^2}{4}\right)^2
+\bigg].
+\end{split}
+\label{eq:h-bessel}
+\end{equation}
+Felder and Hoppe proved the required Gram nondegeneracy for
+\(d=1,2,3\) and formulated it as a conjecture for general \(d\).
+The quartic case is the first one not covered by their argument.
+
+Our result is the following.
+
+\begin{theorem}\label{thm:main}
+For every \(a>0\), the sequence determined by
+\eqref{eq:quartic-recurrence}--\eqref{eq:h-bessel} satisfies
+\[
+v_n(a)>0\qquad\text{for every }n\geq0.
+\]
+\end{theorem}
+
+The main point is an integral sign mechanism that applies uniformly to
+all indices.  The Bessel expression \eqref{eq:h-bessel} has a positive
+Laplace representation.  Adding independent source variables for
+\(z^4\) and \(\bar z^4\) produces four positive integral kernels, one
+for each residue class modulo \(4\).  Their mixed derivative matrices
+are reduced by triangular row operations to
+\[
+\left[
+\int_0^\infty s^p
+\left(\frac{s^2}{1+s^2}\right)^q\dd\mu(s)
+\right]_{p,q=0}^{k-1}.
+\]
+Both \(s\) and \(s^2/(1+s^2)\) are strictly increasing.  Andr\'eief's
+identity therefore expresses the determinant as an integral of a
+product of two Vandermonde determinants with a fixed positive sign.
+This proves the required sign pattern for every finite block at once.
+
+The paper is organized as follows.  Section~\ref{sec:gram} recalls the
+quartic Hermitian form and its relation to the recurrence.
+Section~\ref{sec:sign-lemma} proves the abstract sign lemma.
+Section~\ref{sec:blocks} derives the four positive kernels and applies
+the lemma to the four symmetry blocks.  Section~\ref{sec:completion}
+then identifies the positive norm ratios with the solution of
+\eqref{eq:quartic-recurrence}.
+
+\section{The quartic Gram form}\label{sec:gram}
+
+Fix \(a>0\) and write
+\begin{equation}
+\rho_a(z)=
+\exp\left(-a|z|^2+\frac{\ii}{4}(z^4+\bar z^4)\right).
+\label{eq:density}
+\end{equation}
+The Gaussian factor makes all polynomial moments absolutely
+convergent.  Let \(\eta=\e^{\pi\ii/4}\).  Decompose the polynomial ring
+into \(C_4\)-weight spaces
+\[
+\C[z]=\bigoplus_{r=0}^3\mathcal P_r,
+\qquad
+\mathcal P_r=\{f\in\C[z]:f(\ii z)=\ii^r f(z)\}.
+\]
+For \(f\in\mathcal P_r\), set
+\[
+(\sigma f)(z)=(-\eta)^{-r}f(\eta z),
+\]
+and define the Hermitian form
+\begin{equation}
+(f,g)_a
+=\int_{\C}f(z)\overline{\sigma g(z)}\rho_a(z)\dd A(z).
+\label{eq:pairing}
+\end{equation}
+The density is invariant under \(z\mapsto\ii z\), so distinct weight
+spaces are orthogonal.  If \(m=r+4q\), then
+\begin{equation}
+\sigma z^m=(-\eta)^{-r}\eta^m z^m=(-1)^{r+q}z^m.
+\label{eq:twist-sign}
+\end{equation}
+Thus the Gram matrix on \(\mathcal P_r\), in the ordered monomial basis
+\(z^r,z^{r+4},\ldots\), has entries
+\begin{equation}
+G_{pq}^{(r)}
+=(-1)^{r+q}\int_{\C}
+z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z),
+\qquad p,q\geq0.
+\label{eq:gram-block}
+\end{equation}
+
+Assume temporarily that the leading principal minors in all four
+blocks are nonzero.  Gram--Schmidt then gives monic polynomials
+\(P_n(z)=z^n+\cdots\), and symmetry implies
+\(P_n\in\mathcal P_{n\bmod4}\).  Define
+\begin{equation}
+\tau(\ell)=
+\begin{cases}
+-1,&\ell\equiv3\pmod4,\\
+1,&\ell\not\equiv3\pmod4,
+\end{cases}
+\qquad
+\varrho(n)=(-1)^n\prod_{\ell=0}^{n-1}\tau(\ell)
+=(-1)^{n+\lfloor n/4\rfloor}.
+\label{eq:rho-sign}
+\end{equation}
+The signed norms \(h_n\) are fixed by
+\begin{equation}
+(P_n,P_n)_a=\varrho(n)h_n.
+\label{eq:signed-norm}
+\end{equation}
+Section~\ref{sec:blocks} will prove simultaneously that all the
+required minors are nonzero and that \(h_n>0\).
+
+\section{A sign-regularity lemma}\label{sec:sign-lemma}
+
+We isolate the integral argument that drives the proof.  Let
+\(y>0\), \(\alpha\geq0\), and \(\beta\geq0\), and define
+\begin{equation}
+\Phi_{\alpha,\beta}(w;y)
+=\int_0^\infty
+\e^{-ys}s^{\alpha-1/2}(1+ws^2)^{-\beta-1/2}\dd s,
+\qquad w>0.
+\label{eq:Phi}
+\end{equation}
+For \(p,q\geq0\), put
+\begin{equation}
+D_{pq}^{\alpha,\beta}
+=\left.
+\partial_u^p\partial_v^q
+\Phi_{\alpha,\beta}(uv;y)
+\right|_{u=v=1}.
+\label{eq:D-def}
+\end{equation}
+
+\begin{lemma}[strict sign regularity]\label{lem:sign-regularity}
+For every \(k\geq1\),
+\begin{equation}
+\sgn\det
+\left[D_{pq}^{\alpha,\beta}\right]_{p,q=0}^{k-1}
+=(-1)^{k(k-1)/2}.
+\label{eq:D-sign}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Set
+\[
+b=\beta+\frac12,
+\qquad
+\gamma=\frac{\alpha}{2}+\frac14,
+\qquad
+L(y)=\Phi_{\alpha,\beta}(1;y).
+\]
+The substitution \(t=\sqrt w\,s\) in \eqref{eq:Phi} gives
+\begin{equation}
+\Phi_{\alpha,\beta}(w;y)
+=w^{-\gamma}L\left(\frac{y}{\sqrt w}\right).
+\label{eq:Phi-scaling}
+\end{equation}
+Let \(\vartheta=w\partial_w\), and use the falling-factorial notation
+\[
+(\vartheta)\fall{p}
+=\vartheta(\vartheta-1)\cdots(\vartheta-p+1).
+\]
+Under \eqref{eq:Phi-scaling}, \(\vartheta\) acts on \(L\) as
+\[
+\mathcal A=-\gamma-\frac y2\partial_y.
+\]
+Since \(w=uv\),
+\[
+\left.
+\partial_u^p\partial_v^q F(uv)
+\right|_{u=v=1}
+=\left.
+(\vartheta)\fall{p}(\vartheta)\fall{q}F(w)
+\right|_{w=1}.
+\]
+It follows that
+\begin{equation}
+D_{pq}^{\alpha,\beta}
+=(\mathcal A)\fall{p}(\mathcal A)\fall{q}L(y).
+\label{eq:D-operator}
+\end{equation}
+
+Define
+\[
+f(s)=\frac{s^2}{1+s^2}
+\]
+and the bi-moments
+\begin{equation}
+B_{pq}
+=\int_0^\infty
+s^p f(s)^q
+\e^{-ys}s^{\alpha-1/2}(1+s^2)^{-\beta-1/2}\dd s.
+\label{eq:B-moments}
+\end{equation}
+Direct differentiation of \eqref{eq:Phi} with respect to \(w\) gives
+\begin{equation}
+(\mathcal A)\fall{q}L(y)
+=(-1)^q(b)_qB_{0q},
+\label{eq:A-on-L}
+\end{equation}
+where \((b)_q\) is the rising Pochhammer symbol.  On the other hand,
+\begin{equation}
+(\mathcal A)\fall{p}
+=\sum_{i=0}^p c_{pi}(y)\partial_y^i,
+\qquad
+c_{pp}(y)=\left(-\frac y2\right)^p.
+\label{eq:A-expansion}
+\end{equation}
+Since \(\partial_y^iB_{0q}=(-1)^iB_{iq}\),
+\eqref{eq:D-operator}--\eqref{eq:A-expansion} give a factorization
+\begin{equation}
+D=RBC,
+\label{eq:triangular-factorization}
+\end{equation}
+where \(R\) is lower triangular with diagonal
+\[
+R_{pp}=\left(\frac y2\right)^p>0,
+\]
+and \(C\) is diagonal with
+\[
+C_{qq}=(-1)^q(b)_q.
+\]
+
+It remains to determine the sign of \(\det B\).  Andr\'eief's
+integration identity \cite{Andreief1886,Forrester2018} gives
+\begin{equation}
+\begin{split}
+\det[B_{pq}]_{p,q=0}^{k-1}
+=\frac1{k!}\int_{(0,\infty)^k}
+&\det[s_j^p]_{p=0,\ldots,k-1}^{j=1,\ldots,k}\\
+{}\times&
+\det[f(s_j)^q]_{q=0,\ldots,k-1}^{j=1,\ldots,k}
+\prod_{j=1}^k\dd\mu(s_j),
+\end{split}
+\label{eq:andreief}
+\end{equation}
+where
+\[
+\dd\mu(s)
+=\e^{-ys}s^{\alpha-1/2}
+(1+s^2)^{-\beta-1/2}\dd s.
+\]
+The two determinants in \eqref{eq:andreief} are Vandermonde
+determinants.  Because both \(s\) and
+\(f(s)=s^2/(1+s^2)\) are strictly increasing on \((0,\infty)\),
+their product is nonnegative and is strictly positive whenever the
+\(s_j\)'s are distinct.  Hence \(\det B>0\).
+
+The determinant of \(R\) is positive, whereas
+\[
+\sgn\det C=(-1)^{0+1+\cdots+(k-1)}
+=(-1)^{k(k-1)/2}.
+\]
+The factorization \eqref{eq:triangular-factorization} proves
+\eqref{eq:D-sign}.
+\end{proof}
+
+\section{The four positive kernels}\label{sec:blocks}
+
+We first turn the Bessel initial function into a positive integral.
+For \(x>0\), the connection formula
+\[
+J_{-1/4}(x)
+=\frac{J_{1/4}(x)-Y_{1/4}(x)}{\sqrt2}
+\]
+reduces \eqref{eq:h-bessel} to
+\begin{equation}
+h(a)=\frac{\pi^2a}{8}
+\left[
+J_{1/4}\left(\frac{a^2}{4}\right)^2
++Y_{1/4}\left(\frac{a^2}{4}\right)^2
+\right].
+\label{eq:h-amplitude}
+\end{equation}
+The Dixon--Ferrar formula \cite{DixonFerrar1933,GradshteynRyzhik2015}
+states that, for \(|\operatorname{Re}\nu|<\frac12\),
+\begin{equation}
+J_\nu(x)^2+Y_\nu(x)^2
+=\frac{8\cos(\pi\nu)}{\pi^2}
+\int_0^\infty K_{2\nu}(2x\sinh t)\dd t.
+\label{eq:dixon-ferrar}
+\end{equation}
+Using
+\[
+K_{1/2}(u)=\sqrt{\frac{\pi}{2u}}\e^{-u}
+\]
+in \eqref{eq:h-amplitude}, and then setting \(s=\sinh t\), gives
+\begin{equation}
+h(a)=\sqrt{\frac{\pi}{2}}\int_0^\infty
+\frac{\e^{-a^2s/2}}{\sqrt{s(1+s^2)}}\dd s.
+\label{eq:h-positive}
+\end{equation}
+
+Set
+\[
+y=\frac{a^2}{2},
+\qquad
+C=\sqrt{\frac{\pi}{2}}.
+\]
+We now introduce an angular source.  For \(u,v>0\), define
+\begin{equation}
+\mathcal Z(a;u,v)
+=\pi\int_0^\infty
+\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)\dd t.
+\label{eq:source}
+\end{equation}
+This is the angularly integrated two-source expression.  Indeed,
+termwise angular integration gives
+\begin{equation}
+\int_0^{2\pi}
+\exp\left(
+\frac{\ii R^4}{4}
+(u\e^{4\ii\theta}+v\e^{-4\ii\theta})
+\right)\dd\theta
+=2\pi J_0\left(\frac{R^4\sqrt{uv}}2\right),
+\label{eq:angular-source}
+\end{equation}
+and \(t=R^2\) gives \eqref{eq:source}.  Only derivatives at
+\(u=v=1\) will be used, where all resulting planar moment integrals are
+absolutely convergent.
+
+At \(u=v=1\), \(\mathcal Z(a;1,1)=h(a)\).  Scaling \(t\) in
+\eqref{eq:source} and using \eqref{eq:h-positive} yield
+\begin{equation}
+\mathcal Z(a;u,v)
+=C\int_0^\infty
+\frac{\e^{-ys}}{\sqrt{s(1+uvs^2)}}\dd s
+=C\Phi_{0,0}(uv;y).
+\label{eq:source-positive}
+\end{equation}
+For \(r=0,1,2,3\), put
+\[
+\mathcal Z_r=(-\partial_a)^r\mathcal Z.
+\]
+
+\begin{lemma}\label{lem:four-kernels}
+The four radial source functions are
+\begin{equation}
+\begin{array}{c|c}
+r&\mathcal Z_r(a;u,v)\\ \hline
+0&C\Phi_{0,0}(uv;y),\\[1mm]
+1&aC\Phi_{1,0}(uv;y),\\[1mm]
+2&2C\Phi_{1,1}(uv;y),\\[1mm]
+3&2aC\Phi_{2,1}(uv;y).
+\end{array}
+\label{eq:four-kernels}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The first two rows follow by differentiating
+\eqref{eq:source-positive}.  For the third row, integration by parts
+gives
+\begin{equation}
+\begin{split}
+y\int_0^\infty
+\frac{\e^{-ys}s^{3/2}}{\sqrt{1+uvs^2}}\dd s
+={}&\frac12\int_0^\infty
+\frac{\e^{-ys}s^{1/2}}{\sqrt{1+uvs^2}}\dd s\\
+&+\int_0^\infty
+\frac{\e^{-ys}s^{1/2}}{(1+uvs^2)^{3/2}}\dd s.
+\end{split}
+\label{eq:ibp-kernel}
+\end{equation}
+The boundary terms vanish at \(0\) and \(\infty\).  Since
+\[
+(-\partial_a)^2
+=\partial_y+2y\partial_y^2,
+\]
+equation \eqref{eq:ibp-kernel} gives
+\(\mathcal Z_2=2C\Phi_{1,1}\).  One more differentiation gives
+\(\mathcal Z_3=2aC\Phi_{2,1}\).
+\end{proof}
+
+For \(k\geq1\), set
+\begin{equation}
+\Delta_k^{(r)}
+=\det[G_{pq}^{(r)}]_{p,q=0}^{k-1},
+\qquad
+\Delta_0^{(r)}=1.
+\label{eq:Delta}
+\end{equation}
+
+\begin{proposition}\label{prop:block-signs}
+For every \(r\in\{0,1,2,3\}\) and \(k\geq1\),
+\begin{equation}
+\sgn\Delta_k^{(r)}
+=(-1)^{rk+k(k-1)/2}.
+\label{eq:block-sign}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Let
+\[
+D_{pq}^{(r)}
+=\left.
+\partial_u^p\partial_v^q\mathcal Z_r(a;u,v)
+\right|_{u=v=1}.
+\]
+Every scalar multiplier in \eqref{eq:four-kernels} is positive.
+Lemma~\ref{lem:sign-regularity}, applied to the four parameter pairs
+\[
+(\alpha,\beta)=(0,0),(1,0),(1,1),(2,1),
+\]
+therefore gives
+\begin{equation}
+\sgn\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}
+=(-1)^{k(k-1)/2}.
+\label{eq:Dr-sign}
+\end{equation}
+
+Differentiating \eqref{eq:angular-source} at \(u=v=1\) shows that
+\[
+D_{pq}^{(r)}
+=\left(\frac{\ii}{4}\right)^{p+q}
+\int_{\C}
+z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
+\]
+Combining this with \eqref{eq:gram-block} gives
+\begin{equation}
+G_{pq}^{(r)}
+=(-1)^{r+q}\left(\frac4\ii\right)^{p+q}
+D_{pq}^{(r)}.
+\label{eq:G-D}
+\end{equation}
+Let \(S_k=k(k-1)/2\).  Factoring the row and column phases in
+\eqref{eq:G-D} yields
+\begin{equation}
+\Delta_k^{(r)}
+=(-1)^{rk}16^{S_k}
+\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}.
+\label{eq:Delta-D}
+\end{equation}
+Now \eqref{eq:block-sign} follows from \eqref{eq:Dr-sign}.
+\end{proof}
+
+\begin{corollary}\label{cor:positive-norms}
+All quartic Gram matrices are nondegenerate, and the signed norms in
+\eqref{eq:signed-norm} satisfy
+\[
+h_n>0\qquad(n\geq0).
+\]
+\end{corollary}
+
+\begin{proof}
+The block sign formula shows first that every
+\(\Delta_k^{(r)}\) is nonzero.  Thus all the monic orthogonal
+polynomials exist.  If \(n=r+4j\), Gram--Schmidt within
+\(\mathcal P_r\) gives
+\begin{equation}
+(P_n,P_n)_a
+=\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}}.
+\label{eq:norm-delta-ratio}
+\end{equation}
+Taking the quotient of the signs in \eqref{eq:block-sign} gives
+\[
+\sgn(P_n,P_n)_a=(-1)^{r+j}.
+\]
+But \eqref{eq:rho-sign} gives
+\(\varrho(r+4j)=(-1)^{r+j}\).  Hence
+\(h_n=\varrho(n)(P_n,P_n)_a>0\).
+\end{proof}
+
+\section{Identification with the quartic recurrence}
+\label{sec:completion}
+
+It remains to verify that the positive norm ratios give precisely the
+sequence in Theorem~\ref{thm:main}.  Define
+\begin{equation}
+V_n=\frac{h_{n+1}}{h_n},
+\qquad
+v_n=\frac{V_n}{a}.
+\label{eq:ratios}
+\end{equation}
+Corollary~\ref{cor:positive-norms} already gives
+\begin{equation}
+v_n>0\qquad(n\geq0).
+\label{eq:ratio-positive}
+\end{equation}
+
+For clarity, we include the short recurrence calculation from the
+quartic Gram form.  Differentiating \eqref{eq:density} and integrating
+by parts in \eqref{eq:pairing} give
+\begin{equation}
+\big((\partial_z+\ii z^3)f,g\big)_a
+=-\tau(\ell)a(f,zg)_a
+\label{eq:ibp-pairing}
+\end{equation}
+when \(g\) has \(C_4\)-weight \(\ell\).  The Gaussian decay removes
+the boundary term.  Weight, degree, and orthogonality imply
+\begin{equation}
+\begin{split}
+zP_n
+&=P_{n+1}+\frac{\ii}{a}\frac{h_n}{h_{n-3}}P_{n-3},\\
+(\partial_z+\ii z^3)P_n
+&=\ii P_{n+3}+a\frac{h_n}{h_{n-1}}P_{n-1},
+\end{split}
+\label{eq:polynomial-recurrences}
+\end{equation}
+where terms with negative indices are omitted.  To see the coefficients,
+pair the first expansion with \(P_{n-3}\), the second with
+\(P_{n-1}\), and use
+\[
+\varrho(n)=\tau(n)\varrho(n-3),
+\qquad
+\varrho(n)=-\tau(n-1)\varrho(n-1).
+\]
+
+The coefficient of \(P_{n-1}\) in \(z^3P_n\) receives three
+contributions: the downward step in the first formula of
+\eqref{eq:polynomial-recurrences} may occur after zero, one, or two
+upward steps.  Hence that coefficient is
+\[
+\frac{\ii}{a}V_{n-1}
+\left(
+V_{n-2}V_{n-3}
++V_nV_{n-2}
++V_{n+1}V_n
+\right).
+\]
+Subtracting \(\ii z^3P_n\) from the second formula in
+\eqref{eq:polynomial-recurrences}, and using that the coefficient of
+\(P_{n-1}\) in \(\partial_zP_n\) is \(n\), gives
+\begin{equation}
+V_m\left[
+1+\frac1{a^2}
+\left(
+V_{m-1}V_{m-2}
++V_{m+1}V_{m-1}
++V_{m+2}V_{m+1}
+\right)
+\right]
+=\frac{m+1}{a}.
+\label{eq:V-recurrence}
+\end{equation}
+With \(V_m=av_m\), this is
+\eqref{eq:quartic-recurrence}.
+
+Finally, \(P_0=1\), \(P_1=z\), and \(P_2=z^2\).  Differentiating
+\(h(a)=(1,1)_a\) gives
+\[
+h_0=h,\qquad h_1=-h',\qquad h_2=h''.
+\]
+Therefore \eqref{eq:ratios} gives exactly
+\eqref{eq:initial-values}.  Conversely, the forward form of
+\eqref{eq:quartic-recurrence} determines \(v_{m+2}\) from the preceding
+terms whenever \(v_mv_{m+1}\neq0\).  The positive sequence
+\eqref{eq:ratios} has this property, so induction identifies it with
+the sequence determined by \eqref{eq:initial-values}.  Together with
+\eqref{eq:ratio-positive}, this proves Theorem~\ref{thm:main}.
+
+\begin{remark}
+The argument proves only the positivity assertion required in
+Theorem~\ref{thm:main}.  It does not use or claim a classification of
+all positive solutions, a closed evaluation of the Gram determinants,
+or asymptotic formulas for \(v_n\).
+\end{remark}
+
+\bibliographystyle{amsplain}
+\bibliography{references}
+
+\end{document}
