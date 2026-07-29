@@ -1,0 +1,35 @@
+Prove positivity for the quartic quantum-minimal-surface recurrence
+Let a>0a>0a>0, ϵ=a−2\epsilon=a^{-2}ϵ=a−2, and set vn=0v_n=0vn=0 for n<0n<0n<0. Consider
+
+vn ⁣(1+vn−1vn−2+vn+1vn−1+vn+2vn+1)=(n+1)ϵ,n≥0.v_n\!\left( 1+v_{n-1}v_{n-2} +v_{n+1}v_{n-1} +v_{n+2}v_{n+1} \right) =(n+1)\epsilon , \qquad n\ge 0.vn(1+vn−1vn−2+vn+1vn−1+vn+2vn+1)=(n+1)ϵ,n≥0.
+The initial values are explicitly determined by
+
+v0=−1ah′(a)h(a),v1=−1ah′′(a)h′(a),v_0=-\frac1a\frac{h'(a)}{h(a)},\qquad v_1=-\frac1a\frac{h''(a)}{h'(a)},v0=−a1h(a)h′(a),v1=−a1h′(a)h′′(a),
+where, with x=a2/4x=a^2/4x=a2/4,
+
+h(a)=π2a4[J−1/4(x)2−2 J−1/4(x)J1/4(x)+J1/4(x)2].h(a)=\frac{\pi^2a}{4}\left[ J_{-1/4}(x)^2-\sqrt2\,J_{-1/4}(x)J_{1/4}(x) +J_{1/4}(x)^2 \right].h(a)=4π2a[J−1/4(x)2−2J−1/4(x)J1/4(x)+J1/4(x)2].
+Problem: Prove that the resulting sequence satisfies
+
+vn(a)>0for every a>0,  n≥0,v_n(a)>0 \qquad\text{for every }a>0,\; n\ge0,vn(a)>0for every a>0,n≥0,
+and preferably prove that it is the unique positive solution.
+
+Why this is a good target
+It is genuinely open: Felder and Hoppe prove the corresponding result for degrees d=1,2,3d=1,2,3d=1,2,3, but leave d=4d=4d=4 as the first unsolved case of their Gram-matrix nondegeneracy conjecture. Felder–Hoppe
+The entire problem is one scalar recurrence plus an explicit Bessel function—no giant framework needs to be developed.
+It comes directly from quantizing the minimal surface z2=z13z_2=z_1^3z2=z13. The matrix equations occur as static-membrane equations and large-NNN string matrix models. Clarkson–Dzhamay–Hone–Mitchell
+Positivity would prove that all the relevant orthogonal polynomials exist and that every finite-NNN complex normal-matrix partition function is nonzero.
+It is the natural next case after the previously solved quantum parabola z2=z12z_2=z_1^2z2=z12, not an artificial variation.
+A clean proof should comfortably support a math-ph arXiv paper and likely a journal submission. A plausible title is:
+
+The positive quartic solution of a higher discrete Painlevé equation from quantum minimal surfaces
+Likely attack
+The strongest route appears to be:
+Use the C4C_4C4 symmetry to split the indefinite Gram matrix into four Hankel-type blocks.
+Express their principal minors as Bessel/Wronskian determinants built from h,h′,h′′,…h,h',h'',\ldotsh,h′,h′′,….
+Prove the required sign pattern using generalized Turán inequalities or a sign-regularity/total-positivity argument.
+Translate the determinant signs into vn>0v_n>0vn>0.
+A second possible route is to derive differential equations in aaa for the vnv_nvn and construct a forward-invariant positive region, generalizing the elegant d=3d=3d=3 proof. The obstacle is that the quartic recurrence couples five consecutive terms, so the cubic zero-crossing argument does not transfer automatically.
+
+I also ran a preliminary arbitrary-precision check at representative aaa from 0.010.010.01 to 300300300, through n=100n=100n=100; all computed terms remained positive. That is only reconnaissance, but there is no immediate small-nnn counterexample. Raw forward iteration becomes extremely ill-conditioned for large aaa, making the determinant formulation especially attractive.
+
+The minimum publishable result is the full d=4d=4d=4 positivity theorem. Uniqueness, determinant formulas, or asymptotics would strengthen it but are not essential.
