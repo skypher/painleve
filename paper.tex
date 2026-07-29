@@ -81,8 +81,8 @@ of bi-moment matrices.  A triangular factorization and Andr\'eief's
 identity fix the strict sign
 of every leading principal minor in the four symmetry blocks and give
 an explicit positive
-multiple-integral formula after the prescribed determinant sign is
-removed.  Consequently all signed
+multiple-integral formula for each minor once its predicted sign is
+divided out.  Consequently all signed
 orthogonal-polynomial norms are positive, and their scaled consecutive
 ratios give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
 \end{abstract}
@@ -279,9 +279,15 @@ z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z),
 \end{equation}
 
 Assume temporarily that the leading principal minors in all four
-blocks are nonzero.  Gram--Schmidt then gives monic polynomials
-\(P_n(z)=z^n+\cdots\), and symmetry implies
-\(P_n\in\mathcal P_{n\bmod4}\).  Define
+blocks are nonzero.  Since distinct weight spaces are orthogonal,
+grouping the monomials \(1,z,\ldots,z^{n-1}\) by residue modulo \(4\)
+makes their Gram matrix block diagonal, with blocks that are leading
+principal submatrices of the four matrices \eqref{eq:gram-block}; the
+assumption therefore makes every such Gram matrix nondegenerate, and
+Gram--Schmidt gives monic polynomials \(P_n(z)=z^n+\cdots\).
+Moreover, orthogonalizing \(z^n\) against \(1,\ldots,z^{n-1}\)
+subtracts components only from the weight space of \(z^n\), so
+\(P_n\in\mathcal P_{n\bmod4}\).  For \(\ell\in\mathbb Z\), define
 \begin{equation}
 \tau(\ell)=
 \begin{cases}
@@ -377,6 +383,16 @@ Under \eqref{eq:Phi-scaling}, \(\vartheta\) acts on \(L\) as
 \[
 \mathcal A=-\gamma-\frac y2\partial_y.
 \]
+More precisely, for every smooth function \(g\) on \((0,\infty)\), a
+direct computation gives
+\[
+\vartheta\left[w^{-\gamma}g\left(yw^{-1/2}\right)\right]
+=w^{-\gamma}(\mathcal Ag)\left(yw^{-1/2}\right),
+\]
+with \(\mathcal A\) applied in the argument of \(g\).  The right-hand
+side has the same scaling form as the left, so the identity can be
+iterated for any polynomial in \(\vartheta\), and evaluation at
+\(w=1\) replaces the argument by \(y\).
 Since \(w=uv\),
 \[
 \left.
@@ -429,7 +445,7 @@ c_{pp}(y)=\left(-\frac y2\right)^p.
 Since \(\partial_y^iB_{0q}=(-1)^iB_{iq}\),
 \eqref{eq:D-operator}--\eqref{eq:A-expansion} give a factorization
 \begin{equation}
-D=RBC,
+D=RB\Lambda,
 \label{eq:triangular-factorization}
 \end{equation}
 because, entrywise,
@@ -441,7 +457,7 @@ D_{pq}^{\alpha,\beta}
 \end{equation}
 Here and below the factorization is for the \(k\times k\) truncations
 of \(D\) and \(B\), where \(R\) is
-lower triangular and \(C\) is diagonal, with entries
+lower triangular and \(\Lambda\) is diagonal, with entries
 \[
 R_{pi}=
 \begin{cases}
@@ -449,11 +465,11 @@ R_{pi}=
 0,&i>p,
 \end{cases}
 \qquad
-C_{qq}=(-1)^q(b)_q.
+\Lambda_{qq}=(-1)^q(b)_q.
 \]
 Since \(b=\beta+\frac12>0\), every factor \((b)_q\) is strictly
-positive.  In particular, the only signs on the diagonal of \(C\) are
-the displayed factors \((-1)^q\).
+positive.  In particular, the only signs on the diagonal of
+\(\Lambda\) are the displayed factors \((-1)^q\).
 Also,
 \[
 R_{pp}=\left(\frac y2\right)^p>0.
@@ -491,7 +507,7 @@ density on \((0,\infty)\), while the diagonals \(s_i=s_j\) have
 
 The determinant of \(R\) is positive, whereas
 \[
-\sgn\det C=(-1)^{0+1+\cdots+(k-1)}
+\sgn\det\Lambda=(-1)^{0+1+\cdots+(k-1)}
 =(-1)^{k(k-1)/2}.
 \]
 The factorization \eqref{eq:triangular-factorization} proves
@@ -1029,14 +1045,17 @@ k_r(N)=
 \end{cases}
 \]
 It is therefore
-nondegenerate, and all the monic orthogonal polynomials exist.  If
-\(n=r+4j\), Gram--Schmidt within
-\(\mathcal P_r\) gives
+nondegenerate, and all the monic orthogonal polynomials exist.  Let
+\(n=r+4j\).  The orthogonality conditions within \(\mathcal P_r\)
+determine the coefficients of \(P_n\) by Cramer's rule, and pairing
+\(P_n\) with \(z^{r+4j}\) gives the classical minor ratio
 \begin{equation}
 (P_n,P_n)_a
-=\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}}.
+=\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}},
 \label{eq:norm-delta-ratio}
 \end{equation}
+which uses only the nonvanishing of the leading minors, not
+definiteness; see \cite[Section~2.2]{Szego1975}.
 Taking the quotient of the signs in \eqref{eq:block-sign} gives
 \[
 \sgn(P_n,P_n)_a=(-1)^{r+j}.

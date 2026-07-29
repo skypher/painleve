@@ -31,7 +31,7 @@ Peter~A. Clarkson, Anton~V. Dzhamay, Andrew N.~W. Hone, and Ben Mitchell,
 
 \bibitem{CornalbaTaylor1998}
 Lorenzo Cornalba and Washington Taylor, IV, \emph{Holomorphic curves from
-  matrices}, Nuclear Physics B \textbf{536} (1998), no.~3, 513--552,
+  matrices}, Nuclear Physics B \textbf{536} (1999), no.~3, 513--552,
   \href{https://doi.org/10.1016/S0550-3213(98)00702-0}{doi:10.1016/S0550-3213(98)00702-0}.
 
 \bibitem{DixonFerrar1933}
@@ -70,5 +70,10 @@ Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark
   (eds.), \emph{{NIST} handbook of mathematical functions}, Cambridge
   University Press, New York, 2010, \href{https://dlmf.nist.gov/}{Digital
   companion: DLMF}.
+
+\bibitem{Szego1975}
+G{\'a}bor Szeg\H{o}, \emph{Orthogonal polynomials}, fourth ed., American
+  Mathematical Society Colloquium Publications, vol. XXIII, American
+  Mathematical Society, Providence, RI, 1975.
 
 \end{thebibliography}
