@@ -5,40 +5,60 @@
   \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
 }
 \providecommand{\href}[2]{#2}
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{Andreief1886}
 C.~Andr{\'e}ief, \emph{Note sur une relation entre les int{\'e}grales
   d{\'e}finies des produits des fonctions}, M{\'e}moires de la Soci{\'e}t{\'e}
   des Sciences Physiques et Naturelles de Bordeaux \textbf{2} (1886), 1--14.
 
+\bibitem{Borodin1999}
+Alexei Borodin, \emph{Biorthogonal ensembles}, Nuclear Physics B \textbf{536}
+  (1999), no.~3, 704--732,
+  \href{https://doi.org/10.1016/S0550-3213(98)00642-7}{doi:10.1016/S0550-3213(98)00642-7}.
+
 \bibitem{ClarksonEtAl2025}
 Peter~A. Clarkson, Anton~V. Dzhamay, Andrew N.~W. Hone, and Ben Mitchell,
   \emph{Special solutions of a discrete {Painlev{\'e}} equation for quantum
   minimal surfaces}, Theoretical and Mathematical Physics \textbf{224} (2025),
-  1359--1397.
+  1359--1397,
+  \href{https://doi.org/10.1134/S0040577925080045}{doi:10.1134/S0040577925080045}.
 
 \bibitem{CornalbaTaylor1999}
 Lorenzo Cornalba and Washington Taylor, IV, \emph{Holomorphic curves from
-  matrices}, Nuclear Physics B \textbf{536} (1999), no.~3, 513--552.
+  matrices}, Nuclear Physics B \textbf{536} (1999), no.~3, 513--552,
+  \href{https://doi.org/10.1016/S0550-3213(98)00685-0}{doi:10.1016/S0550-3213(98)00685-0}.
 
 \bibitem{DixonFerrar1933}
 A.~L. Dixon and W.~L. Ferrar, \emph{Integrals for the product of two {Bessel}
   functions}, The Quarterly Journal of Mathematics \textbf{os-4} (1933), no.~1,
-  193--208.
+  193--208,
+  \href{https://doi.org/10.1093/qmath/os-4.1.193}{doi:10.1093/qmath/os-4.1.193}.
 
 \bibitem{FelderHoppe2025}
 Giovanni Felder and Jens Hoppe, \emph{Orthogonal polynomials with complex
   densities and quantum minimal surfaces}, SIGMA \textbf{21} (2025), 103, 13
-  pages.
+  pages,
+  \href{https://doi.org/10.3842/SIGMA.2025.103}{doi:10.3842/SIGMA.2025.103}.
 
 \bibitem{Forrester2018}
 Peter~J. Forrester, \emph{Meet {Andr{\'e}ief}, {Bordeaux} 1886, and {Andreev},
-  {Kharkov} 1882--83}, 2018.
+  {Kharkov} 1882--83}, 2018,
+  \href{https://arxiv.org/abs/1806.10411}{arXiv:1806.10411}.
 
 \bibitem{GradshteynRyzhik2015}
 I.~S. Gradshteyn and I.~M. Ryzhik, \emph{Table of integrals, series, and
   products}, eighth ed., Academic Press, Amsterdam, 2015, Edited by Daniel
   Zwillinger and Victor H. Moll.
+
+\bibitem{Karlin1968}
+Samuel Karlin, \emph{Total positivity}, vol.~1, Stanford University Press,
+  Stanford, CA, 1968.
+
+\bibitem{NISTHandbook2010}
+Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark
+  (eds.), \emph{{NIST} handbook of mathematical functions}, Cambridge
+  University Press, New York, 2010, \href{https://dlmf.nist.gov/}{Digital
+  companion: DLMF}.
 
 \end{thebibliography}
