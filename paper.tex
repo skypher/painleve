@@ -78,7 +78,8 @@ amplitude into a positive Laplace integral and introduces two auxiliary
 quartic source variables.  The four residue classes modulo \(4\) then
 reduce to a single family of bi-moment matrices.  A triangular
 factorization, followed by Andr\'eief's identity, fixes the strict sign
-of every relevant principal minor.  Consequently all signed
+of every relevant principal minor and gives an explicit positive
+multiple-integral formula for it.  Consequently all signed
 orthogonal-polynomial norms are positive, and their consecutive ratios
 give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
 \end{abstract}
@@ -170,7 +171,9 @@ product of two Vandermonde determinants with a fixed positive sign.
 This proves the required sign pattern for every finite block at once.
 The Andr\'eief--Vandermonde sign argument itself is standard; the new
 ingredient is the positive source representation that brings all four
-quartic symmetry blocks into this form.
+quartic symmetry blocks into this form.  Keeping track of the
+triangular factors also yields an explicit positive multiple-integral
+formula for every block determinant.
 
 The paper is organized as follows.  Section~\ref{sec:gram} recalls the
 quartic Hermitian form and its relation to the recurrence.
@@ -649,6 +652,78 @@ Let \(S_k=k(k-1)/2\).  Factoring the row and column phases in
 Now \eqref{eq:block-sign} follows from \eqref{eq:Dr-sign}.
 \end{proof}
 
+\begin{corollary}[positive multiple-integral formula]
+\label{cor:block-integrals}
+For \(r=0,1,2,3\), define
+\begin{equation}
+\begin{array}{c|c|c|c}
+r&A_r&\alpha_r&\beta_r\\ \hline
+0&C&0&0\\
+1&aC&1&0\\
+2&2C&1&1\\
+3&2aC&2&1
+\end{array}
+\qquad
+\left(C=\sqrt{\frac{\pi}{2}},\quad y=\frac{a^2}{2}\right).
+\label{eq:block-parameters}
+\end{equation}
+If \(S_k=k(k-1)/2\), then
+\begin{equation}
+\begin{split}
+(-1)^{rk+S_k}\Delta_k^{(r)}
+={}&\frac{A_r^k(4a^2)^{S_k}}{k!}
+\prod_{q=0}^{k-1}\left(\beta_r+\frac12\right)_q\\
+&{}\times
+\int_{(0,\infty)^k}
+\prod_{j=1}^k
+\frac{\e^{-ys_j}s_j^{\alpha_r-1/2}}
+{(1+s_j^2)^{\beta_r+k-1/2}}\\
+&\hspace{27mm}\times
+\prod_{1\leq i<j\leq k}
+(s_j-s_i)^2(s_i+s_j)
+\prod_{j=1}^k\dd s_j .
+\end{split}
+\label{eq:block-multiple-integral}
+\end{equation}
+In particular, the right-hand side is strictly positive.
+\end{corollary}
+
+\begin{proof}
+For the parameters in \eqref{eq:block-parameters},
+\eqref{eq:four-kernels} says that
+\(D^{(r)}=A_rD^{\alpha_r,\beta_r}\).  The triangular factorization
+\eqref{eq:triangular-factorization}, with
+\(b=\beta_r+\frac12\), gives
+\[
+\det D^{\alpha_r,\beta_r}
+=(-1)^{S_k}\left(\frac y2\right)^{S_k}
+\prod_{q=0}^{k-1}\left(\beta_r+\frac12\right)_q
+\det B.
+\]
+Combining this identity with \eqref{eq:Delta-D}, and using
+\(16^{S_k}(y/2)^{S_k}=(4a^2)^{S_k}\), fixes the prefactor in
+\eqref{eq:block-multiple-integral}.
+
+It remains only to rewrite the Andr\'eief integrand.  For
+\(f(s)=s^2/(1+s^2)\),
+\[
+f(s_j)-f(s_i)
+=\frac{(s_j-s_i)(s_j+s_i)}
+{(1+s_i^2)(1+s_j^2)}.
+\]
+Consequently the product of the two Vandermonde determinants in
+\eqref{eq:andreief} is
+\[
+\prod_{1\leq i<j\leq k}
+\frac{(s_j-s_i)^2(s_i+s_j)}
+{(1+s_i^2)(1+s_j^2)}.
+\]
+Each factor \(1+s_j^2\) occurs \(k-1\) times in the denominator.
+Substitution into \eqref{eq:andreief} proves
+\eqref{eq:block-multiple-integral}; strict positivity follows because
+the integrand is positive away from the diagonals \(s_i=s_j\).
+\end{proof}
+
 \begin{corollary}\label{cor:positive-norms}
 For every \(N\geq0\), the leading Gram matrix
 \(\big[(z^p,z^q)_a\big]_{p,q=0}^{N}\) is nondegenerate, and the signed
@@ -680,6 +755,18 @@ But \eqref{eq:rho-sign} gives
 \(\varrho(r+4j)=(-1)^{r+j}\).  Hence
 \(h_n=\varrho(n)(P_n,P_n)_a>0\).
 \end{proof}
+
+The multiple-integral formula also gives the norms and recurrence
+coefficients directly as determinant ratios.  Namely, if \(n=r+4j\),
+then
+\begin{equation}
+h_n=\frac{|\Delta_{j+1}^{(r)}|}{|\Delta_j^{(r)}|},
+\qquad
+v_n=\frac1a\frac{h_{n+1}}{h_n},
+\label{eq:integral-ratios}
+\end{equation}
+where each determinant on the right is given explicitly by
+\eqref{eq:block-multiple-integral}.
 
 \section{Identification with the quartic recurrence}
 \label{sec:completion}
