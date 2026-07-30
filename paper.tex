@@ -1,50 +1,101 @@
-\documentclass[11pt]{amsart}
+\documentclass[twoside,10pt]{article}
 
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[final]{microtype}
-\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{mathtools}
 \usepackage[
   letterpaper,
-  top=1.05in,
-  bottom=1.08in,
-  inner=1.12in,
-  outer=1.12in,
-  headheight=14pt,
-  headsep=18pt
+  total={5.5in,8in},
+  vmarginratio=1:1,
+  hmarginratio=1:1,
+  headsep=21pt
 ]{geometry}
 \usepackage{xcolor}
-\definecolor{AMSBlue}{HTML}{174A72}
-\definecolor{AMSCite}{HTML}{7A3E20}
 \usepackage[
-  colorlinks=true,
-  linkcolor=AMSBlue,
-  citecolor=AMSCite,
-  urlcolor=AMSBlue,
-  pdfborder={0 0 0},
-  breaklinks=true
+  breaklinks=false,
+  linktocpage=true
 ]{hyperref}
 
 \hypersetup{
+  colorlinks=true,
+  linkcolor={purple},
+  urlcolor={purple},
+  citecolor={blue!80!black},
   pdftitle={Positivity of the Quartic Solution of a Discrete Painleve-Type Recurrence},
   pdfsubject={Quartic discrete Painleve recurrence and quantum minimal surfaces},
   pdfkeywords={discrete Painleve-type recurrence, quartic potential, orthogonal polynomials, positivity}
 }
-\urlstyle{same}
 
-\linespread{1.02}
+\medmuskip=4mu
+\thickmuskip=8mu
 \setlength{\emergencystretch}{2em}
-\allowdisplaybreaks[2]
-\raggedbottom
 
 \numberwithin{equation}{section}
 
+\newtheoremstyle{slbody}
+  {8pt}
+  {8pt}
+  {\normalfont\slshape}
+  {}
+  {\bfseries}
+  {.}
+  {0.5em}
+  {\thmname{#1}\thmnumber{ #2}%
+   \thmnote{ {\normalfont\itshape(\ignorespaces#3\unskip)}}}
+\theoremstyle{slbody}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\makeatletter
+\renewcommand{\section}{%
+  \@startsection{section}{1}{\z@}%
+    {-3.5ex \@plus -1ex \@minus -.2ex}%
+    {2.3ex \@plus .2ex}%
+    {\normalfont\large\bfseries}}
+\renewcommand{\@seccntformat}[1]{%
+  \csname the#1\endcsname.\enspace}
+
+\def\tagform@#1{%
+  \maketag@@@{(\ignorespaces{\oldstylenums{#1}}\unskip\@@italiccorr)}}
+\renewcommand{\eqref}[1]{%
+  \textup{{\normalfont(\oldstylenums{\ref{#1}}}\normalfont)}}
+
+\newcommand{\shorttitle}{POSITIVITY OF THE QUARTIC SOLUTION}
+\newcommand{\shortauthors}{}
+\newcommand{\ps@bookheader}{%
+  \renewcommand\@oddfoot{\hfil}%
+  \renewcommand\@evenfoot{\hfil}%
+  \renewcommand\@oddhead{%
+    \ifnum\value{page}>1
+      {\small\hfil\shortauthors}\hfil\thepage
+    \else
+      \hfil
+    \fi}%
+  \renewcommand\@evenhead{%
+    \thepage\hfil\small\shorttitle\hfil}}
+\pagestyle{bookheader}
+
+\renewcommand{\maketitle}{%
+  \begin{center}
+    {\large\bfseries\@title}\\
+    \vskip36pt
+    \ifx\@author\@empty
+      \mbox{}\par
+    \else
+      {\scshape\@author}
+    \fi
+    \vskip36pt
+  \end{center}}
+\makeatother
+
+\renewenvironment{abstract}
+  {\quotation\noindent\small{\bfseries\abstractname.\enspace}}
+  {\endquotation}
 
 \newcommand{\C}{\mathbb C}
 \newcommand{\N}{\mathbb N}
@@ -56,19 +107,16 @@
 \newcommand{\fh}{\mathfrak h}
 \newcommand{\fall}[1]{^{\underline{#1}}}
 
-\title[Positivity of the quartic solution]
-{Positivity of the Quartic Solution of a\\
+\title{Positivity of the Quartic Solution of a\\
 Discrete Painlev\'e-Type Recurrence}
 
 % Add author, affiliation, and contact information before submission.
 \author{}
 \date{}
 
-\subjclass[2020]{Primary 34M55; Secondary 39A36, 33C45, 15B52, 53A10}
-\keywords{discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
-quartic potential, bi-moment determinant, quantum minimal surface}
-
 \begin{document}
+
+\maketitle
 
 \begin{abstract}
 We prove positivity of the solution of the quartic discrete
@@ -85,10 +133,17 @@ multiple-integral formula for each minor once its predicted sign is
 divided out.  Consequently all signed
 orthogonal-polynomial norms are positive, and their scaled consecutive
 ratios give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
+\vskip5pt
+\noindent\textbf{Keywords.}\enspace
+discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
+quartic potential, bi-moment determinant, quantum minimal surface.
+\vskip5pt
+\noindent\textbf{MSC2020 Classification.}\enspace
+Primary 34M55; Secondary 39A36, 33C45, 15B52, 53A10.
 \end{abstract}
 
-\maketitle
-\enlargethispage{2pt}
+\vskip50pt
+\baselineskip=13.5pt
 
 \section{Introduction}
 
@@ -1286,7 +1341,7 @@ the Gram determinants, asymptotic formulas for \(v_n\), or a result at
 the endpoint \(a=0\).
 \end{remark}
 
-\bibliographystyle{amsplain}
+\bibliographystyle{alphacitation}
 \bibliography{references}
 
 \end{document}
