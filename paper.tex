@@ -20,6 +20,7 @@
   linkcolor={purple},
   urlcolor={purple},
   citecolor={blue!80!black},
+  pdfauthor={Leslie P. Polzer},
   pdftitle={Positivity of the Quartic Solution of a Discrete Painleve-Type Recurrence},
   pdfsubject={Quartic discrete Painleve recurrence and quantum minimal surfaces},
   pdfkeywords={discrete Painleve-type recurrence, quartic potential, orthogonal polynomials, positivity}
@@ -66,7 +67,7 @@
   \textup{{\normalfont(\oldstylenums{\ref{#1}}}\normalfont)}}
 
 \newcommand{\shorttitle}{POSITIVITY OF THE QUARTIC SOLUTION}
-\newcommand{\shortauthors}{}
+\newcommand{\shortauthors}{LESLIE P. POLZER}
 \newcommand{\ps@bookheader}{%
   \renewcommand\@oddfoot{\hfil}%
   \renewcommand\@evenfoot{\hfil}%
@@ -87,7 +88,11 @@
     \ifx\@author\@empty
       \mbox{}\par
     \else
-      {\scshape\@author}
+      {\scshape\@author}\par
+      \medskip
+      {\small\authoraffiliation}\par
+      \smallskip
+      {\small\texttt{\authoremail}}\par
     \fi
     \vskip36pt
   \end{center}}
@@ -110,8 +115,9 @@
 \title{Positivity of the Quartic Solution of a\\
 Discrete Painlev\'e-Type Recurrence}
 
-% Add author, affiliation, and contact information before submission.
-\author{}
+\author{Leslie P. Polzer}
+\newcommand{\authoraffiliation}{Independent Researcher}
+\newcommand{\authoremail}{polzer@fastmail.com}
 \date{}
 
 \begin{document}
@@ -119,9 +125,11 @@ Discrete Painlev\'e-Type Recurrence}
 \maketitle
 
 \begin{abstract}
-We prove positivity of the solution of the quartic discrete
+For \(a>0\), we prove positivity of the solution of the quartic discrete
 Painlev\'e-type recurrence arising from the quantum minimal surface
-\(w_2=w_1^3\).  The initial data are given by a quadratic combination
+\(w_2=w_1^3\).  This proves the \(d=4\), \(a>0\) case of
+Felder--Hoppe Conjecture~3.6 \cite{FelderHoppe2025}.  The initial data
+are given by a quadratic combination
 of Bessel functions of orders \(\pm\frac14\).  The proof converts the Bessel
 amplitude into a positive Laplace integral and uses two quartic source
 variables to reduce the four residue classes modulo \(4\) to one family
@@ -133,6 +141,8 @@ multiple-integral formula for each minor once its predicted sign is
 divided out.  Consequently all signed
 orthogonal-polynomial norms are positive, and their scaled consecutive
 ratios give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
+No claim is made about an oscillatory or regularized interpretation at
+the endpoint \(a=0\).
 \vskip5pt
 \noindent\textbf{Keywords.}\enspace
 discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
@@ -149,10 +159,10 @@ Primary 34M55; Secondary 39A36, 33C45, 15B52, 53A10.
 
 Discrete Painlev\'e-type recurrences occur in matrix regularizations of
 minimal surfaces and in the recurrence coefficients of orthogonal
-polynomials.  The operator formulation of quantum minimal surfaces has
-its origins in \cite{CornalbaTaylor1998} and was developed further in
-\cite{ArnlindHoppeKontsevich2019}, where higher recurrences are
-discussed.  The quartic recurrence below is written explicitly in
+polynomials.  To our knowledge, the operator formulation of quantum
+minimal surfaces has its origins in \cite{CornalbaTaylor1998} and was
+developed further in \cite{ArnlindHoppeKontsevich2019}, where higher
+recurrences are discussed.  The quartic recurrence below is written explicitly in
 \cite[equation~(38)]{Hoppe2025} and in \cite{ClarksonEtAl2025}; those
 works also treat the
 special-function positive solution in the \(d=3\), or cubic-potential,
@@ -221,6 +231,8 @@ For every \(a>0\), the initial values
 \[
 v_n(a)>0\qquad\text{for every }n\geq0.
 \]
+In particular, the \(d=4\), \(a>0\) case of Felder--Hoppe
+Conjecture~3.6 \cite{FelderHoppe2025} holds.
 \end{theorem}
 Here and throughout, an extension means a sequence of finite real
 numbers satisfying \eqref{eq:quartic-recurrence} at every index.
@@ -252,8 +264,8 @@ nonsymmetric moment determinants occur in biorthogonal ensembles
 supply a positive measure for the oscillatory quartic Gram blocks.
 Indeed, a single radial source records only the total quartic degree,
 whereas the block entry indexed by \((p,q)\) requires the powers of
-\(z^4\) and \(\bar z^4\) to be varied independently.  The new ingredient
-in our proof is the two-source identity in
+\(z^4\) and \(\bar z^4\) to be varied independently.  To our knowledge,
+the key new ingredient is the two-source identity in
 Section~\ref{sec:blocks}.  It first
 separates those two powers on truncated disks and then, after the
 sources are set equal, converts each of the four blocks into the
@@ -1109,8 +1121,19 @@ determine the coefficients of \(P_n\) by Cramer's rule, and pairing
 =\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}},
 \label{eq:norm-delta-ratio}
 \end{equation}
-which uses only the nonvanishing of the leading minors, not
-definiteness; see \cite[Section~2.2]{Szego1975}.
+Indeed, replace the last vector \(z^{r+4j}\) in the ordered monomial
+basis by \(P_n=z^{r+4j}+\cdots\).  The change-of-basis matrix is
+unitriangular, and orthogonality makes the transformed Gram matrix
+\[
+\operatorname{diag}\left(
+[G_{pq}^{(r)}]_{p,q=0}^{j-1},(P_n,P_n)_a
+\right).
+\]
+Its determinant is unchanged, which gives
+\(\Delta_{j+1}^{(r)}=\Delta_j^{(r)}(P_n,P_n)_a\); for \(j=0\), this
+uses the convention \(\Delta_0^{(r)}=1\).  This is the Schur-complement
+identity and requires only the nonvanishing of the leading minors, not
+positive definiteness; compare \cite[Section~2.2]{Szego1975}.
 Taking the quotient of the signs in \eqref{eq:block-sign} gives
 \[
 \sgn(P_n,P_n)_a=(-1)^{r+j}.
