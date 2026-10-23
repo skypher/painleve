@@ -249,7 +249,8 @@ identifies with \eqref{eq:h-bessel}.  Independent source parameters
 residue class modulo \(4\) into the matrix of mixed derivatives
 \(\partial_u^p\partial_v^q\) of a positive kernel that depends only on
 \(uv\) (Lemmas~\ref{lem:four-kernels} and~\ref{lem:source-moments}).
-Triangular row operations reduce these matrices to bi-moment matrices
+Triangular row operations and nonzero diagonal column rescalings reduce
+these matrices to bi-moment matrices
 \[
 \left[
 \int_0^\infty s^p
@@ -265,9 +266,10 @@ positive multiple-integral formula for it
 continuous Cauchy--Binet argument of the kind used in total positivity
 \cite[Chapter~1, \S2]{Karlin1968} and for biorthogonal ensembles
 \cite{Borodin1998}.  To our knowledge, the new ingredient is the
-two-source representation: a single radial source records only the
-total quartic degree, whereas the \((p,q)\) entry of a block requires
-the powers of \(z^4\) and \(\bar z^4\) to vary independently.  The
+two-source representation: differentiation in a common quartic coupling
+mixes the insertions of \(z^4\) and \(\bar z^4\), whereas the \((p,q)\)
+entry of a block requires their powers separately, and independent
+source derivatives select them.  The
 construction uses two features of \(d=4\): the square map makes the
 quartic phase quadratic, and one integration by parts makes the kernels
 of the residue classes \(2\) and \(3\) manifestly positive.  We do not
@@ -616,11 +618,14 @@ satisfies
 \mathcal Z(a;1,1)=h(a).
 \label{eq:source-positive}
 \end{equation}
-For \(u\neq v\), \(\mathcal Z\) is not a planar integral: the factor
+For \(u\neq v\), the independently sourced planar density is not
+absolutely integrable: the factor
 \(\exp\bigl(\frac{\ii}{4}(uz^4+v\bar z^4)\bigr)\) has modulus
 \(\exp\bigl(\frac{v-u}{4}\operatorname{Im}z^4\bigr)\), which defeats the
-Gaussian factor.  Its relation to the planar moments is
-Lemma~\ref{lem:source-moments}.  For \(r=0,1,2,3\), put
+Gaussian factor.  We therefore define \(\mathcal Z\) by the radial
+integral \eqref{eq:source}; it is the limit of the corresponding
+disk-truncated planar integrals, and its relation to the planar moments
+is Lemma~\ref{lem:source-moments}.  For \(r=0,1,2,3\), put
 \(\mathcal Z_r=(-\partial_a)^r\mathcal Z\).
 
 \begin{lemma}[four positive kernels]\label{lem:four-kernels}
@@ -680,10 +685,14 @@ Fix a compact rectangle \(Q\subset(0,\infty)^2\) containing \((1,1)\)
 and a compact interval \(I\subset(0,\infty)\) containing \(a\), with
 left endpoint \(a_0\).  Every derivative of \(J_0\) is a finite linear
 combination of integer-order Bessel functions, which are bounded by
-\(1\) on the real axis.  Each \(u\)- or \(v\)-derivative of
-\(J_0(t^2\sqrt{uv}/2)\) produces a factor \(t^2\) times a function
-bounded on \(Q\), and each \(-\partial_a\) produces a factor \(t\).
-Hence, for fixed \(p,q,r\),
+\(1\) on the real axis.  By induction on \(p+q\),
+\[
+\partial_u^p\partial_v^qJ_0\left(\frac{t^2\sqrt{uv}}2\right)
+=\sum_{j=0}^{p+q}a_j(u,v)\,t^{2j}J_0^{(j)}\left(\frac{t^2\sqrt{uv}}2\right)
+\]
+with coefficients \(a_j\) that are smooth, hence bounded, on \(Q\), and
+each \(-\partial_a\) produces a factor \(t\).  Hence, for fixed
+\(p,q,r\),
 \[
 \left|
 \partial_u^p\partial_v^q(-\partial_a)^r
@@ -893,7 +902,9 @@ zP_n=P_{n+1}+c_nP_{n-3},
 LP_n=\ii P_{n+3}+d_nP_{n-1},
 \label{eq:polynomial-recurrences}
 \end{equation}
-where terms with negative indices are omitted.  Among any four
+where terms with negative indices are omitted; equivalently,
+\(c_0=c_1=c_2=0\), and \(c_n\) for \(n\geq3\) and \(d_n\) for
+\(n\geq1\) are the coefficients displayed.  Among any four
 consecutive integers exactly one is congruent to \(3\) modulo \(4\), so
 \eqref{eq:rho-sign} gives
 \[
@@ -901,9 +912,9 @@ consecutive integers exactly one is congruent to \(3\) modulo \(4\), so
 \qquad
 \varrho(n)=-\tau(n-1)\varrho(n-1).
 \]
-Pairing \eqref{eq:polynomial-recurrences} with \(P_{n-3}\) and
-\(P_{n-1}\), and using \eqref{eq:ibp-pairing} and Hermitian symmetry,
-we obtain
+Pairing \eqref{eq:polynomial-recurrences} with \(P_{n-3}\) (for
+\(n\geq3\)) and \(P_{n-1}\) (for \(n\geq1\)), and using
+\eqref{eq:ibp-pairing} and Hermitian symmetry, we obtain
 \[
 \begin{split}
 \ii\varrho(n)\fh_n
