@@ -1,0 +1,6 @@
+[   0.0s] d=2 r=0: a=1.0: direct/closed-1 = -9.2e-32; a=0.5: direct/closed-1 = -6.2e-32; M(0.1)=3.126 M(0.01)=3.14144 M(0.001)=3.14159 M(0.0)=3.14159
+[   1.3s] d=2 r=1: a=1.0: direct/closed-1 = -2.5e-32; a=0.5: direct/closed-1 = -4.2e-32; M(0.1)=0.309505 M(0.01)=0.0314112 M(0.001)=0.00314159 M(0.0)=0
+[   2.8s] d=3 r=0: a=1.0: direct/series-1 = -4.7e-33; a=0.5: direct/series-1 = 1.4e-33; M(0.1)=4.08104 M(0.01)=4.28649 M(0.001)=4.3071 M(0)=4.30939
+[  29.8s] d=3 r=1: a=1.0: direct/series-1 = -6.5e-33; a=0.5: direct/series-1 = 2.2e-33; M(0.1)=2.27023 M(0.01)=2.29004 M(0.001)=2.29025 M(0)=2.29026
+[  61.1s] d=3 r=2: a=1.0: direct/series-1 = -8.4e-33; a=0.5: direct/series-1 = -3.2e-33; M(0.1)=0.385402 M(0.01)=0.0426359 M(0.001)=0.00430481 M(0)=0
+[stopped by hand after d=3: d>=4 direct quadrature too slow; the series is validated by Proposition 4.1 and a0_const.log]
