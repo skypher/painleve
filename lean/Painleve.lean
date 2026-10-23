@@ -58,3 +58,12 @@ import Painleve.RecurrenceD
 import Painleve.MainD
 import Painleve.EndpointProb
 import Painleve.Endpoint
+import Painleve.UniqD1
+import Painleve.UniqD2
+import Painleve.UniqD3
+import Painleve.UniqD4
+import Painleve.UniqD5
+import Painleve.UniqD6
+import Painleve.UniqD7
+import Painleve.UniqD8
+import Painleve.UniqueD
