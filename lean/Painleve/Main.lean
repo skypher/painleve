@@ -15,7 +15,7 @@ recurrence.
 
 namespace Painleve
 
-/-- `∫ ρ_a = h(a)` for `a > 0` (Lemma 4.1 with `λ = 1`). -/
+/-- `∫ ρ_a = h(a)` for `a > 0` (Lemma 5.1). -/
 theorem hPlanar_eq_hBessel' (a : ℝ) (ha : 0 < a) : hPlanar a = ((hBessel a : ℝ) : ℂ) :=
   hPlanar_eq_hBessel tendsto_Phi00 tendsto_a_Phi10 tendsto_Phi11
     gamma_match0 gamma_match1 gamma_match2 a ha

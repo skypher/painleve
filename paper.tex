@@ -254,7 +254,7 @@ the sequence of Theorem~\ref{thm:main} is the unique positive solution
 of \eqref{eq:quartic-recurrence}.
 \end{theorem}
 For the cubic analogue, the existence of a positive solution was
-proved in \cite{ArnlindHoppeKontsevich2019} and its uniqueness in
+proved in \cite[Section~7]{ArnlindHoppeKontsevich2019} and its uniqueness in
 \cite[Theorem~2.1, proved in Section~4.2]{ClarksonEtAl2025}; for the quartic recurrence,
 \cite[Section~5]{ClarksonEtAl2025} reports preliminary evidence for a
 positive solution with analogous properties.  Our proof of
@@ -304,13 +304,15 @@ Section~\ref{sec:gram} recalls the quartic Hermitian form.
 Section~\ref{sec:sign-lemma} proves the Hankel determinant identity.
 Section~\ref{sec:blocks} derives the four positive kernels and evaluates
 the block determinants.  Section~\ref{sec:bessel} identifies the planar
-integral with the Bessel combination \eqref{eq:h-bessel}, and
+integral with the Bessel combination \eqref{eq:h-bessel}.
 Section~\ref{sec:completion} identifies the norm ratios with the
 solution of \eqref{eq:quartic-recurrence}, and Section~\ref{sec:unique}
-proves Theorem~\ref{thm:unique}.  Theorems~\ref{thm:main} and~\ref{thm:unique} have been formally
-verified in Lean~4 (version~4.33) with Mathlib, as the declarations
-\path{Painleve.main_theorem} and \path{Painleve.unique_theorem};
-the formalization follows the arguments given here.
+proves Theorem~\ref{thm:unique}.  Theorems~\ref{thm:main}
+and~\ref{thm:unique} have been formally verified in Lean~4.33.0 with
+Mathlib, as the declarations \path{Painleve.main_theorem} and
+\path{Painleve.unique_theorem}; the formalization follows the arguments
+given here, and the code availability statement at the end identifies
+the release.
 
 \section{The quartic Gram form}\label{sec:gram}
 
@@ -914,7 +916,11 @@ nonincreasing on \((0,a_1]\) and tends to \(0\) as \(a\to0^+\), so
 
 The identity of Lemma~\ref{lem:bessel} also follows from
 Lemma~\ref{lem:positive-source} and the Dixon--Ferrar formula
-\cite[entry~6.518]{GradshteynRyzhik2015}.
+\cite[entry~6.518]{GradshteynRyzhik2015}: substitute \(s=\sinh t\) in
+\(\Phi_{0,0}(1;y)\), use
+\(K_{1/2}(z)=\sqrt{\pi/(2z)}\,\e^{-z}\), take \(\nu=\frac14\) and
+\(x=a^2/4\) in the formula, and use
+\(Y_{1/4}=J_{1/4}-\sqrt2\,J_{-1/4}\).
 
 \section{Identification with the quartic recurrence}
 \label{sec:completion}
@@ -975,9 +981,9 @@ where terms with negative indices are omitted; equivalently,
 consecutive integers exactly one is congruent to \(3\) modulo \(4\), so
 \eqref{eq:rho-sign} gives
 \[
-\varrho(n)=\tau(n)\varrho(n-3),
+\varrho(n)=\tau(n)\varrho(n-3)\quad(n\geq3),
 \qquad
-\varrho(n)=-\tau(n-1)\varrho(n-1).
+\varrho(n)=-\tau(n-1)\varrho(n-1)\quad(n\geq1).
 \]
 Pairing \eqref{eq:polynomial-recurrences} with \(P_{n-3}\) (for
 \(n\geq3\)) and \(P_{n-1}\) (for \(n\geq1\)), and using
@@ -1193,13 +1199,15 @@ computations, and wording.
 \section*{Code availability}
 
 The Lean~4 formalization of Theorems~\ref{thm:main} and~\ref{thm:unique}
-is in the directory \path{lean} of the repository
-\href{https://github.com/skypher/painleve}{github.com/skypher/painleve}.
+is in the directory \path{lean} of release \path{v1.0} of the repository
+\href{https://github.com/skypher/painleve}{github.com/skypher/painleve}
+(Lean~4.33.0, Mathlib commit \path{db584cd6d46c}).
 The two statements, \path{Painleve.Stmt_main} and
 \path{Painleve.Stmt_unique}, are proved by \path{Painleve.main_theorem}
 and \path{Painleve.unique_theorem}.  These proofs use only the axioms
-\path{propext}, \path{Classical.choice} and \path{Quot.sound}, and the
-repository README gives the build and checking commands.  The directory
+\path{propext}, \path{Classical.choice} and \path{Quot.sound}; the
+repository README gives the build commands and the file
+\path{lean/Check.lean} that prints both checks.  The directory
 \path{runs/uniq} contains the numerical scans of initial values that were
 used as a sanity check for Theorem~\ref{thm:unique}.
 

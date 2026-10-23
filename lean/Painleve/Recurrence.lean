@@ -4,7 +4,7 @@ import Mathlib.Algebra.Polynomial.Derivative
 import Mathlib.Algebra.Polynomial.Monic
 
 /-!
-# The quartic recurrence from the Hermitian form (Section 5 of `paper.tex`)
+# The quartic recurrence from the Hermitian form (Section 6 of `paper.tex`)
 
 We work with an abstract form `B` on `ℂ[X]` that is linear in the first
 argument, Hermitian, orthogonal across `C₄`-weights, and satisfies the
@@ -19,7 +19,7 @@ open scoped ComplexConjugate
 
 namespace Painleve
 
-/-- Hypotheses on the form, Section 5. -/
+/-- Hypotheses on the form, Section 6. -/
 structure FormHyp (B : ℂ[X] → ℂ[X] → ℂ) (a : ℝ) : Prop where
   add_left : ∀ f g k, B (f + g) k = B f k + B g k
   smul_left : ∀ (c : ℂ) f k, B (C c * f) k = c * B f k
@@ -514,7 +514,7 @@ theorem rec_real (ha : 0 < a) (m : ℕ) :
   · have := sub_eq_zero.mp h
     exact_mod_cast this
 
-/-- **Section 5.** The ratios `v_n = 𝔥_{n+1} / (a 𝔥_n)` solve the quartic recurrence. -/
+/-- **Section 6.** The ratios `v_n = 𝔥_{n+1} / (a 𝔥_n)` solve the quartic recurrence. -/
 theorem quarticRec (ha : 0 < a) : QuarticRec a (fun n => D.h (n + 1) / (a * D.h n)) := by
   intro m
   have hr := rec_real hB D ha m

@@ -17,19 +17,21 @@ Lanes work in /home/yang/painleve-scratch/<lane>/; main verifies and lands.
 
 Toolchain: Lean v4.33.0, Mathlib db584cd (same pin as `~/yang.lean`).
 
-## Spine (paper source → Lean consumer)
+## Proof map (paper item → Lean modules), final
 
-| # | Paper item | Lean module (planned) | Consumer | Status |
-|---|---|---|---|---|
-| 1 | §2: twist on monomials `eq:twist-sign`, weight orthogonality, Gram blocks `eq:gram-block`, Hermitian symmetry | `Gram.lean` | 2, 7 | open |
-| 2 | §2 + Cor 4.5: leading Gram matrix block-triangular by residue (`Matrix.BlockTriangular.det`), monic orthogonal P_n, `(P_n,P_n) = Δ_{j+1}/Δ_j` | `OrthoPoly.lean` | 6 | open |
-| 3 | Lemma 3.1 (`lem:leading-source-signs`): one-sided scaling, `D = TBΛ` | `SignLemma.lean` | 5 | open |
-| 4 | Lemma 3.1, `eq:andreief`: Andréief identity and positivity of det B | `Andreief.lean` | 3 | open |
-| 5 | Lemma 4.1 (`lem:positive-source`, second equality), Lemma 4.2 (`lem:four-kernels`) | `Source.lean` | 6 | open |
-| 6 | Lemma 4.3 (`lem:source-moments`), Prop 4.4, Cor 4.5 | `Blocks.lean` | 8 | open |
-| 7 | §5: IBP pairing, banded expansions, recurrence `eq:V-recurrence`, uniqueness | `Recurrence.lean` | 8 | open |
-| 8 | Lemma 4.1 for λ = 1: `hBessel = ∫ρ_a` | `BesselMatch.lean` | 9 | open |
-| 9 | Theorem 1.1 assembly | `Main.lean` | final | open |
+| Paper item | Lean modules |
+|---|---|
+| §2: twist on monomials, weight orthogonality, Gram blocks, Hermitian symmetry | `Gram`, `BlockAlg` |
+| Lemma 3.1 (Hankel determinant identity): scaling, `H = TBΛΣᵀ`, Andréief | `Phi`, `PhiHankel`, `Andreief`, `BiMoment` |
+| Lemma 4.1 (positive source) | `Subord`, `Source` |
+| Lemma 4.2 (four positive kernels) | `Weighted`, `Kernel` |
+| Lemma 4.3 (Gram blocks in exponential coordinates) | `DiskSource`, `DiskHankel`, `PlaneHankel`, `Moments`, `DiffInt` |
+| Proposition 4.4 (block determinants) | `BlockSign`, `Blocks`, `Signs` |
+| Corollary 4.5 (nondegeneracy, signed norms) | `OrthoPoly`, `Assembly` |
+| Lemma 5.1 (Bessel form) | `BesselSeries`, `HSeries`, `PlanarOde`, `Limits`, `OdeUnique`, `BesselMatch` |
+| §6 (recurrence identification, uniqueness given initial data) | `Herm`, `Ibp`, `Recurrence`, `Uniq`, `Calc` |
+| Theorem 1.1 assembly | `MainOf`, `Main` |
+| §7, Theorem 1.2 | `UniqBounds`, `Energy`, `Unique` |
 
 ## Status: COMPLETE (2026-10-23)
 
@@ -45,9 +47,9 @@ coordinates (DiskSource, DiskHankel, PlaneHankel) → kernels (Source = Lemma
 4.1, Weighted = Lemma 4.2, Phi) → Hankel determinant (PhiHankel = Lemma 3.1,
 Andreief, BiMoment) → block signs (BlockSign, Blocks = Prop 4.4) →
 nondegeneracy and orthogonal polynomials (OrthoPoly, Assembly = Cor 4.5) →
-recurrence (Herm, Ibp, Recurrence = Section 5) → Bessel initial data
-(BesselSeries, HSeries, PlanarOde, Limits, OdeUnique, BesselMatch) → MainOf,
-Main.
+recurrence (Herm, Ibp, Recurrence = Section 6) → Bessel initial data
+(BesselSeries, HSeries, PlanarOde, Limits, OdeUnique, BesselMatch = Lemma
+5.1) → MainOf, Main.
 
 ## Theorem 1.2 (uniqueness of the positive solution): COMPLETE, 2026-10-23
 
@@ -59,7 +61,13 @@ Proof: UniqBounds (integrated form, bounds, logarithmic mean), Energy
 (power-weighted localized energy estimate), Unique (assembly), following
 paper Section 7.
 
-## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
+## Historical planning notes (superseded)
+
+The notes below were written during the formalization. Both routes were
+adopted and the paper now presents them (Lemma 4.3 and Lemma 5.1); they are
+kept as a record only.
+
+### Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
 
 Exponential coordinates u = e^{t₁}, v = e^{t₂}. On a disk of radius R the
 two-source integral depends only on uv (`diskSource_eq_mul`: entire in a
@@ -76,16 +84,16 @@ det D = det E = det H gives Proposition 4.4's sign. This replaces the paper's
 J₀ radial source and two-variable derivatives; mirror into the paper once
 the Lean proof lands.
 
-## Route notes (Lean vs paper)
+### Route notes (Lean vs paper)
 
-- Item 6: superseded by the exponential-coordinate route above.
-- Item 8: the paper cites the Dixon–Ferrar formula (G&R 6.518). Lean plan:
+- Lemma 4.3 (planning item 6): superseded by the exponential-coordinate route above.
+- Lemma 5.1 (planning item 8): the paper then cited the Dixon–Ferrar formula (G&R 6.518). Lean plan:
   both `hBessel` and `C Φ_{0,0}(1; a²/2)` solve `h''' + a² h' + a h = 0`, and
   their values of h, h′, h″ as a → 0⁺ are `C·B(1/4,1/4)/2`, `−π`,
   `C·B(3/4,3/4)` (checked numerically to ~10 digits, 2026-10-23); linear ODE
   uniqueness gives equality. Mirror into the paper if adopted.
 
-## Reuse survey (Yang–Mills Lean, 2026-10-23)
+### Reuse survey (Yang–Mills Lean, 2026-10-23)
 
 No importable infrastructure for this project (fractional Bessel, Andréief,
 indefinite orthogonal polynomials, ℂ integration by parts, Beta integrals are

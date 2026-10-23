@@ -15,6 +15,7 @@ Paper and Lean 4 formalization.
     `Painleve/Unique.lean`) prove them, using only the axioms `propext`,
     `Classical.choice` and `Quot.sound`.
   - `LEDGER.md` maps the paper's lemmas to the Lean modules.
+  - `Check.lean` is the acceptance check (see below).
 
 ## Building
 
@@ -29,15 +30,21 @@ lake exe cache get
 lake build
 ```
 
-To check the theorems and their axioms:
+To check the theorems and their axioms, run from `lean/` after the build:
 
 ```
-import Painleve
-example : Painleve.Stmt_main := Painleve.main_theorem
-example : Painleve.Stmt_unique := Painleve.unique_theorem
-#print axioms Painleve.main_theorem
-#print axioms Painleve.unique_theorem
+lake env lean Check.lean
 ```
+
+`Check.lean` type-checks both theorems against the frozen statements and
+prints their axioms. The expected output is
+
+```
+'Painleve.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Painleve.unique_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+```
+
+The paper cites release `v1.0` of this repository.
 
 `runs/uniq/` contains the numerical scans of initial values used as a sanity
 check for Theorem 1.2.

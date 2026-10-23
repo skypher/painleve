@@ -10,7 +10,7 @@ import Painleve.PhiHankel
 `main_of` derives `Stmt_main` from two inputs proved in separate modules:
 the sign of every Gram block determinant (Proposition 4.4) and the
 identification `∫ ρ_a = h(a)` of the planar integral with the Bessel
-combination (Lemma 4.1 for λ = 1).
+combination (Lemma 5.1).
 -/
 
 open Complex Polynomial Filter

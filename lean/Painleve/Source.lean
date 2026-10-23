@@ -552,7 +552,7 @@ lemma subst_real (a lam : ℝ) (ha : 0 < a) :
 
 
 
-/-- **Lemma 4.1 (second equality)**: the planar integral of the quartic density. -/
+/-- **Lemma 4.1**: the planar integral of the quartic density. -/
 theorem planar_source (a lam : ℝ) (ha : 0 < a) (hlam : 0 < lam) :
     ∫ z : ℂ, Complex.exp (-(a : ℂ) * ((‖z‖ ^ 2 : ℝ) : ℂ) + (I * lam / 4) * (z ^ 4 + conj z ^ 4)) =
       ((Real.sqrt (Real.pi / 2) * ∫ s in Set.Ioi (0 : ℝ),

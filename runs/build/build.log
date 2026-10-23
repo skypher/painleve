@@ -1,0 +1,211 @@
+[21:38:46] ⚠ [2757/2818] Replayed Painleve.Andreief
+[21:38:46] warning: Painleve/Andreief.lean:67:0: automatically included section variable(s) unused in theorem `Painleve.det_evalMatrix_comp`:
+[21:38:46]   [MeasurableSpace α]
+[21:38:46] consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+[21:38:46]   omit [MeasurableSpace α] in theorem ...
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+[21:38:46] warning: Painleve/Andreief.lean:74:0: automatically included section variable(s) unused in theorem `Painleve.sum_sign_prod_eq_det`:
+[21:38:46]   [MeasurableSpace α]
+[21:38:46] consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+[21:38:46]   omit [MeasurableSpace α] in theorem ...
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+[21:38:46] ⚠ [2758/2818] Replayed Painleve.OrthoPoly
+[21:38:46] warning: Painleve/OrthoPoly.lean:102:58: This simp argument is unused:
+[21:38:46]   degree_X_pow
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp [hQdeg]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] ⚠ [2806/2818] Replayed Painleve.DiffInt
+[21:38:46] warning: Painleve/DiffInt.lean:77:32: Variable name `hε` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hε
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2808/2818] Replayed Painleve.DiskSource
+[21:38:46] warning: Painleve/DiskSource.lean:182:55: Variable name `hu` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hu
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2819/2857] Replayed Painleve.BesselSeries
+[21:38:46] warning: Painleve/BesselSeries.lean:262:30: Variable name `hν` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hν
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] warning: Painleve/BesselSeries.lean:267:30: Variable name `hν` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hν
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2825/2857] Replayed Painleve.PhiHankel
+[21:38:46] warning: Painleve/PhiHankel.lean:244:49: Variable name `hβ` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hβ
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2829/2857] Replayed Painleve.HSeries
+[21:38:46] warning: Painleve/HSeries.lean:41:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+[21:38:46] warning: Painleve/HSeries.lean:52:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+[21:38:46] warning: Painleve/HSeries.lean:68:27: This simp argument is unused:
+[21:38:46]   Pi.add_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.sub_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:68:41: This simp argument is unused:
+[21:38:46]   Pi.sub_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:68:55: This simp argument is unused:
+[21:38:46]   Pi.neg_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.sub_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:74:27: This simp argument is unused:
+[21:38:46]   Pi.add_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.sub_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:74:41: This simp argument is unused:
+[21:38:46]   Pi.sub_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:74:55: This simp argument is unused:
+[21:38:46]   Pi.neg_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.sub_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:80:27: This simp argument is unused:
+[21:38:46]   Pi.add_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.sub_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:80:41: This simp argument is unused:
+[21:38:46]   Pi.sub_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.neg_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] warning: Painleve/HSeries.lean:80:55: This simp argument is unused:
+[21:38:46]   Pi.neg_apply
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [Pi.mul_apply, Pi.add_apply, Pi.sub_apply]
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:38:46] ⚠ [2841/2857] Replayed Painleve.UniqBounds
+[21:38:46] warning: Painleve/UniqBounds.lean:117:31: Variable name `ha` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _ha
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2845/2857] Replayed Painleve.Energy
+[21:38:46] warning: Painleve/Energy.lean:149:61: Variable name `hc` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hc
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] warning: Painleve/Energy.lean:150:5: Variable name `hp0` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hp0
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] warning: Painleve/Energy.lean:150:19: Variable name `hp1` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hp1
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] warning: Painleve/Energy.lean:332:42: Variable name `hp1` is not explicitly referenced.
+[21:38:46] 
+[21:38:46] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:38:46]   [apply] _hp1
+[21:38:46] 
+[21:38:46] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:38:46] ⚠ [2846/2857] Replayed Painleve.Unique
+[21:38:46] warning: Painleve/Unique.lean:109:8: This simp argument is unused:
+[21:38:46]   show 1 + 1 = 2 by omega
+[21:38:46] 
+[21:38:46] Hint: Omit it from the simp argument list.
+[21:38:46]   [apply] simp only [show 1 - 1 = 0 by omega, show 0 + 1 = 1 by omega, show 0 + 2 = 2 by omega] at iv iw e1 ⊢
+[21:38:47] 
+[21:38:47] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:39:02] ⚠ [2847/2857] Built Painleve.Recurrence (16s)
+[21:39:02] warning: Painleve/Recurrence.lean:551:52: This simp argument is unused:
+[21:39:02]   show j + 2 + 2 = j + 4 by omega
+[21:39:03] 
+[21:39:03] Hint: Omit it from the simp argument list.
+[21:39:03]   [apply] simp only [show j + 2 + 1 + 1 = j + 4 by omega, show j + 2 + 1 = j + 3 by omega,
+[21:39:03]     show j + 2 + 3 = j + 5 by omega, show j + 4 + 1 = j + 5 by omega] at hr ⊢
+[21:39:03] 
+[21:39:03] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:39:03] warning: Painleve/Recurrence.lean:553:6: This simp argument is unused:
+[21:39:03]   show j + 4 + 1 = j + 5 by omega
+[21:39:03] 
+[21:39:03] Hint: Omit it from the simp argument list.
+[21:39:03]   [apply] simp only [show j + 2 + 1 + 1 = j + 4 by omega, show j + 2 + 2 = j + 4 by omega,
+[21:39:03]     show j + 2 + 1 = j + 3 by omega, show j + 2 + 3 = j + 5 by omega] at hr ⊢
+[21:39:03] 
+[21:39:03] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:39:04] ⚠ [2848/2857] Built Painleve.Source (17s)
+[21:39:04] warning: Painleve/Source.lean:247:24: This simp argument is unused:
+[21:39:04]   map_add
+[21:39:04] 
+[21:39:04] Hint: Omit it from the simp argument list.
+[21:39:04]   [apply] simp only [map_sub, map_div₀, map_mul, Complex.conj_I, Complex.conj_ofReal, map_ofNat]
+[21:39:04] 
+[21:39:04] Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+[21:39:04] warning: Painleve/Source.lean:556:48: Variable name `hlam` is not explicitly referenced.
+[21:39:04] 
+[21:39:04] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:39:04]   [apply] _hlam
+[21:39:04] 
+[21:39:04] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:39:14] ⚠ [2849/2857] Built Painleve.Assembly (11s)
+[21:39:14] warning: Painleve/Assembly.lean:102:28: Variable name `ha` is not explicitly referenced.
+[21:39:14] 
+[21:39:14] Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+[21:39:14]   [apply] _ha
+[21:39:14] 
+[21:39:14] Note: This linter can be disabled with `set_option linter.unusedVariables false`
+[21:39:16] ✔ [2850/2857] Built Painleve.Weighted (12s)
+[21:39:27] ✔ [2851/2857] Built Painleve.MainOf (12s)
+[21:39:30] ✔ [2852/2857] Built Painleve.BesselMatch (13s)
+[21:39:30] ✔ [2853/2857] Built Painleve.BlockSign (14s)
+[21:39:43] ✔ [2854/2857] Built Painleve.Blocks (13s)
+[21:39:55] ✔ [2855/2857] Built Painleve.Main (11s)
+[21:40:06] ✔ [2856/2857] Built Painleve (10s)
+[21:40:06] Build completed successfully (2857 jobs).
