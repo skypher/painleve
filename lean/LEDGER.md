@@ -1,9 +1,47 @@
 # Lean formalization ledger
 
-Paper section and lemma numbers below refer to the version of `paper.tex` in
-release `v1.1` (quartic only). The current paper proves the general-`d`
-theorem by a different route; its quartic results are Theorems 1.1 (for
-`d = 4`), 1.2 and 1.3.
+## General `d` (current paper, release `v2.3`): COMPLETE, 2026-10-24
+
+Final theorems, with statements in `Painleve/StatementD.lean` (frozen at
+commit 5b3c227, byte-identical since):
+
+- `Painleve.main_theoremD : Painleve.Stmt_mainD` (Theorem 1.1, every `d ≥ 2`);
+- `Painleve.unique_theoremD : Painleve.Stmt_uniqueD` (Theorem 1.3, every
+  `d ≥ 3`, with its consequences for eq:FH-recurrence and, for `d = 4`, the
+  Bessel solution);
+- `Painleve.endpoint_theorem : Painleve.Stmt_endpoint` (Corollary 4.2).
+
+Statement status: APPROVED by independent statement checks (GPT-6 Pro via
+pro-cli): `Stmt_mainD` and `Stmt_endpoint` job_dedb8ed6; `Stmt_uniqueD`
+job_daa6c86e (after the reviewer's correction of the consequences).
+
+Acceptance: `lake env lean Check.lean` type-checks all five theorems against
+the frozen statements; each depends only on `propext`, `Classical.choice`,
+`Quot.sound`. No `sorry`, `admit` or `axiom` in the 69 modules (15292 lines).
+
+Agents: none; written in the main Claude Code session (Opus 5.5).
+
+| Paper item (current numbering) | Lean modules |
+|---|---|
+| §2: Gram form, twist, weight orthogonality, block scaling | `GramD` |
+| Lemma 3.1, Corollary 3.2 (two-source identity, Hankel form) | `HankelD` |
+| Proposition 4.1 (Gamma representation), via Gauss multiplication in law | `GaussMult`, `GaussMultC`, `LogGamma`, `Polar`, `GammaLaw`, `GammaRep` |
+| Corollary 4.2 (endpoint `a = 0`) | `EndpointProb`, `Endpoint` |
+| Lemma 5.1 (Hankel signs): total positivity, Andréief, symmetrization | `ExpTP`, `PolyDeriv`, `ConvSmooth`, `SymPos`, `KernelDeriv`, `HankelSign` |
+| Proposition 5.2 (block determinants), Theorem 1.1(i) | `BlockSignD`, `AssemblyD` |
+| §6 (recurrence), Theorem 1.1(ii) | `HermIbpD`, `RecurrenceD`, `MainD` |
+| §8: window form, crude bounds (Lemma 8.1) | `UniqD1` |
+| §8: approximate solution (Lemma 8.2) and its derivatives | `UniqD2`, `UniqD3` |
+| §8: energy identity and weighted bound | `UniqD4`, `UniqD5`, `UniqD6` |
+| Proposition 8.3 (a priori bound) | `UniqD7` |
+| Theorem 1.3: asymptotics and uniqueness; FH normalization | `UniqD8`, `UniqueD` |
+
+## `d = 4` (paper release `v1.1`)
+
+Paper section and lemma numbers in this part refer to the version of
+`paper.tex` in release `v1.1` (quartic only). The current paper proves the
+general-`d` theorem by a different route; its quartic results are Theorems 1.1
+(for `d = 4`), 1.2 and 1.3.
 
 Final theorem: `Painleve.Stmt_main` (`Painleve/Statement.lean`), the Lean form
 of Theorem 1.1 of `paper.tex` (part (i): Felder–Hoppe Conjecture 3.6 for
