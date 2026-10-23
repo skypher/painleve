@@ -56,3 +56,5 @@ import Painleve.AssemblyD
 import Painleve.HermIbpD
 import Painleve.RecurrenceD
 import Painleve.MainD
+import Painleve.EndpointProb
+import Painleve.Endpoint
