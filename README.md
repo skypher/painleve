@@ -21,17 +21,27 @@ Paper and Lean 4 formalization.
     `Painleve.main_theoremD` (`Painleve/MainD.lean`),
     `Painleve.unique_theoremD` (`Painleve/UniqueD.lean`) and
     `Painleve.endpoint_theorem` (`Painleve/Endpoint.lean`). These proofs
-    follow Sections 2–6 and 8 of the current paper, except that
-    Proposition 4.1 is proved by comparing characteristic functions
-    (Gauss's multiplication formula in law) instead of Mellin transforms.
+    follow the overall strategy of Sections 2–6 and 8 of the current
+    paper, with implementation differences. Proposition 4.1 is proved
+    using characteristic functions of logarithmic Gamma laws and Gauss's
+    multiplication formula in law, rather than Mellin transforms. The
+    proof of Corollary 4.2 uses dominated rather than monotone
+    convergence, the total-positivity step of Lemma 5.1 fixes the
+    determinant sign by deformation to a Vandermonde determinant, and the
+    residual bound of Lemma 8.2 is proved with constant 6 instead of 4.
+    These differences do not change the final statements.
   - `Painleve/Statement.lean` and `Painleve/StatementUnique.lean` hold the
     frozen `d = 4` statements `Painleve.Stmt_main` (Theorem 1.1 for `d = 4`
     with Theorem 1.2) and `Painleve.Stmt_unique` (uniqueness of the positive
     solution for `d = 4`), proved by `Painleve.main_theorem`
     (`Painleve/Main.lean`) and `Painleve.unique_theorem`
-    (`Painleve/Unique.lean`). These follow the quartic argument of the paper
-    as of release `v1.1`; section and lemma numbers in their docstrings refer
-    to that version.
+    (`Painleve/Unique.lean`). These follow the quartic arguments of
+    release `v1.1`; theorem, section and lemma numbers in their docstrings
+    refer to that version. `Painleve.unique_theoremD` uses
+    `Painleve.main_theorem` and `Painleve.unique_theorem` for its final
+    Bessel-solution assertion; its asymptotic and uniqueness assertions for
+    the normalized recurrence, including `d = 4`, use the general-`d`
+    argument.
   - All five theorems use only the axioms `propext`, `Classical.choice` and
     `Quot.sound`.
   - `LEDGER.md` maps the paper's results to the Lean modules.
@@ -71,7 +81,7 @@ Painleve.unique_theoremD: allowed axioms [propext, Classical.choice, Quot.sound]
 GitHub CI (`.github/workflows/lean.yml`) builds the library and runs
 `Check.lean` on every push and pull request.
 
-The paper cites release `v2.3` of this repository (release `v1.1` holds the
+The paper cites release `v2.4` of this repository (release `v1.1` holds the
 earlier quartic-only version of the paper).
 
 `runs/general-d/` contains the numerical checks of the general-`d` argument,

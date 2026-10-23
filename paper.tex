@@ -1372,7 +1372,7 @@ mathematical claims, citations, computations, and wording.
 The Lean~4 formalization of Theorems~\ref{thm:main}, \ref{thm:quartic}
 and~\ref{thm:unique} and of Corollary~\ref{cor:endpoint} is in the
 directory \path{lean} of release
-\path{v2.3} of the repository
+\path{v2.4} of the repository
 \href{https://github.com/skypher/painleve}{github.com/skypher/painleve}
 (Lean~4.33.0, Mathlib commit \path{db584cd6d46c}).  The statements
 \path{Painleve.Stmt_mainD} (Theorem~\ref{thm:main}),
@@ -1382,17 +1382,33 @@ with Theorem~\ref{thm:quartic}), \path{Painleve.Stmt_uniqueD}
 (Corollary~\ref{cor:endpoint}) are proved by
 \path{Painleve.main_theoremD}, \path{Painleve.main_theorem},
 \path{Painleve.unique_theoremD} and \path{Painleve.endpoint_theorem}.
-The proofs for general \(d\) follow
+The general-\(d\) formal proofs follow the overall strategy of
 Sections~\ref{sec:gram}--\ref{sec:completion} and~\ref{sec:unique},
-except that Proposition~\ref{prop:gamma} is proved there by comparing
-characteristic functions (Gauss's multiplication formula in law for
-logarithms of Gamma variables) instead of Mellin transforms.  The proof
-of Theorem~\ref{thm:quartic}, and of the case \(d=4\) of the last
-assertion of Theorem~\ref{thm:unique}, follows the quartic arguments of
-the version of this paper in release \path{v1.1}.  These proofs use only
-the axioms \path{propext}, \path{Classical.choice} and
-\path{Quot.sound}; the repository README gives the build commands and
-the file \path{lean/Check.lean} that checks them.  The directory
+with some implementation differences.  In Lean,
+Proposition~\ref{prop:gamma} is proved by comparing characteristic
+functions of logarithms of Gamma variables, using Gauss's
+multiplication formula in law, instead of Mellin transforms; the proof
+of Corollary~\ref{cor:endpoint} uses dominated instead of monotone
+convergence; in the proof of Lemma~\ref{lem:hankel-signs}, the sign of
+\(\det[\e^{\xi_i\zeta_l}]\) is fixed by deforming \((\zeta_l)\) to
+\((0,1,\ldots,k-1)\), where the determinant is a Vandermonde
+determinant in the \(\e^{\xi_i}\), instead of by the expansion in
+\(\varepsilon\); and the residual bound of Lemma~\ref{lem:reference} is
+proved with the constant \(6\) instead of \(4\).  These differences do
+not change the four final statements listed above.  The declarations
+\path{Painleve.main_theorem} and \path{Painleve.unique_theorem} retain
+the quartic arguments of release \path{v1.1}.  The former includes
+Theorem~\ref{thm:quartic}, and \path{Painleve.unique_theoremD} invokes
+these two declarations for its final Bessel-solution assertion; its
+asymptotic and uniqueness assertions for the normalized recurrence,
+including \(d=4\), use the general-\(d\) argument.  The file
+\path{lean/Check.lean} type-checks the four declarations listed above
+against their statements, together with
+\path{Painleve.unique_theorem : Painleve.Stmt_unique}, and checks their
+transitive axiom dependencies.  Each of these five theorems depends only
+on the axioms \path{propext}, \path{Classical.choice} and
+\path{Quot.sound}.  The repository README gives the build commands.
+The directory
 \path{runs/general-d} contains numerical checks of
 Sections~\ref{sec:hankel}--\ref{sec:completion} for \(d\leq8\), and
 \path{runs/uniq} the numerical scans of initial values used as a sanity

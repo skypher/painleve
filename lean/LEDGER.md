@@ -1,6 +1,6 @@
 # Lean formalization ledger
 
-## General `d` (current paper, release `v2.3`): COMPLETE, 2026-10-24
+## General `d` (current paper; Lean code since release `v2.3`): COMPLETE, 2026-10-24
 
 Final theorems, with statements in `Painleve/StatementD.lean` (frozen at
 commit 5b3c227, byte-identical since):
@@ -16,8 +16,22 @@ pro-cli): `Stmt_mainD` and `Stmt_endpoint` job_dedb8ed6; `Stmt_uniqueD`
 job_daa6c86e (after the reviewer's correction of the consequences).
 
 Acceptance: `lake env lean Check.lean` type-checks all five theorems against
-the frozen statements; each depends only on `propext`, `Classical.choice`,
-`Quot.sound`. No `sorry`, `admit` or `axiom` in the 69 modules (15292 lines).
+their frozen statements and checks their transitive axiom dependencies. Each
+depends only on `propext`, `Classical.choice` and `Quot.sound`. The acceptance
+harness deliberately includes an unwanted axiom and a declaration using
+`sorryAx` as negative regression tests; neither is a dependency of any
+accepted theorem. This check is a type and dependency audit, not a
+source-token, file-count or line-count audit. (A separate `grep` found no
+`sorry`, `admit` or `axiom` in the 69 modules of `Painleve/`, 15292 lines.)
+
+The module mapping below records correspondence with the paper's arguments,
+not literal identity of every intermediate statement. Differences:
+Proposition 4.1 is proved via Gauss's multiplication formula in law
+(characteristic functions) instead of Mellin transforms; `Endpoint` uses
+dominated instead of monotone convergence; `ExpTP` fixes the sign of
+`det[e^{ξ_i ζ_l}]` by deformation to a Vandermonde determinant instead of the
+expansion in `ε`; and `UniqD3` proves the residual estimate with constant 6
+instead of the constant 4 of Lemma 8.2. These suffice for the stated results.
 
 Agents: none; written in the main Claude Code session (Opus 5.5).
 
