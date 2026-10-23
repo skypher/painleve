@@ -408,4 +408,64 @@ theorem mulX_pair (ha : 0 < a) (k m : ℕ) :
 
 end OPData
 
+
+namespace OPData
+
+variable (hB : FormHyp B a) (D : OPData B)
+include hB
+
+/-- The coefficient of `P_{n-1}` in `z³ P_n` is `c_n + c_{n+1} + c_{n+2}`. -/
+theorem X3_pair (ha : 0 < a) (n : ℕ) (hn : 1 ≤ n) :
+    B (X ^ 3 * D.P n) (D.P (n - 1)) =
+      (D.cc a n + D.cc a (n + 1) + D.cc a (n + 2)) * B (D.P (n - 1)) (D.P (n - 1)) := by
+  have e0 : X * D.P n = D.P (n + 1) + C (D.cc a n) * D.P (n - 3) := two_term hB D ha n
+  have e1 : X * D.P (n + 1) = D.P (n + 2) + C (D.cc a (n + 1)) * D.P (n + 1 - 3) :=
+    two_term hB D ha (n + 1)
+  have e2 : X * D.P (n - 3) = D.P (n - 3 + 1) + C (D.cc a (n - 3)) * D.P (n - 3 - 3) :=
+    two_term hB D ha (n - 3)
+  have hX3 : X ^ 3 * D.P n = X * D.P (n + 2) + C (D.cc a (n + 1)) * (X * D.P (n + 1 - 3))
+      + C (D.cc a n) * (X * D.P (n - 3 + 1))
+      + C (D.cc a n * D.cc a (n - 3)) * (X * D.P (n - 3 - 3)) := by
+    calc X ^ 3 * D.P n = X * (X * (X * D.P n)) := by ring
+      _ = X * (X * D.P (n + 1)) + C (D.cc a n) * (X * (X * D.P (n - 3))) := by rw [e0]; ring
+      _ = _ := by rw [e1, e2, C_mul]; ring
+  rw [hX3, hB.add_left, hB.add_left, hB.add_left, hB.smul_left, hB.smul_left, hB.smul_left,
+    mulX_pair hB D ha, mulX_pair hB D ha, mulX_pair hB D ha, mulX_pair hB D ha]
+  rcases (by omega : n = 1 ∨ n = 2 ∨ n = 3 ∨ n = 4 ∨ n = 5 ∨ 6 ≤ n) with
+    rfl | rfl | rfl | rfl | rfl | h6
+  · simp [cc]
+  · simp [cc]; ring
+  · simp [cc]; ring
+  · simp [cc]; ring
+  · simp [cc]; ring
+  · rw [if_neg (show ¬ (n + 2 + 1 = n - 1) by omega),
+      if_pos (show 3 ≤ n + 2 ∧ n + 2 - 3 = n - 1 by omega),
+      if_pos (show n + 1 - 3 + 1 = n - 1 by omega),
+      if_neg (show ¬ (3 ≤ n + 1 - 3 ∧ n + 1 - 3 - 3 = n - 1) by omega),
+      if_pos (show n - 3 + 1 + 1 = n - 1 by omega),
+      if_neg (show ¬ (3 ≤ n - 3 + 1 ∧ n - 3 + 1 - 3 = n - 1) by omega),
+      if_neg (show ¬ (n - 3 - 3 + 1 = n - 1) by omega),
+      if_neg (show ¬ (3 ≤ n - 3 - 3 ∧ n - 3 - 3 - 3 = n - 1) by omega)]
+    ring
+
+/-- The complex form of the recurrence (`eq:V-recurrence` before normalization). -/
+theorem rec_complex (ha : 0 < a) (n : ℕ) (hn : 1 ≤ n) :
+    (n : ℂ) * B (D.P (n - 1)) (D.P (n - 1)) +
+        Complex.I * ((D.cc a n + D.cc a (n + 1) + D.cc a (n + 2)) * B (D.P (n - 1)) (D.P (n - 1))) =
+      -(tau (n - 1) : ℂ) * a * B (D.P n) (D.P n) := by
+  have hibp := hB.ibp_wt (D.P n) (D.P (n - 1)) (n - 1) (P_isWt hB D (n - 1))
+  have hX : X * D.P (n - 1) = D.P n + C (D.cc a (n - 1)) * D.P (n - 1 - 3) := by
+    have := two_term hB D ha (n - 1); rwa [show n - 1 + 1 = n by omega] at this
+  rw [hX, hB.add_right, hB.smul_right, P_P hB D n (n - 1 - 3), if_neg (by omega), mul_zero,
+    add_zero] at hibp
+  rw [← hibp, Lop, hB.add_left, mul_assoc, hB.smul_left, X3_pair hB D ha n hn,
+    extract hB D (derivative (D.P n)) (n - 1)
+      ((natDegree_derivative_le _).trans (by rw [D.deg]))]
+  congr 1
+  rw [coeff_derivative, show n - 1 + 1 = n by omega, coeff_self, one_mul]
+  push_cast [Nat.cast_sub hn]
+  ring
+
+end OPData
+
 end Painleve

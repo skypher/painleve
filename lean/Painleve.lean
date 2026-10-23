@@ -16,3 +16,6 @@ import Painleve.Herm
 import Painleve.Ibp
 import Painleve.Phi
 import Painleve.PlanarOde
+import Painleve.Source
+import Painleve.DiskHankel
+import Painleve.BesselSeries
