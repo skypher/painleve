@@ -9,8 +9,11 @@ Acceptance check: `example : Painleve.Stmt_main := Painleve.main_theorem`
 compiles with `#print axioms` showing only `propext`, `Classical.choice`,
 `Quot.sound`.
 
-Statement status: frozen 2026-10-23; independent statement check pending
-(GPT-6 Pro via pro-cli).
+Statement status: frozen 2026-10-23; APPROVED by independent statement check
+(GPT-6 Pro via pro-cli, job_546a2722, all knobs PASS, no junk-value hazard).
+
+Agents: user authorized up to 5 Haiku agents at high effort (2026-10-23).
+Lanes work in /home/yang/painleve-scratch/<lane>/; main verifies and lands.
 
 Toolchain: Lean v4.33.0, Mathlib db584cd (same pin as `~/yang.lean`).
 
@@ -28,13 +31,34 @@ Toolchain: Lean v4.33.0, Mathlib db584cd (same pin as `~/yang.lean`).
 | 8 | Lemma 4.1 for λ = 1: `hBessel = ∫ρ_a` | `BesselMatch.lean` | 9 | open |
 | 9 | Theorem 1.1 assembly | `Main.lean` | final | open |
 
+## Landed (sorry-free, axioms propext/Classical.choice/Quot.sound)
+
+Andreief (andreief, integrable_andreief), OrthoPoly (existsUnique_orthoPoly,
+sform_self_mul_det), Signs (twist_X_pow, rhoSign identities), BiMoment
+(det_bimoment_pos), Moments (integrable_moment, moment_eq_zero_of_mod_ne,
+conj_moment), Kernel (integrableOn_kernel, ibp_kernel), Uniq
+(quarticRec_unique), Subord (subordination).
+
+## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
+
+Exponential coordinates u = e^{t₁}, v = e^{t₂}. On a disk of radius R the
+two-source integral depends only on uv (`diskSource_eq_mul`: entire in a
+complex shift s, invariant under imaginary shifts by rotation, hence
+constant). So the matrix E^R_{pq} = Σ_{k,l} S(p,k) S(q,l) (i/4)^{k+l} M^R_{kl}
+(S = Stirling numbers of the second kind) is Hankel: E^R_{pq} = F_R^{(p+q)}(0)
+with F_R(t) the equal-coupling disk integral at coupling e^{t/2}. Let R → ∞
+(dominated convergence; `iteratedDeriv_integral`). Full plane:
+F_r(t) = A_r Φ_{α_r,β_r}(e^t; a²/2) (Lemma 4.1 with λ = e^{t/2}, Lemma 4.2).
+Hankel sign: F^{(p+q)}(0) = Σ_j S(q,j) ∂_t^p[e^{jt}Φ^{(j)}(e^t)](0) and
+e^{jt}Φ^{(j)}(e^t) = (−1)^j (b)_j e^{−γt} B_{0j}(y e^{−t/2}), so
+H = T B Λ Sᵀ with T lower triangular, T_pp = (y/2)^p (`iteratedDeriv_scaling`).
+det D = det E = det H gives Proposition 4.4's sign. This replaces the paper's
+J₀ radial source and two-variable derivatives; mirror into the paper once
+the Lean proof lands.
+
 ## Route notes (Lean vs paper)
 
-- Item 6: the paper proves Lemma 4.3 through the radial J₀ representation and
-  disk truncations. Lean plan: same statement via the Gaussian subordination
-  of Lemma 4.1 (for each σ > 0 the two-source Gaussian integral converges for
-  |u − v| < 4σ, with value π(σ² + uv/4)^{-1/2}); this avoids defining J₀.
-  If adopted, mirror the argument into the paper so the two agree.
+- Item 6: superseded by the exponential-coordinate route above.
 - Item 8: the paper cites the Dixon–Ferrar formula (G&R 6.518). Lean plan:
   both `hBessel` and `C Φ_{0,0}(1; a²/2)` solve `h''' + a² h' + a h = 0`, and
   their values of h, h′, h″ as a → 0⁺ are `C·B(1/4,1/4)/2`, `−π`,

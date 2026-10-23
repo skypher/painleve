@@ -7,3 +7,7 @@ import Painleve.Moments
 import Painleve.Kernel
 import Painleve.Uniq
 import Painleve.Subord
+import Painleve.DiffInt
+import Painleve.Gram
+import Painleve.DiskSource
+import Painleve.Recurrence
