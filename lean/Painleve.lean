@@ -36,3 +36,10 @@ import Painleve.StatementUnique
 import Painleve.UniqBounds
 import Painleve.Energy
 import Painleve.Unique
+import Painleve.StatementD
+import Painleve.GaussMult
+import Painleve.GaussMultC
+import Painleve.LogGamma
+import Painleve.Polar
+import Painleve.GammaLaw
+import Painleve.GammaRep
