@@ -1171,6 +1171,37 @@ and strictly convex.  Convexity alone does not compare two infinite
 sequences; the power-weighted estimate of Steps~3 and~4 controls the
 boundary at infinity.
 
+\section*{AI-use disclosure}
+
+The proof of Theorem~\ref{thm:main} was developed with assistance from
+OpenAI Codex using GPT-5.6 Sol (\texttt{gpt-5.6-sol}) at high and
+extra-high reasoning effort.  The manuscript was revised, and the Lean
+formalization of Theorems~\ref{thm:main} and~\ref{thm:unique} was
+produced, with assistance from Anthropic's Claude Code using Claude
+Opus~5.5, Claude Fable~5 and Claude Haiku~5.5.  The weighted energy
+estimate in the proof of Theorem~\ref{thm:unique} was obtained in a
+consultation with OpenAI's GPT-6 Pro, which was also used for
+independent referee-style checks of the proofs, the citations and the
+Lean statements.  These systems were used as interactive research
+assistants to develop and stress-test the arguments, audit citations and
+calculations, write the formal proofs, and revise the manuscript.  The
+author directed the research, selected and checked the final arguments,
+and takes responsibility for all mathematical claims, citations,
+computations, and wording.
+
+\section*{Code availability}
+
+The Lean~4 formalization of Theorems~\ref{thm:main} and~\ref{thm:unique}
+is available at \href{https://github.com/skypher/painleve}%
+{github.com/skypher/painleve}, in the directory \texttt{lean}.  The
+statements are \texttt{Painleve.Stmt\_main} and
+\texttt{Painleve.Stmt\_unique}, proved by \texttt{Painleve.main\_theorem}
+and \texttt{Painleve.unique\_theorem} using only the axioms
+\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; the
+repository README gives the build and checking commands.  The directory
+\texttt{runs/uniq} contains the numerical scans of initial values that
+were used as a sanity check for Theorem~\ref{thm:unique}.
+
 \bibliographystyle{alphacitation}
 \bibliography{references}
 
