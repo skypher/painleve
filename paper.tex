@@ -146,9 +146,9 @@ The Gram blocks become Hankel matrices of these Laplace transforms, and
 total positivity of the logarithmic Gamma kernels, together with
 Andr\'eief's identity, fixes the sign of every leading minor.  For
 \(d=4\) we identify the initial data with Bessel functions of orders
-\(\pm\frac14\).  We also show that the range \(a>0\) cannot be extended
-to \(a=0\) by continuity: the Gram matrix of order \(d\) becomes singular
-as \(a\to0^+\).  Finally, for every \(d\geq3\) we show that the positive
+\(\pm\frac14\).  We also show that nondegeneracy does not extend
+continuously to \(a=0\): the leading Gram matrix of order \(d\)
+converges, as \(a\to0^+\), to a matrix of rank \(d-1\).  Finally, for every \(d\geq3\) we show that the positive
 solution is unique and determine its growth, by comparing an arbitrary
 positive solution with an explicit approximate solution through the
 convex variational structure of the recurrence.
@@ -198,20 +198,24 @@ where \(\rho_a\) is the density \eqref{eq:density}
 \cite[equation~(3.3) and the display after it]{FelderHoppe2025}.  They
 proved the required Gram nondegeneracy for \(d=1,2,3\) and conjectured
 it for every \(d\) \cite[Conjecture~3.6 and Theorem~3.7]{FelderHoppe2025}.
-The conjecture is stated for \(a\geq0\).  The density is introduced for
-\(a>0\) \cite[Section~3.1]{FelderHoppe2025}, where all planar moments
-converge absolutely, and the proof of
-\cite[Theorem~3.7]{FelderHoppe2025} concerns \(a>0\).  At \(a=0\) the
-moments do not converge absolutely, so Gram matrices at \(a=0\) need an
-interpretation; the natural one is by continuity from \(a>0\).  In that
-reading the endpoint is excluded: for \(d=1,2\), the explicit solutions
-\(V_n=(n+1)a\) and \(V_n=(n+1)a/(a^2+1)\) of
-\cite[Section~4]{FelderHoppe2025} vanish at \(a=0\), and for every
-\(d\geq2\), Corollary~\ref{cor:endpoint} shows that
-\(\int_\C|z|^{2d-2}\rho_a\dd A\to0\) as \(a\to0^+\), so the leading Gram
-matrix of order \(d\) becomes singular and the ratio \(V_{d-2}\) in
-\eqref{eq:FH-recurrence} tends to \(0\).  We therefore prove the
-conjecture for every \(a>0\).
+The conjecture is stated for \(a\geq0\), whereas the density is
+introduced for \(a>0\) \cite[Section~3.1]{FelderHoppe2025}, and the
+proof of \cite[Theorem~3.7]{FelderHoppe2025} addresses \(a>0\).  At
+\(a=0\) the planar moments do not converge absolutely, so a Gram matrix
+at \(a=0\) requires a prescription.  One natural prescription is the
+entrywise limit as \(a\to0^+\).  Under it, nondegeneracy fails at the
+endpoint: by Corollary~\ref{cor:endpoint}, for every \(d\geq2\) the
+leading Gram matrix of order \(d\) converges to a diagonal matrix of
+rank \(d-1\), and the ratio \(V_{d-2}\) in \eqref{eq:FH-recurrence}
+tends to \(0\).  The vanishing of the last diagonal entry is consistent
+with the differential equation of \cite[equation~(3.5)]{FelderHoppe2025}
+for \(h(a)=\int_\C\rho_a\dd A\): differentiating under the integral,
+\(\int_\C|z|^{2d-2}\rho_a\dd A=(-1)^{d-1}h^{(d-1)}(a)=ah(a)+a^2h'(a)\).
+For \(d=1\), the Gram matrix of order one is
+\(h(a)=(\pi/a)\e^{-1/a}\) \cite[Section~4]{FelderHoppe2025}, which also
+tends to \(0\).  This endpoint distinction does not affect the cases
+\(a>0\) proved by Felder and Hoppe, and we prove the conjecture for
+every \(a>0\).
 
 \begin{theorem}\label{thm:main}
 Let \(d\geq2\) and \(a>0\).
@@ -673,8 +677,8 @@ For \(r\in\{0,\ldots,d-1\}\),
 \]
 Consequently, as \(a\to0^+\), the leading Gram matrices
 \(\bigl[(z^p,z^q)_a\bigr]_{p,q=0}^N\) with \(N\leq d-2\) converge to
-nonsingular diagonal matrices, while for \(N=d-1\) the determinant tends
-to \(0\).
+nonsingular diagonal matrices, while for \(N=d-1\) the limit is a
+diagonal matrix of rank \(d-1\).
 \end{corollary}
 
 \begin{proof}

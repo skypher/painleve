@@ -10,8 +10,8 @@ Paper and Lean 4 formalization.
   Bessel functions (Theorem 1.2). For every `d ≥ 3` it proves that the
   positive solution is unique and grows like `((n+1)ε/(d−1))^{1/(d−1)}`
   (Theorem 1.3). Corollary 4.2 shows that the range `a > 0` cannot be
-  extended to `a = 0` by continuity: the Gram matrix of order `d`
-  becomes singular as `a → 0+`.
+  extended to `a = 0` by continuity: as `a → 0+`, the Gram matrix of
+  order `d` converges to a matrix of rank `d − 1`.
 - `general_d.md`: the working note for the general-`d` argument.
 - `lean/`: a Lean 4 / Mathlib formalization of the case `d = 4`
   (Theorems 1.1 and 1.2 for `d = 4`, and the uniqueness part of Theorem 1.3
