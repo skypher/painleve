@@ -79,10 +79,4 @@ Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark,
   University Press, 2010).
 \newblock \href{https://dlmf.nist.gov/}{Digital companion: DLMF}.
 
-\bibitem[Sze75]{Szego1975}
-G{\'a}bor Szeg\H{o}.
-\newblock \emph{Orthogonal Polynomials}, volume XXIII of \emph{American
-  Mathematical Society Colloquium Publications} (Providence, RI: American
-  Mathematical Society, 1975), fourth edition.
-
 \end{thebibliography}
