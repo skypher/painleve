@@ -11,3 +11,8 @@ import Painleve.DiffInt
 import Painleve.Gram
 import Painleve.DiskSource
 import Painleve.Recurrence
+import Painleve.Calc
+import Painleve.Herm
+import Painleve.Ibp
+import Painleve.Phi
+import Painleve.PlanarOde
