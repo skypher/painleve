@@ -31,13 +31,19 @@ Toolchain: Lean v4.33.0, Mathlib db584cd (same pin as `~/yang.lean`).
 | 8 | Lemma 4.1 for λ = 1: `hBessel = ∫ρ_a` | `BesselMatch.lean` | 9 | open |
 | 9 | Theorem 1.1 assembly | `Main.lean` | final | open |
 
-## Landed (sorry-free, axioms propext/Classical.choice/Quot.sound)
+## Landed (sorry-free, axioms propext/Classical.choice/Quot.sound), 2026-10-23
 
-Andreief (andreief, integrable_andreief), OrthoPoly (existsUnique_orthoPoly,
-sform_self_mul_det), Signs (twist_X_pow, rhoSign identities), BiMoment
-(det_bimoment_pos), Moments (integrable_moment, moment_eq_zero_of_mod_ne,
-conj_moment), Kernel (integrableOn_kernel, ibp_kernel), Uniq
-(quarticRec_unique), Subord (subordination).
+Andreief, OrthoPoly, Signs, BiMoment, Moments, Kernel, Uniq, Subord, DiffInt,
+Gram, DiskSource, Calc, Herm, Ibp, Phi, PlanarOde, Source (Lemma 4.1),
+DiskHankel, BesselSeries, OdeUnique, Weighted (Lemma 4.2), PhiHankel
+(Lemma 3.1 in exponential coordinates), BlockAlg, Recurrence (Section 5:
+`OPData.quarticRec`).
+
+In progress (lanes): PlaneHankel (R → ∞ limit of the disk Hankel identity),
+block signs (Prop 4.4), Gram nondegeneracy + OP data (Cor 4.5), limits of the
+kernels at a → 0⁺ with Gamma identities, hSeries (Bessel side as a power
+series, ODE, values at 0). Remaining after those: Part B assembly
+(hBessel = Re ∫ρ_a on (0,∞) via OdeUnique) and Main (Stmt_main).
 
 ## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
 

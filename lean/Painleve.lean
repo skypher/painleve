@@ -22,3 +22,5 @@ import Painleve.BesselSeries
 import Painleve.OdeUnique
 import Painleve.Weighted
 import Painleve.PhiHankel
+import Painleve.BlockAlg
+import Painleve.PlaneHankel
