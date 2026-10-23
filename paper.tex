@@ -146,7 +146,9 @@ The Gram blocks become Hankel matrices of these Laplace transforms, and
 total positivity of the logarithmic Gamma kernels, together with
 Andr\'eief's identity, fixes the sign of every leading minor.  For
 \(d=4\) we identify the initial data with Bessel functions of orders
-\(\pm\frac14\).  Finally, for every \(d\geq3\) we show that the positive
+\(\pm\frac14\).  We also show that the range \(a>0\) cannot be extended
+to \(a=0\) by continuity: the Gram matrix of order \(d\) becomes singular
+as \(a\to0^+\).  Finally, for every \(d\geq3\) we show that the positive
 solution is unique and determine its growth, by comparing an arbitrary
 positive solution with an explicit approximate solution through the
 convex variational structure of the recurrence.
@@ -196,10 +198,20 @@ where \(\rho_a\) is the density \eqref{eq:density}
 \cite[equation~(3.3) and the display after it]{FelderHoppe2025}.  They
 proved the required Gram nondegeneracy for \(d=1,2,3\) and conjectured
 it for every \(d\) \cite[Conjecture~3.6 and Theorem~3.7]{FelderHoppe2025}.
-Their conjecture is stated for \(a\geq0\).  We treat \(a>0\), where all
-planar moments converge absolutely; at \(a=0\) they do not, and the
-endpoint would require an oscillatory or regularized interpretation,
-which we do not discuss.
+The conjecture is stated for \(a\geq0\).  The density is introduced for
+\(a>0\) \cite[Section~3.1]{FelderHoppe2025}, where all planar moments
+converge absolutely, and the proof of
+\cite[Theorem~3.7]{FelderHoppe2025} concerns \(a>0\).  At \(a=0\) the
+moments do not converge absolutely, so Gram matrices at \(a=0\) need an
+interpretation; the natural one is by continuity from \(a>0\).  In that
+reading the endpoint is excluded: for \(d=1,2\), the explicit solutions
+\(V_n=(n+1)a\) and \(V_n=(n+1)a/(a^2+1)\) of
+\cite[Section~4]{FelderHoppe2025} vanish at \(a=0\), and for every
+\(d\geq2\), Corollary~\ref{cor:endpoint} shows that
+\(\int_\C|z|^{2d-2}\rho_a\dd A\to0\) as \(a\to0^+\), so the leading Gram
+matrix of order \(d\) becomes singular and the ratio \(V_{d-2}\) in
+\eqref{eq:FH-recurrence} tends to \(0\).  We therefore prove the
+conjecture for every \(a>0\).
 
 \begin{theorem}\label{thm:main}
 Let \(d\geq2\) and \(a>0\).
@@ -644,6 +656,53 @@ and \(\tilde g\) are continuous on \((0,\infty)\), and
 \(x=\e^s\), their Mellin transforms on \(\operatorname{Re}z=\sigma\) are
 the Fourier transforms of the integrable functions \(\e^{\sigma s}g(\e^s)\)
 and \(\e^{\sigma s}\tilde g(\e^s)\); these coincide, so \(g=\tilde g\).
+\end{proof}
+
+The representation also shows what happens at the endpoint \(a=0\) of
+\cite[Conjecture~3.6]{FelderHoppe2025}.  For \(r\in\{0,\ldots,d-1\}\) let
+\(j_r=\min J_r\), so that \(j_r=0\) for \(r\leq d-2\) and
+\(j_{d-1}=1\), and let \(\beta_r=\beta_{r,j_r}=\min_{j\in J_r}\beta_{r,j}\).
+
+\begin{corollary}[The endpoint \(a=0\)]\label{cor:endpoint}
+For \(r\in\{0,\ldots,d-1\}\),
+\[
+\lim_{a\to0^+}a^{-j_r}\int_\C|z|^{2r}\rho_a\dd A
+=\pi\,r!\,d^{-(d-2)\beta_r}\prod_{j\in J_r\setminus\{j_r\}}
+\frac{\Gamma(\beta_{r,j}-\beta_r)}{\Gamma(\beta_{r,j})}
+\in(0,\infty).
+\]
+Consequently, as \(a\to0^+\), the leading Gram matrices
+\(\bigl[(z^p,z^q)_a\bigr]_{p,q=0}^N\) with \(N\leq d-2\) converge to
+nonsingular diagonal matrices, while for \(N=d-1\) the determinant tends
+to \(0\).
+\end{corollary}
+
+\begin{proof}
+Write \(S_r=G_{r,j_r}R_r\) with \(R_r=\prod_{j\in J_r\setminus\{j_r\}}
+G_{r,j}\) (an empty product is \(1\)), and let
+\(\kappa=d^{\,d-2}a^{-d}\).  Conditioning on \(R_r\) and using
+\(\E[\e^{-sG}]=(1+s)^{-\beta}\) for a Gamma variable \(G\) of shape
+\(\beta\) and \(s\geq0\), Proposition~\ref{prop:gamma} gives
+\(\int_\C|z|^{2r}\rho_a\dd A=\pi r!\,a^{-r-1}
+\E[(1+\kappa R_r)^{-\beta_r}]\).  Since \(d\beta_r=r+1+j_r\), we have
+\(\kappa^{\beta_r}=d^{(d-2)\beta_r}a^{-r-1-j_r}\), so
+\[
+a^{-j_r}\int_\C|z|^{2r}\rho_a\dd A
+=\pi\,r!\,d^{-(d-2)\beta_r}\,
+\E\left[\left(\frac{\kappa}{1+\kappa R_r}\right)^{\beta_r}\right].
+\]
+As \(a\to0^+\), \(\kappa\) increases to \(\infty\) and
+\(\kappa/(1+\kappa R_r)\) increases to \(R_r^{-1}\).  By monotone
+convergence the expectation tends to
+\(\E[R_r^{-\beta_r}]=\prod_{j\in J_r\setminus\{j_r\}}
+\Gamma(\beta_{r,j}-\beta_r)/\Gamma(\beta_{r,j})\), which is finite
+because \(\beta_{r,j}>\beta_r\) for \(j\neq j_r\).
+
+For \(N\leq d-1\) the monomials \(1,z,\ldots,z^N\) lie in distinct
+weight spaces, so by \eqref{eq:gram-block} the Gram matrix is diagonal
+with entries \((z^r,z^r)_a=(-1)^r\int_\C|z|^{2r}\rho_a\dd A\),
+\(0\leq r\leq N\).  These have nonzero limits for \(r\leq d-2\), where
+\(j_r=0\), and the entry with \(r=d-1\) is \(O(a)\).
 \end{proof}
 
 \section{Signs of the Hankel determinants}\label{sec:signs}
