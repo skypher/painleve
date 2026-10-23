@@ -430,7 +430,7 @@ matrices of \cite[Conjecture~3.6]{FelderHoppe2025}.
 
 \section{Gram blocks as Hankel determinants}\label{sec:hankel}
 
-We write \(S_k=k(k-1)/2\) and \(\stir{q}{j}\) for the Stirling numbers
+We write \(\binom k2=k(k-1)/2\) and \(\stir{q}{j}\) for the Stirling numbers
 of the second kind, defined by \(\stir00=1\), \(\stir q j=0\) for \(j>q\)
 or \(j=0<q\), and \(\stir{q+1}{j}=j\stir qj+\stir q{j-1}\).  For a
 function \(G\) that is smooth on \((0,\infty)\), induction on \(q\) gives
@@ -516,7 +516,7 @@ proves \eqref{eq:source-moments}.
 \begin{corollary}\label{cor:hankel}
 For \(r\in\{0,\ldots,d-1\}\) and \(k\geq1\),
 \begin{equation}
-\Delta_k^{(r)}=(-1)^{rk}d^{2S_k}\det\left[F_r^{(p+q)}(0)\right]_{p,q=0}^{k-1}.
+\Delta_k^{(r)}=(-1)^{rk}d^{2\binom k2}\det\left[F_r^{(p+q)}(0)\right]_{p,q=0}^{k-1}.
 \label{eq:Delta-hankel}
 \end{equation}
 \end{corollary}
@@ -526,7 +526,7 @@ By \eqref{eq:gram-block},
 \(G_{pq}^{(r)}=(-1)^{r+q}(d/\ii)^{p+q}\bigl[(\ii/d)^{p+q}M_{pq}^{(r)}\bigr]\).
 Taking \((d/\ii)^p\) out of row \(p\) and \((-1)^{r+q}(d/\ii)^q\) out of
 column \(q\), and using \((d/\ii)^2=-d^2\), gives
-\(\Delta_k^{(r)}=(-1)^{rk}d^{2S_k}\det[(\ii/d)^{p+q}M_{pq}^{(r)}]_{p,q<k}\).
+\(\Delta_k^{(r)}=(-1)^{rk}d^{2\binom k2}\det[(\ii/d)^{p+q}M_{pq}^{(r)}]_{p,q<k}\).
 The left-hand side of \eqref{eq:source-moments} is the \((p,q)\) entry
 of \(\Sigma\,[(\ii/d)^{k+l}M_{kl}^{(r)}]\,\Sigma^{\mathsf T}\), where
 \(\Sigma_{pk}=\stir pk\) is lower triangular with ones on the diagonal;
@@ -637,7 +637,7 @@ Let \(m\geq1\), \(\beta_1,\ldots,\beta_m>0\) and \(\kappa>0\), let
 \(F(t)=\E[\exp(-\e^t\kappa G_1\cdots G_m)]\).  Then, for every real
 \(t\) and every \(k\geq1\),
 \[
-(-1)^{S_k}\det\left[F^{(p+q)}(t)\right]_{p,q=0}^{k-1}>0.
+(-1)^{\binom k2}\det\left[F^{(p+q)}(t)\right]_{p,q=0}^{k-1}>0.
 \]
 \end{lemma}
 
@@ -658,13 +658,13 @@ convergence, each \(\phi_j\) is smooth with bounded derivatives
 =\int\phi_{j-1}^{(p)}(w)q_j(w-u)\dd w\).
 
 \emph{Claim: for \(0\leq j\leq m-1\) and \(u_1<\cdots<u_k\),}
-\(\sgn\det[\phi_j^{(p)}(u_l)]_{p<k,\,l\leq k}=(-1)^{S_k}\).
+\(\sgn\det[\phi_j^{(p)}(u_l)]_{p<k,\,l\leq k}=(-1)^{\binom k2}\).
 For \(j=0\), the matrix \(\Sigma\) of Corollary~\ref{cor:hankel} is
 unitriangular, so with \(x_l=\e^{u_l}\),
 \[
 \det[\phi_0^{(p)}(u_l)]
 =\e^{-\sum_lx_l}\,V(-x_1,\ldots,-x_k)
-=(-1)^{S_k}\e^{-\sum_lx_l}\,V(x_1,\ldots,x_k),
+=(-1)^{\binom k2}\e^{-\sum_lx_l}\,V(x_1,\ldots,x_k),
 \]
 and \(V(x)>0\) because the \(x_l\) increase.  For the induction step,
 Andr\'eief's identity \cite{Andreief1886,Forrester2019}, applied to the
@@ -686,10 +686,19 @@ for \(\xi_1<\cdots<\xi_k\) and \(\zeta_1<\cdots<\zeta_k\),
 on \(k\) with Rolle's theorem applied to
 \(\frac{\dd}{\dd\xi}(\e^{-\zeta_1\xi}\sum_lc_l\e^{\zeta_l\xi})\); so the
 determinant never vanishes on the connected set of ordered
-\((\xi,\zeta)\), and its sign is that of the limit as the \(\xi_i\)
-coalesce at \(0\), which is a positive multiple of
-\(\det[\zeta_l^{\,p}]=V(\zeta)>0\).  Hence the second determinant is
-positive on the ordered region, the first has sign \((-1)^{S_k}\) by
+\((\xi,\zeta)\).  To find its sign, fix \(x_1<\cdots<x_k\) and put
+\(\xi_i=\varepsilon x_i\).  Expanding
+\(\e^{\varepsilon x_i\zeta_l}=\sum_{p\geq0}(\varepsilon x_i\zeta_l)^p/p!\) and
+applying the Cauchy--Binet formula gives
+\[
+\det[\e^{\varepsilon x_i\zeta_l}]
+=\varepsilon^{\binom k2}\,
+\frac{V(x_1,\ldots,x_k)\,V(\zeta_1,\ldots,\zeta_k)}{\prod_{p=0}^{k-1}p!}
++O\bigl(\varepsilon^{\binom k2+1}\bigr)
+\qquad(\varepsilon\downarrow0),
+\]
+which is positive for small \(\varepsilon\).  Hence the second determinant is
+positive on the ordered region, the first has sign \((-1)^{\binom k2}\) by
 induction, and the claim follows.
 
 Now let \(u=t+\log\kappa\) and \(H_{pq}=\phi_m^{(p+q)}(u)\).  From
@@ -716,14 +725,14 @@ identity gives
 \]
 because \(\det[\widetilde P_q(y_i)]=V(y)\) for monic \(\widetilde P_q\).
 On the ordered region \(V(\e^{w_i-u})>0\), and by the claim the
-integrand has sign \((-1)^{S_k}\) and does not vanish.  Hence
-\((-1)^{S_k}\det H>0\).
+integrand has sign \((-1)^{\binom k2}\) and does not vanish.  Hence
+\((-1)^{\binom k2}\det H>0\).
 \end{proof}
 
 \begin{proposition}[block determinants]
 \label{prop:block-determinants}
 For \(r\in\{0,\ldots,d-1\}\) and \(k\geq1\),
-\(\sgn\Delta_k^{(r)}=(-1)^{rk+S_k}\).
+\(\sgn\Delta_k^{(r)}=(-1)^{rk+\binom k2}\).
 \end{proposition}
 
 \begin{proof}
@@ -731,7 +740,7 @@ By Proposition~\ref{prop:gamma},
 \(F_r(t)=\pi r!\,a^{-r-1}F(t)\), where \(F\) is the function of
 Lemma~\ref{lem:hankel-signs} for the \(m=d-1\geq1\) shapes
 \(\beta_{r,j}\), \(j\in J_r\), and \(\kappa=d^{\,d-2}a^{-d}\).  Hence
-\(\sgn\det[F_r^{(p+q)}(0)]=(-1)^{S_k}\), and
+\(\sgn\det[F_r^{(p+q)}(0)]=(-1)^{\binom k2}\), and
 Corollary~\ref{cor:hankel} gives the claim.
 \end{proof}
 
@@ -751,7 +760,7 @@ Comparing determinants gives
 \end{equation}
 this Schur-complement identity uses only the nonvanishing of the
 leading minors, not positive definiteness.  By
-Proposition~\ref{prop:block-determinants} and \(S_{j+1}-S_j=j\),
+Proposition~\ref{prop:block-determinants} and \(\binom{j+1}2-\binom j2=j\),
 \(\sgn(P_n,P_n)_a=(-1)^{r+j}\), which is \(\varrho(n)\) by
 \eqref{eq:rho-block}.  Hence \(\fh_n=\varrho(n)(P_n,P_n)_a>0\).  The
 last assertion is the identification at the end of
@@ -760,7 +769,7 @@ Section~\ref{sec:gram}.
 
 \begin{remark}
 Unwinding the proof of Lemma~\ref{lem:hankel-signs} writes
-\((-1)^{rk+S_k}\Delta_k^{(r)}\) as a \(k(d-1)\)-fold integral of a
+\((-1)^{rk+\binom k2}\Delta_k^{(r)}\) as a \(k(d-1)\)-fold integral of a
 positive function.  By \eqref{eq:norm-delta-ratio}, the norms
 \(\fh_n\) and the ratios \(V_n\) can therefore be evaluated without the
 cancellation inherent in the oscillatory moment determinants.
@@ -1123,7 +1132,7 @@ c\sum_{n\geq0}\frac{h_n^2\delta_n^2}{n+1}
 \emph{Step 4: a power weight.}  Let \(0<p<1\), put
 \(w_n=(n+1)^{-p}\), and
 \[
-S_p=\sum_{n\geq0}\frac{\delta_n^2}{(n+1)^{1+2p}},
+Q_p=\sum_{n\geq0}\frac{\delta_n^2}{(n+1)^{1+2p}},
 \]
 which is finite by the logarithmic bound of Step~1.  For an integer
 \(R\geq1\), the sequence \(h_n=(w_n-w_R)_+\) is supported on \(n<R\), and
@@ -1134,14 +1143,14 @@ the three pairs \((r,s)\) contribute the squared distances \(1\), \(4\),
 \[
 \frac{\epsilon p^2}{2}\sum_{m\geq0}
 \frac{5\delta_m^2+2\delta_{m+1}^2+5\delta_{m+2}^2}{(m+1)^{1+2p}}
-\leq\frac{\epsilon p^2}{2}\cdot12\cdot27\,S_p
-=162\,\epsilon p^2S_p,
+\leq\frac{\epsilon p^2}{2}\cdot12\cdot27\,Q_p
+=162\,\epsilon p^2Q_p,
 \]
 where we used \((m+r+1)/(m+1)\leq3\) and \(1+2p\leq3\).  As
 \(R\to\infty\), \(h_n\uparrow w_n\), and monotone convergence on the
-left of \eqref{eq:localized} gives \(cS_p\leq162\,\epsilon p^2S_p\).
+left of \eqref{eq:localized} gives \(cQ_p\leq162\,\epsilon p^2Q_p\).
 Choosing \(p=1/(18\sqrt K)\) makes \(162\,\epsilon p^2=c/2\), so
-\(cS_p\leq\frac c2S_p\).  Since \(S_p<\infty\), \(S_p=0\), hence
+\(cQ_p\leq\frac c2Q_p\).  Since \(Q_p<\infty\), \(Q_p=0\), hence
 \(\delta_n=0\) and \(v_n'=v_n\) for every \(n\).
 \end{proof}
 
@@ -1163,10 +1172,12 @@ For general \(d\geq3\), the substitution \(V_n=a^{2/(d-2)}v_n\) and
 of the \(d-1\) consecutive terms \(v_m,\ldots,v_{m+d-2}\).  The upper
 bounds of Step~1 persist, but the same argument then gives only
 \(v_n\geq c(n+1)^{-(d-3)}\).  For \(d\geq5\) this is too weak for
-Step~4: with \(a_n\geq c(n+1)^{-A}\) and \(b_n\leq(n+1)\epsilon\), a
-weight \(w_n\) decreasing to \(0\) with
-\(\epsilon(w_{n+1}-w_n)^2\lesssim a_nw_n^2/(n+1)\) exists only if
-\(\sum_n(n+1)^{-(A+1)/2}=\infty\), that is, \(A\leq1\).
+Step~4.  Using only \(a_n\geq c(n+1)^{-A}\) and \(b_n\leq(n+1)\epsilon\),
+Step~4 needs a weight \(w_n>0\) decreasing to \(0\) with
+\(\epsilon(w_n-w_{n+1})^2\lesssim c(n+1)^{-A-1}w_n^2\).  When \(A>1\) the
+relative decrements \((w_n-w_{n+1})/w_n\) are then summable, so \(w_n\)
+cannot tend to \(0\).  Thus the present estimates do not extend
+Theorem~\ref{thm:unique} to \(d\geq5\).
 \end{remark}
 
 \section*{AI-use disclosure}
