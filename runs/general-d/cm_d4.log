@@ -1,0 +1,4 @@
+[  21.3s] d=4 r=0 (r <= d/2-1): CM on grid
+[  42.5s] d=4 r=1 (r <= d/2-1): CM on grid
+[  63.9s] d=4 r=2 (r >= d/2): CM on grid
+[  85.7s] d=4 r=3 (r >= d/2): CM on grid

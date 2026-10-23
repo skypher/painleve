@@ -1,0 +1,6 @@
+[  14.6s] d=6 r=0 (r <= d/2-1): CM on grid
+[  28.9s] d=6 r=1 (r <= d/2-1): CM on grid
+[  43.2s] d=6 r=2 (r <= d/2-1): CM on grid
+[  57.5s] d=6 r=3 (r >= d/2): CM on grid
+[  71.7s] d=6 r=4 (r >= d/2): CM on grid
+[  85.7s] d=6 r=5 (r >= d/2): CM on grid

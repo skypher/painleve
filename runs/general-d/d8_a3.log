@@ -1,0 +1,49 @@
+[    1.4s] d=8 a=3.0 class r=0: block 5x5, worst series cancellation 10^4
+[    2.8s] d=8 a=3.0 class r=1: block 5x5, worst series cancellation 10^4
+[    4.2s] d=8 a=3.0 class r=2: block 5x5, worst series cancellation 10^5
+[    5.7s] d=8 a=3.0 class r=3: block 5x5, worst series cancellation 10^5
+[    7.2s] d=8 a=3.0 class r=4: block 5x5, worst series cancellation 10^6
+[    8.6s] d=8 a=3.0 class r=5: block 5x5, worst series cancellation 10^6
+[   10.1s] d=8 a=3.0 class r=6: block 5x5, worst series cancellation 10^6
+[   11.5s] d=8 a=3.0 class r=7: block 5x5, worst series cancellation 10^5
+  n=  0 rho=+1 h_n=         1.03332066851  +  |Im|/|h|=0.0
+  n=  1 rho=-1 h_n=        0.325143792565  +  |Im|/|h|=0.0
+  n=  2 rho=+1 h_n=         0.18913948507  +  |Im|/|h|=0.0
+  n=  3 rho=-1 h_n=        0.148821473332  +  |Im|/|h|=0.0
+  n=  4 rho=+1 h_n=        0.138904641947  +  |Im|/|h|=0.0
+  n=  5 rho=-1 h_n=        0.143260787408  +  |Im|/|h|=0.0
+  n=  6 rho=+1 h_n=        0.156100527505  +  |Im|/|h|=0.0
+  n=  7 rho=-1 h_n=        0.173667872448  +  |Im|/|h|=0.0
+  n=  8 rho=-1 h_n=        0.193961206423  +  |Im|/|h|=0.0
+  n=  9 rho=+1 h_n=        0.218244632514  +  |Im|/|h|=0.0
+  n= 10 rho=-1 h_n=        0.250203476759  +  |Im|/|h|=0.0
+  n= 11 rho=+1 h_n=        0.294204474245  +  |Im|/|h|=0.0
+  n= 12 rho=-1 h_n=        0.354659516052  +  |Im|/|h|=0.0
+  n= 13 rho=+1 h_n=        0.436109987822  +  |Im|/|h|=0.0
+  n= 14 rho=-1 h_n=        0.543450733296  +  |Im|/|h|=0.0
+  n= 15 rho=+1 h_n=        0.683020105911  +  |Im|/|h|=0.0
+  n= 16 rho=+1 h_n=        0.864845652166  +  |Im|/|h|=0.0
+  n= 17 rho=-1 h_n=         1.10500052528  +  |Im|/|h|=0.0
+  n= 18 rho=+1 h_n=         1.42730398743  +  |Im|/|h|=0.0
+  n= 19 rho=-1 h_n=         1.86482672109  +  |Im|/|h|=0.0
+  n= 20 rho=+1 h_n=         2.46206327274  +  |Im|/|h|=0.0
+  n= 21 rho=-1 h_n=         3.27866966479  +  |Im|/|h|=0.0
+  n= 22 rho=+1 h_n=          4.3965584408  +  |Im|/|h|=0.0
+  n= 23 rho=-1 h_n=         5.93235822959  +  |Im|/|h|=0.0
+  n= 24 rho=-1 h_n=         8.05598411765  +  |Im|/|h|=0.0
+  n= 25 rho=+1 h_n=         11.0154401791  +  |Im|/|h|=0.0
+  n= 26 rho=-1 h_n=         15.1695122017  +  |Im|/|h|=0.0
+  n= 27 rho=+1 h_n=         21.0329233422  +  |Im|/|h|=0.0
+  n= 28 rho=-1 h_n=         29.3425069797  +  |Im|/|h|=0.0
+  n= 29 rho=+1 h_n=         41.1592311356  +  |Im|/|h|=0.0
+  n= 30 rho=-1 h_n=         58.0276558809  +  |Im|/|h|=0.0
+  n= 31 rho=+1 h_n=         82.2192834858  +  |Im|/|h|=0.0
+  n= 32 rho=+1 h_n=         117.092851333  +  |Im|/|h|=0.0
+  n= 33 rho=-1 h_n=         167.620538672  +  |Im|/|h|=0.0
+  n= 34 rho=+1 h_n=         241.160602429  +  |Im|/|h|=0.0
+  n= 35 rho=-1 h_n=         348.610679105  +  |Im|/|h|=0.0
+  n= 36 rho=+1 h_n=         506.161634431  +  |Im|/|h|=0.0
+  n= 37 rho=-1 h_n=         737.993716421  +  |Im|/|h|=0.0
+  n= 38 rho=+1 h_n=         1080.41849545  +  |Im|/|h|=0.0
+  n= 39 rho=-1 h_n=         1588.20050768  +  |Im|/|h|=0.0
+[   11.6s] d=8 a=3.0 N=40: all h_n > 0: True; max relative recurrence residual 2.64e-192
