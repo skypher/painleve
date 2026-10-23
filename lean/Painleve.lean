@@ -24,3 +24,9 @@ import Painleve.Weighted
 import Painleve.PhiHankel
 import Painleve.BlockAlg
 import Painleve.PlaneHankel
+import Painleve.HSeries
+import Painleve.Assembly
+import Painleve.Limits
+import Painleve.BlockSign
+import Painleve.MainOf
+import Painleve.Blocks
