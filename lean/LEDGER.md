@@ -49,6 +49,14 @@ recurrence (Herm, Ibp, Recurrence = Section 5) → Bessel initial data
 (BesselSeries, HSeries, PlanarOde, Limits, OdeUnique, BesselMatch) → MainOf,
 Main.
 
+## Theorem 1.2 (uniqueness of the positive solution), 2026-10-23
+
+Frozen statement `Painleve.Stmt_unique` (Painleve/StatementUnique.lean),
+APPROVED by independent statement check (GPT-6 Pro, job_abc1a83b, all knobs
+PASS). Proof plan (paper Section 7): UniqBounds (integrated form, upper and
+lower bounds, logarithmic mean) and Energy (power-weighted localized energy
+estimate) in progress on lanes A and E; assembly by main.
+
 ## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
 
 Exponential coordinates u = e^{t₁}, v = e^{t₂}. On a disk of radius R the

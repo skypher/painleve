@@ -274,8 +274,8 @@ invariance, depends only on \(uv\).  In exponential coordinates
 class modulo \(4\), after a unitriangular Stirling transformation, into
 the Hankel matrix of derivatives of a positive kernel \(F_r(t)\)
 (Lemmas~\ref{lem:four-kernels} and~\ref{lem:source-moments}).
-Triangular row operations and nonzero diagonal column rescalings reduce
-these Hankel matrices to bi-moment matrices
+Invertible triangular row and column transformations reduce these
+Hankel matrices to bi-moment matrices
 \[
 \left[
 \int_0^\infty s^p
@@ -307,8 +307,9 @@ integral with the Bessel combination \eqref{eq:h-bessel}, and
 Section~\ref{sec:completion} identifies the norm ratios with the
 solution of \eqref{eq:quartic-recurrence}, and Section~\ref{sec:unique}
 proves Theorem~\ref{thm:unique}.  Theorem~\ref{thm:main} has
-been formally verified in Lean~4 with Mathlib; the formalization
-follows the arguments given here.
+been formally verified in Lean~4 (version~4.33) with Mathlib, as the
+declaration \texttt{Painleve.main\_theorem}; the formalization follows
+the arguments given here.
 
 \section{The quartic Gram form}\label{sec:gram}
 
@@ -474,8 +475,8 @@ with the recurrence for \(\stir qj\) gives
 \end{equation}
 because \(\frac{\dd}{\dd t}\bigl[\e^{jt}G^{(j)}(\e^t)\bigr]
 =j\e^{jt}G^{(j)}(\e^t)+\e^{(j+1)t}G^{(j+1)}(\e^t)\).  Differentiating
-\eqref{eq:Phi} \(j\) times in \(w\) and substituting \(s=t/\sqrt w\), which
-turns \((ws^2)^j(1+ws^2)^{-j}\) into \(\psi(t)^j\), gives
+\eqref{eq:Phi} \(j\) times in \(w\) and substituting \(s=x/\sqrt w\), which
+turns \((ws^2)^j(1+ws^2)^{-j}\) into \(\psi(x)^j\), gives
 \begin{equation}
 w^j\,\partial_w^j\Phi_{\alpha,\beta}(w;y)
 =(-1)^j(b)_j\,w^{-\gamma}B_{0j}\bigl(yw^{-1/2}\bigr),
@@ -500,8 +501,9 @@ Next, for a function \(g\) that is smooth on \((0,\infty)\), put
 \]
 with constants \(\kappa_{pi}\) depending only on \(\gamma\), determined by
 \(\kappa_{00}=1\) and
-\(\kappa_{p+1,i}=(-\gamma-\frac i2)\kappa_{pi}-\frac12\kappa_{p,i-1}\);
-in particular \(\kappa_{pp}=(-\frac12)^p\).  Applying this to
+\(\kappa_{p+1,i}=(-\gamma-\frac i2)\kappa_{pi}-\frac12\kappa_{p,i-1}\),
+with \(\kappa_{pi}=0\) for \(i<0\) or \(i>p\); in particular
+\(\kappa_{pp}=(-\frac12)^p\).  Applying this to
 \(g=B_{0j}\), with \(g^{(i)}=(-1)^iB_{ij}\), we obtain
 \[
 F^{(p+q)}(0)
@@ -603,7 +605,7 @@ For \(r\in\{0,1,2,3\}\) and \(\lambda>0\), define the weighted sources
 \]
 Differentiation under the integral sign, dominated on \(a\geq a_0>0\) by
 \(|z|^{2r+2}\e^{-a_0|z|^2}\), gives
-\(\mathcal W_{r+1}=-\partial_a\mathcal W_r\), so
+\(\mathcal W_{r+1}=-\partial_a\mathcal W_r\) for \(r=0,1,2\), so
 \(\mathcal W_r=(-\partial_a)^r\mathcal W_0\).
 
 \begin{lemma}[four positive kernels]\label{lem:four-kernels}
@@ -856,10 +858,15 @@ substitution \(z\mapsto\eta z\) of Section~\ref{sec:gram} gives
 h(a)=h_S(a):=\frac{\pi^2}{4}\left[\sqrt8\,s_-(x)^2
 -\sqrt2\,a\,s_-(x)s_+(x)+\frac{a^2}{\sqrt8}\,s_+(x)^2\right].
 \]
-The function \(h_S\) is smooth on \(\mathbb R\).  Differentiating three
-times and eliminating \(s_\pm''\) and \(s_\pm'''\) with the equations for
-\(s_\pm\) and their derivatives shows
-\(h_S'''+a^2h_S'+ah_S=0\) on \(\mathbb R\).  Since
+The function \(h_S\) is smooth on \(\mathbb R\).  Put
+\(U(a)=s_-(a^2/4)\) and \(V(a)=a\,s_+(a^2/4)\).  The equations for
+\(s_\mp\), with \(2\nu+1=\frac12\) and \(\frac32\), give
+\(U''+\frac{a^2}{4}U=0\) and \(V''+\frac{a^2}{4}V=0\).  If
+\(y_1,y_2\) solve \(y''+qy=0\), then \(P=y_1y_2\) satisfies
+\(P'''+4qP'+2q'P=0\); with \(q=a^2/4\) this is
+\(P'''+a^2P'+aP=0\).  Since
+\(h_S=\frac{\pi^2}{4}\bigl(\sqrt8\,U^2-\sqrt2\,UV+V^2/\sqrt8\bigr)\),
+we get \(h_S'''+a^2h_S'+ah_S=0\) on \(\mathbb R\).  Since
 \(s_\nu(0)=1/\Gamma(\nu+1)\) and \(s_\nu'(0)=0\),
 \[
 h_S(0)=\frac{\pi^2\sqrt8}{4\,\Gamma(\frac34)^2},
@@ -880,13 +887,15 @@ H''&=\mathcal W_2(a;1)=2C\,\Phi_{1,1}(1;y).
 \end{split}
 \]
 As \(y\downarrow0\), monotone convergence and
-\(\int_0^\infty s^{2x-1}(1+s^2)^{-x-z}\dd s=\frac12B(x,z)\)
-\cite[equation~(5.12.3)]{NISTHandbook2010} give
+\(\int_0^\infty s^{2x-1}(1+s^2)^{-x-z}\dd s=\frac12B(x,z)
+=\frac{\Gamma(x)\Gamma(z)}{2\Gamma(x+z)}\)
+\cite[equations~(5.12.1) and (5.12.3)]{NISTHandbook2010} give
 \(\Phi_{0,0}(1;y)\to\frac12B(\frac14,\frac14)=\Gamma(\frac14)^2/(2\sqrt\pi)\)
 and \(\Phi_{1,1}(1;y)\to\frac12B(\frac34,\frac34)=\Gamma(\frac34)^2/\sqrt\pi\).
 The substitution \(s=u/y\) gives
-\(a\Phi_{1,0}(1;y)=\sqrt2\int_0^\infty\e^{-u}u^{1/2}(y^2+u^2)^{-1/2}\dd u\),
-which tends to \(\sqrt2\,\Gamma(\frac12)=\sqrt{2\pi}\).  Using
+\(a\Phi_{1,0}(1;y)=\sqrt2\int_0^\infty\e^{-u}u^{1/2}(y^2+u^2)^{-1/2}\dd u\);
+the integrand is bounded by \(\e^{-u}u^{-1/2}\), so by dominated
+convergence this tends to \(\sqrt2\,\Gamma(\frac12)=\sqrt{2\pi}\).  Using
 \(\Gamma(\frac14)\Gamma(\frac34)=\pi\sqrt2\),
 \(\Gamma(\frac54)=\frac14\Gamma(\frac14)\) and \(\Gamma(\frac12)=\sqrt\pi\)
 \cite[equations~(5.5.3), (5.5.1), (5.4.6)]{NISTHandbook2010}, the limits
