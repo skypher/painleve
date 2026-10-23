@@ -152,6 +152,56 @@ By Lemma 2, $F_r(t)=\pi r!a^{-r-1}\mathbb E[\exp(-e^t\kappa S_r)]$ with $m=d-1\g
 Lemma 3 gives $\operatorname{sgn}\det[F_r^{(p+q)}(0)]=(-1)^{S_k}$, and Lemma 1 gives
 $\operatorname{sgn}\Delta^{(r)}_k=(-1)^{rk+S_k}$. Section 1 then gives Theorem A. ∎
 
+## 6. The recurrence for general d
+
+This section re-derives [FH, (3.1)–(3.3)] for general $d$, following the paper's §6. Let $d\ge3$,
+$\mathfrak h_n:=h_n>0$ (Theorem A), and $V_n=\mathfrak h_{n+1}/\mathfrak h_n$, with $V_j=0$ for $j<0$.
+
+*Twist and multiplication.* If $g$ has weight $\ell$, then $\sigma(zg)=-\tau(\ell)\,z\,\sigma g$. For
+$\ell\le d-2$ this follows from $(-\eta)^{-\ell-1}\eta=-(-\eta)^{-\ell}$. For $\ell=d-1$, $zg$ has weight
+0 and $\sigma(zg)=\eta z\,g(\eta z)=\eta(-\eta)^{d-1}z\,\sigma g=(-1)^{d-1}\eta^dz\,\sigma g=-\tau(d-1)z\,\sigma g$.
+
+*Integration by parts.* Let $L=\partial_z+iz^{d-1}$. Since $\partial_z\rho_a=(-a\bar z+iz^{d-1})\rho_a$ and
+$\partial_z\overline{\sigma g}=0$, the Gaussian decay gives, for $g$ of weight $\ell$,
+$(Lf,g)=a\int f\,\bar z\,\overline{\sigma g}\,\rho_a\,dA=-\tau(\ell)\,a\,(f,zg)$.
+
+*Three-term relations.* $zP_n$ has weight $n+1$ and degree $n+1$. $LP_n$ has weight $n-1$, degree
+$n+d-1$ and leading coefficient $i$. If $j\equiv n+1$ and $j\le n+1-2d$, then $\deg LP_j<n$, so
+$0=(LP_j,P_n)=-\tau(n)a(P_j,zP_n)$. If $j\equiv n-1$ and $j\le n-1-d$, then $\deg zP_j<n$, so
+$(LP_n,P_j)=-\tau(j)a(P_n,zP_j)=0$. Hence
+$$zP_n=P_{n+1}+c_nP_{n+1-d},\qquad LP_n=iP_{n+d-1}+d_nP_{n-1},$$
+where terms with negative index are omitted.
+
+*Signs.* The $d-1$ consecutive integers $n-d+1,\dots,n-1$ miss exactly the residue of $n$, and
+$\prod_{\ell\bmod d}\tau(\ell)=(-1)^{d-1}$. So $\prod_{\ell=n-d+1}^{n-1}\tau(\ell)=(-1)^{d-1}\tau(n)$, and
+$\varrho(n)=\tau(n)\varrho(n-d+1)$ for $n\ge d-1$. Also $\varrho(n)=-\tau(n-1)\varrho(n-1)$ for $n\ge1$.
+
+*Coefficients.* $(LP_{n-d+1},P_n)=i\varrho(n)\mathfrak h_n=-\tau(n)a(P_{n-d+1},zP_n)$. With Hermitian symmetry,
+$$c_n=\frac{(zP_n,P_{n-d+1})}{\varrho(n-d+1)\mathfrak h_{n-d+1}}=\frac ia\frac{\mathfrak h_n}{\mathfrak h_{n-d+1}}=\frac ia\prod_{i=n-d+1}^{n-1}V_i,
+\qquad d_n=\frac{-\tau(n-1)a(P_n,zP_{n-1})}{\varrho(n-1)\mathfrak h_{n-1}}=a\frac{\mathfrak h_n}{\mathfrak h_{n-1}}=aV_{n-1}.$$
+These formulas also hold for $n<d-1$, where $c_n=0$.
+
+*Recurrence.* In $z^{d-1}P_n$, a path from $P_n$ to $P_{n-1}$ in $d-1$ steps of $+1$ or $-(d-1)$
+uses exactly one down-step. So the coefficient of $P_{n-1}$ is $\sum_{s=0}^{d-2}c_{n+s}$. The
+coefficient of $P_{n-1}$ in $\partial_zP_n$ is $n$. Comparing coefficients of $P_{n-1}$ in
+$LP_n=\partial_zP_n+iz^{d-1}P_n$, with $m=n-1\ge0$:
+$$aV_m=m+1-\frac1a\sum_{s=0}^{d-2}\ \prod_{i=m+s-d+2}^{m+s}V_i ,$$
+which is [FH, (3.3)].
+
+*Initial data.* $P_j=z^j$ for $j\le d-1$, $\sigma z^j=(-1)^jz^j$ and $\varrho(j)=(-1)^j$. So
+$\mathfrak h_j=\int|z|^{2j}\rho_a\,dA=W_j(1)=\pi j!\,a^{-j-1}\mathbb E[\exp(-d^{d-2}a^{-d}S_j)]$ for $j\le d-1$.
+In particular $V_j=\int|z|^{2j+2}\rho_a/\int|z|^{2j}\rho_a$ for $j\le d-2$.
+
+*Uniqueness given the data.* At index $m$ the recurrence is linear in $V_{m+d-2}$, with
+coefficient $V_m\cdots V_{m+d-3}/a^2>0$. So the data $V_0,\dots,V_{d-3}$ determine the solution
+among all real sequences.
+
+**Corollary C.** For $d\ge3$ and $a>0$, the recurrence [FH, (3.3)] with initial values
+$V_j=\int|z|^{2j+2}\rho_a/\int|z|^{2j}\rho_a$ ($0\le j\le d-3$) has a unique real solution, and it is
+positive: $V_n=\mathfrak h_{n+1}/\mathfrak h_n>0$.
+
+(Checked numerically: `gram.py` recurrence residuals $<10^{-160}$ for $d=3,\dots,8$.)
+
 ## Remarks
 
 1. **The case d = 4.** For $r=0$: $J_0=\{0,1,2\}$, shapes $\frac14,\frac12,\frac34$, and
@@ -166,9 +216,8 @@ $\operatorname{sgn}\Delta^{(r)}_k=(-1)^{rk+S_k}$. Section 1 then gives Theorem A
 3. **Uniqueness for d ≥ 5 is still open.** The analogue of Theorem 1.2 for $d\ge5$ is not
    proved. The a priori lower bound of Section 7 weakens to $v_n\ge c(n+1)^{-(d-3)}$, and the
    power-weight argument needs exponent at most 1. Local scans for $d=5,6$ support uniqueness.
-4. **Recurrence.** [FH, §3.1] derive (3.1)–(3.3) for general $d$ "by the calculation of Theorem
-   2.4", assuming the conjecture. A write-up should redo this derivation in the style of the
-   paper's Section 6.
+4. **Recurrence.** Section 6 re-derives [FH, (3.1)–(3.3)] for general $d$. FH stated them "by
+   the calculation of Theorem 2.4", assuming the conjecture.
 
 ## References
 
