@@ -53,3 +53,6 @@ import Painleve.GramD
 import Painleve.HankelD
 import Painleve.BlockSignD
 import Painleve.AssemblyD
+import Painleve.HermIbpD
+import Painleve.RecurrenceD
+import Painleve.MainD

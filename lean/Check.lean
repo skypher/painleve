@@ -33,6 +33,8 @@ end AxiomAuditRegression
 
 example : Painleve.Stmt_main := Painleve.main_theorem
 example : Painleve.Stmt_unique := Painleve.unique_theorem
+example : Painleve.Stmt_mainD := Painleve.main_theoremD
 
 assert_allowed_axioms Painleve.main_theorem
 assert_allowed_axioms Painleve.unique_theorem
+assert_allowed_axioms Painleve.main_theoremD
