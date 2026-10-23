@@ -12,7 +12,8 @@ Paper and Lean 4 formalization.
   (Theorem 1.3).
 - `general_d.md`: the working note for the general-`d` argument.
 - `lean/`: a Lean 4 / Mathlib formalization of the case `d = 4`
-  (Theorems 1.1 and 1.3 for `d = 4`, and Theorem 1.2). It follows
+  (Theorems 1.1 and 1.2 for `d = 4`, and the uniqueness part of Theorem 1.3
+  for `d = 4`). It follows
   the quartic argument of the paper as of release `v1.1`; section and lemma
   numbers in its docstrings and in `LEDGER.md` refer to that version.
   - `Painleve/Statement.lean` and `Painleve/StatementUnique.lean` hold the
