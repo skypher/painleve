@@ -1,5 +1,10 @@
 # Lean formalization ledger
 
+Paper section and lemma numbers below refer to the version of `paper.tex` in
+release `v1.1` (quartic only). The current paper proves the general-`d`
+theorem by a different route; its quartic results are Theorems 1.1 (for
+`d = 4`), 1.2 and 1.3.
+
 Final theorem: `Painleve.Stmt_main` (`Painleve/Statement.lean`), the Lean form
 of Theorem 1.1 of `paper.tex` (part (i): Felder–Hoppe Conjecture 3.6 for
 d = 4, a > 0, with positive signed norms; part (ii): Bessel initial data,
