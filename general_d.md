@@ -1,6 +1,6 @@
 # The Felder–Hoppe conjecture for every d (a > 0)
 
-Status: candidate proof, awaiting independent review (2026-10-23).
+Status: independent review PASS (GPT-6 Pro, job_d80d6440, 2026-10-23); its fixes are applied.
 Numerical checks: `runs/general-d/` (scripts and logs).
 
 ## Statement
@@ -59,8 +59,8 @@ the rotation $z\mapsto e^{i\varphi/d}z$ multiplies $z^d$ by $e^{i\varphi}$ and $
 so $s\mapsto\mathcal Z_R(ue^s,ve^{-s})$ is constant and $\mathcal Z_R(e^{t_1},e^{t_2})=f_R(t_1+t_2)$;
 the Stirling expansion $\frac{d^p}{dt^p}\exp(ce^t)=\sum_k\{{p\atop k}\}(ce^t)^k\exp(ce^t)$ gives the
 truncated identity; and $R\to\infty$ is taken along real $t$, where the phase has modulus 1
-and $t$-derivatives of order $m$ are bounded by $c_m(1+|z|)^{dm}$, so dominated convergence
-applies. For the determinant, $G_{pq}=(-1)^{r+q}(d/i)^{p+q}[(i/d)^{p+q}M_{pq}]$; extracting
+and $t$-derivatives of order $m$ are bounded by $c_m(1+|z|)^{dm}$ locally uniformly in real $t$,
+so dominated convergence applies. For the determinant, $G_{pq}=(-1)^{r+q}(d/i)^{p+q}[(i/d)^{p+q}M_{pq}]$; extracting
 $(d/i)^p$ from rows and $(-1)^{r+q}(d/i)^q$ from columns gives the factor
 $(-1)^{rk+S_k}(d/i)^{2S_k}=(-1)^{rk}d^{2S_k}$, and the Stirling matrices are unitriangular. ∎
 
@@ -97,10 +97,13 @@ $$\int_0^\infty x^{z-1}W_r(\sqrt x)\,dx=\pi\,r!\,\Gamma(z)\,(d^{\,d-2})^{-z}\pro
 
 (iv) The right side is the Mellin transform of
 $x\mapsto\pi r!\,\mathbb E[\exp(-x\,d^{d-2}S_r)]$, by Tonelli and
-$\mathbb E[G^{-z}]=\Gamma(\beta-z)/\Gamma(\beta)$, valid for $0<\sigma<\min_j\beta_j=(r+1)/d$.
+$\mathbb E[G^{-z}]=\Gamma(\beta-z)/\Gamma(\beta)$. This holds for $0<\sigma<\beta_{\min}:=\min_{j\in J_r}\beta_j$,
+where $\beta_{\min}=(r+1)/d$ for $r\le d-2$ and $\beta_{\min}=(d+1)/d$ for $r=d-1$. In every case the
+strip chosen in (ii) lies inside it.
 
 (v) Both functions are continuous on $(0,\infty)$ and $x^{\sigma-1}f\in L^1$; equal Mellin
-transforms on the line $\operatorname{Re}z=\sigma$ give equality (Fourier uniqueness). ∎
+transforms on the line $\operatorname{Re}z=\sigma$ give equality (Fourier uniqueness). At $\lambda=0$
+both sides equal $\pi r!\,a^{-r-1}$ directly. ∎
 
 (Checked: exact agreement for $d=3$ to $10^{-22}$–$10^{-60}$; Monte Carlo for $d=4,\dots,8$,
 all $r$, 90 cases, max $|z|$-score 2.0: `gamma_rep.log`.)
@@ -130,8 +133,9 @@ $$\det[\phi_j^{(p)}(u_l)]=\int_{w_1<\dots<w_k}\det[\phi_{j-1}^{(p)}(w_i)]\;\det[
 Here $q_j(w-u)=\Gamma(\beta_j)^{-1}e^{\beta_jw}e^{-\beta_ju}\exp(\xi\eta)$ with $\xi=e^w$ and
 $\eta=-e^{-u}$, both strictly increasing. The kernel $\exp(\xi\eta)$ is strictly totally
 positive: $\det[e^{\xi_i\eta_l}]=\det[(e^{\xi_i})^{\eta_l}]>0$ for $\xi\uparrow,\eta\uparrow$ (generalized
-Vandermonde determinant; e.g. Gantmacher–Krein, or Pólya–Szegő V.76, via Descartes'
-rule of signs for $\sum c_le^{\eta_ly}$). So the second factor is positive on the ordered
+Vandermonde determinant). Directly: $\sum_lc_le^{\eta_l\xi}$ has at most $k-1$ real zeros (Rolle
+induction), so the determinant never vanishes. At coalescing $\xi$ it becomes the Wronskian
+$\det[\eta_l^pe^{\xi\eta_l}]=e^{\xi\sum\eta_l}V(\eta)>0$, which fixes the sign. So the second factor is positive on the ordered
 region, the first has sign $(-1)^{S_k}$ by induction, and the claim follows.
 
 Final step: write $u=t+\log\kappa$ and $H_{pq}=\phi_m^{(p+q)}(u)$. Differentiating
