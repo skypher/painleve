@@ -1,0 +1,9 @@
+[   0.0s] d=6 n=1000 K=8: 24 unknowns, 17 equations; true scale v_n ~ 2.886
+[  22.2s] s*(n+1) =      0.001: min RMS residual = 8.898e-15
+[  42.4s] s*(n+1) =       0.01: min RMS residual = 5.045e-15
+[  56.9s] s*(n+1) =        0.1: min RMS residual = 2.874e-14
+[  67.1s] s*(n+1) =          1: min RMS residual = 2.642e-14
+[  74.4s] s*(n+1) =         10: min RMS residual = 1.046e-14
+[  81.3s] s*(n+1) =        100: min RMS residual = 2.197e-15
+[  87.5s] s*(n+1) =       1000: min RMS residual = 3.832e-14
+[  94.1s] s*(n+1) =       2889: min RMS residual = 8.311e-15

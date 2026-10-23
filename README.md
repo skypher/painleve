@@ -7,11 +7,12 @@ Paper and Lean 4 formalization.
   conjecture (SIGMA 21 (2025) 103, Conjecture 3.6), with positive signed
   norms, and the positivity of the solution of their recurrence with moment
   initial data (Theorem 1.1). For `d = 4` it identifies the initial data with
-  Bessel functions (Theorem 1.2) and proves that the positive solution is
-  unique (Theorem 1.3).
+  Bessel functions (Theorem 1.2). For every `d ≥ 3` it proves that the
+  positive solution is unique and grows like `((n+1)ε/(d−1))^{1/(d−1)}`
+  (Theorem 1.3).
 - `general_d.md`: the working note for the general-`d` argument.
 - `lean/`: a Lean 4 / Mathlib formalization of the case `d = 4`
-  (Theorem 1.1 for `d = 4` with Theorem 1.2, and Theorem 1.3). It follows
+  (Theorems 1.1 and 1.3 for `d = 4`, and Theorem 1.2). It follows
   the quartic argument of the paper as of release `v1.1`; section and lemma
   numbers in its docstrings and in `LEDGER.md` refer to that version.
   - `Painleve/Statement.lean` and `Painleve/StatementUnique.lean` hold the
@@ -54,7 +55,7 @@ Painleve.unique_theorem: allowed axioms [propext, Classical.choice, Quot.sound]
 GitHub CI (`.github/workflows/lean.yml`) builds the library and runs
 `Check.lean` on every push and pull request.
 
-The paper cites release `v2.0` of this repository (release `v1.1` holds the
+The paper cites release `v2.1` of this repository (release `v1.1` holds the
 earlier quartic-only version of the paper).
 
 `runs/general-d/` contains the numerical checks of the general-`d` argument,

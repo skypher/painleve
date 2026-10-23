@@ -146,9 +146,10 @@ The Gram blocks become Hankel matrices of these Laplace transforms, and
 total positivity of the logarithmic Gamma kernels, together with
 Andr\'eief's identity, fixes the sign of every leading minor.  For
 \(d=4\) we identify the initial data with Bessel functions of orders
-\(\pm\frac14\), and we show, by a weighted energy estimate for the
-convex variational structure of the recurrence, that the positive
-solution is unique.
+\(\pm\frac14\).  Finally, for every \(d\geq3\) we show that the positive
+solution is unique and determine its growth, by comparing an arbitrary
+positive solution with an explicit approximate solution through the
+convex variational structure of the recurrence.
 
 \vskip5pt
 \noindent\textbf{Keywords.}\enspace discrete Painlev\'e-type
@@ -262,31 +263,50 @@ extend uniquely to a real sequence satisfying
 every \(n\geq0\).
 \end{theorem}
 
-Uniqueness in Theorem~\ref{thm:quartic} refers to the prescribed initial
-data.  The next theorem shows that the positive solution itself is
-unique, so that the Bessel values \eqref{eq:initial-values} are the
-only initial values leading to a positive solution.
+Uniqueness in Theorems~\ref{thm:main}(ii) and~\ref{thm:quartic} refers
+to the prescribed initial data.  For \(d\geq3\), the substitution
+\(V_n=a^{2/(d-2)}v_n\) and \(\epsilon=a^{-d/(d-2)}\) turns
+\eqref{eq:FH-recurrence} into
+\begin{equation}
+v_n+\sum_{m=n-d+2}^{n}v_mv_{m+1}\cdots v_{m+d-2}=(n+1)\epsilon,
+\qquad n\geq0,
+\label{eq:general-recurrence}
+\end{equation}
+where \(v_n=0\) for \(n<0\); for \(d=4\) this is
+\eqref{eq:quartic-recurrence}.  The next theorem shows that the positive
+solution itself is unique, so that the moment values
+\eqref{eq:FH-initial}, and for \(d=4\) the Bessel values
+\eqref{eq:initial-values}, are the only initial values leading to a
+positive solution.
 
 \begin{theorem}\label{thm:unique}
-For every \(\epsilon>0\), there is at most one sequence of positive
-numbers \((v_n)_{n\geq0}\) satisfying \eqref{eq:quartic-recurrence} for
-every \(n\geq0\).  In particular, for \(a>0\) and \(\epsilon=a^{-2}\),
-the sequence of Theorem~\ref{thm:quartic} is the unique positive solution
-of \eqref{eq:quartic-recurrence}.
+Let \(d\geq3\) and \(\epsilon>0\).  Every sequence of positive numbers
+\((v_n)_{n\geq0}\) satisfying \eqref{eq:general-recurrence} for every
+\(n\geq0\) satisfies
+\[
+\lim_{n\to\infty}v_n\left(\frac{d-1}{\epsilon(n+1)}\right)^{1/(d-1)}=1,
+\]
+and there is at most one such sequence.  In particular, for \(a>0\) the
+sequence \((V_n)\) of Theorem~\ref{thm:main}(ii) is the unique positive
+solution of \eqref{eq:FH-recurrence}, and for \(d=4\) the sequence of
+Theorem~\ref{thm:quartic} is the unique positive solution of
+\eqref{eq:quartic-recurrence}.
 \end{theorem}
 
 For the cubic analogue, the existence of a positive solution was
 proved in \cite[Section~7]{ArnlindHoppeKontsevich2019} and its
 uniqueness in \cite[Theorem~2.1, proved in Section~4.2]{ClarksonEtAl2025};
-for the quartic recurrence, \cite[Section~5]{ClarksonEtAl2025} reports
-preliminary evidence for a positive solution with analogous properties.
-Our proof of Theorem~\ref{thm:unique} (Section~\ref{sec:unique}) uses
-only the recurrence and is independent of the rest of the paper: in
-logarithmic variables the recurrence is the stationarity condition of a
-convex functional, and a weighted energy estimate controls the boundary
-at infinity.  For \(d\geq5\) its a priori bounds are too weak
-(Remark~\ref{rem:higher-d}), and we do not know whether the positive
-solution is unique.
+for \(d=3\), Theorem~\ref{thm:unique} gives a short proof of that
+uniqueness.  For the quartic recurrence, \cite[Section~5]{ClarksonEtAl2025}
+reports preliminary evidence for a positive solution with analogous
+properties.  Our proof of Theorem~\ref{thm:unique}
+(Section~\ref{sec:unique}) uses only the recurrence and is independent of
+the rest of the paper.  In logarithmic variables the recurrence is the
+stationarity condition of a convex functional.  Comparing an arbitrary
+positive solution with an explicit approximate solution, whose residual
+is \(O(n^{-1})\), gives an a priori bound in which the convexity is
+controlled by the known approximate solution rather than by the unknown
+one, and a cutoff argument then compares two positive solutions.
 
 The proof of Theorem~\ref{thm:main}(i) treats all \(d\) and all indices
 at once.  Independent source parameters \(u\) and \(v\) for \(z^d\) and
@@ -318,14 +338,14 @@ Section~\ref{sec:signs} proves Theorem~\ref{thm:main}(i).
 Section~\ref{sec:completion} derives the recurrence and proves
 Theorem~\ref{thm:main}(ii).  Section~\ref{sec:quartic} treats \(d=4\)
 and proves Theorem~\ref{thm:quartic}, and Section~\ref{sec:unique}
-proves Theorem~\ref{thm:unique}.  For \(d=4\), Theorem~\ref{thm:main}
-together with Theorems~\ref{thm:quartic} and~\ref{thm:unique} has been
-formally verified in Lean~4.33.0 with Mathlib, as the declarations
+proves Theorem~\ref{thm:unique}.  For \(d=4\), Theorems~\ref{thm:main},
+\ref{thm:quartic} and~\ref{thm:unique} have been formally verified in
+Lean~4.33.0 with Mathlib, as the declarations
 \path{Painleve.main_theorem} and \path{Painleve.unique_theorem}.  That
-formalization follows an earlier, quartic-specific form of the sign
-argument (see the code availability statement); the general-\(d\)
-argument of Sections~\ref{sec:hankel}--\ref{sec:completion} has not been
-formalized.
+formalization follows earlier, quartic-specific forms of the arguments
+(see the code availability statement); the general-\(d\) arguments of
+Sections~\ref{sec:hankel}--\ref{sec:completion} and~\ref{sec:unique}
+have not been formalized.
 
 \section{The Gram form}\label{sec:gram}
 
@@ -1053,132 +1073,215 @@ for \(d=4\) now gives existence, uniqueness and positivity.  (For
 
 \section{Uniqueness of the positive solution}\label{sec:unique}
 
-\begin{proof}[Proof of Theorem~\ref{thm:unique}]
-Fix \(\epsilon>0\) and let \((v_n)\) and \((v_n')\) be positive solutions
-of \eqref{eq:quartic-recurrence}.  Put \(T_n=v_nv_{n+1}v_{n+2}\) and
-\(T_{-1}=T_{-2}=0\), and similarly \(T_n'\).  Since
-\(v_n(v_{n-1}v_{n-2}+v_{n+1}v_{n-1}+v_{n+2}v_{n+1})=T_{n-2}+T_{n-1}+T_n\),
-the recurrence reads
+Throughout this section \(d\geq3\) and \(\epsilon>0\) are fixed.  For a
+positive sequence \((v_n)_{n\geq0}\), with \(v_k=0\) for \(k<0\), put
+\(T_m=v_mv_{m+1}\cdots v_{m+d-2}\) for \(m\geq0\) and \(T_m=0\) for
+\(m<0\); then \eqref{eq:general-recurrence} reads
 \begin{equation}
-v_n+T_n+T_{n-1}+T_{n-2}=(n+1)\epsilon,
+v_n+\sum_{m=n-d+2}^{n}T_m=(n+1)\epsilon,
 \qquad n\geq0.
 \label{eq:integrated}
 \end{equation}
-
-\emph{Step 1: a priori bounds.}  All terms in \eqref{eq:integrated} are
-nonnegative, so \(v_n\leq(n+1)\epsilon\) and \(T_n\leq(n+1)\epsilon\).
-Hence, bounding each factor of the bracket in
-\eqref{eq:quartic-recurrence} by these estimates (for \(n=0,1\) the
-products containing a negative index vanish), the bracket is at most
-\(1+\epsilon^2[n(n-1)+n(n+2)+(n+2)(n+3)]=1+3\epsilon^2((n+1)^2+1)\leq
-K(n+1)^2\) with \(K=1+6\epsilon^2\), and therefore
+For \(x,y>0\), the logarithmic mean is
+\(\operatorname{LM}(x,y)=(y-x)/(\log y-\log x)\) if \(x\neq y\) and
+\(\operatorname{LM}(x,x)=x\); it lies between \(x\) and \(y\), and
 \begin{equation}
-v_n\geq\frac{c}{n+1},
+\operatorname{LM}(x,y)\geq\frac{x}{1+|\log(y/x)|}.
+\label{eq:lm-lower}
+\end{equation}
+Indeed, this is clear if \(y\geq x\); if \(y=x\e^{-s}\) with
+\(s>0\), then \(\operatorname{LM}(x,y)=x(1-\e^{-s})/s
+\geq x/(1+s)\) because \(\e^s\geq1+s\).  For finitely
+supported real \(h\) and real \(z\) we use the identity
+\begin{equation}
+\Bigl(\sum_iz_i\Bigr)\Bigl(\sum_ih_i^2z_i\Bigr)
+=\Bigl(\sum_ih_iz_i\Bigr)^2+\sum_{i<j}(h_i-h_j)^2z_iz_j .
+\label{eq:square-identity}
+\end{equation}
+
+\begin{lemma}[crude bounds]\label{lem:crude}
+Put \(K=1+(d-1)^{d-1}\epsilon^{d-2}\).  Every positive solution of
+\eqref{eq:integrated} satisfies
+\[
+\frac{\epsilon}{K}(n+1)^{-(d-3)}\leq v_n\leq(n+1)\epsilon,
 \qquad
-c=\frac{\epsilon}{K}.
-\label{eq:lower-bound}
-\end{equation}
-The same bounds hold for \(v'\).  With
-\(\delta_n=\log(v_n'/v_n)\), it follows that
-\(|\delta_n|\leq\log K+2\log(n+1)\).
+T_n\leq(n+1)\epsilon
+\qquad(n\geq0).
+\]
+\end{lemma}
 
-\emph{Step 2: exact linearization.}  For \(x,y>0\), the logarithmic mean
-is \(L(x,y)=(y-x)/(\log y-\log x)\) if \(x\neq y\) and \(L(x,x)=x\);
-equivalently \(L(x,y)=\int_0^1x^{1-t}y^t\dd t\).  Let
-\(a_n=L(v_n,v_n')\) and \(b_n=L(T_n,T_n')\), so that
-\(v_n'-v_n=a_n\delta_n\) and \(T_n'-T_n=b_nD_n\) with
-\(D_n=\delta_n+\delta_{n+1}+\delta_{n+2}\).  A logarithmic mean lies
-between its arguments, so by Step~1
-\begin{equation}
-a_n\geq\frac{c}{n+1},
-\qquad
-0<b_n\leq(n+1)\epsilon.
-\label{eq:log-means}
-\end{equation}
-Subtracting \eqref{eq:integrated} for the two solutions gives
-\begin{equation}
-a_n\delta_n+b_nD_n+b_{n-1}D_{n-1}+b_{n-2}D_{n-2}=0,
-\qquad n\geq0,
-\label{eq:linearized}
-\end{equation}
-where terms with negative indices are omitted.
-
-\emph{Step 3: a localized energy identity.}  Let \((h_n)_{n\geq0}\) be real
-with finite support.  Multiplying \eqref{eq:linearized} by
-\(h_n^2\delta_n\), summing over \(n\), and collecting the terms with the
-same \(b_m\) gives
-\[
-\sum_{n\geq0}a_nh_n^2\delta_n^2
-+\sum_{m\geq0}b_m
-\Bigl(\sum_{r=0}^2\delta_{m+r}\Bigr)
-\Bigl(\sum_{r=0}^2h_{m+r}^2\delta_{m+r}\Bigr)=0.
-\]
-For real \(z_0,z_1,z_2\) and \(h_0,h_1,h_2\),
-\[
-\Bigl(\sum_{r}z_r\Bigr)\Bigl(\sum_{r}h_r^2z_r\Bigr)
-=\Bigl(\sum_{r}h_rz_r\Bigr)^2
-+\sum_{0\leq r<s\leq2}(h_r-h_s)^2z_rz_s .
-\]
-Dropping the nonnegative squares, using \(2|z_rz_s|\leq z_r^2+z_s^2\) and
-\eqref{eq:log-means}, we obtain
-\begin{equation}
-c\sum_{n\geq0}\frac{h_n^2\delta_n^2}{n+1}
-\leq\frac\epsilon2\sum_{m\geq0}(m+1)
-\sum_{0\leq r<s\leq2}(h_{m+r}-h_{m+s})^2
-\bigl(\delta_{m+r}^2+\delta_{m+s}^2\bigr).
-\label{eq:localized}
-\end{equation}
-
-\emph{Step 4: a power weight.}  Let \(0<p<1\), put
-\(w_n=(n+1)^{-p}\), and
-\[
-Q_p=\sum_{n\geq0}\frac{\delta_n^2}{(n+1)^{1+2p}},
-\]
-which is finite by the logarithmic bound of Step~1.  For an integer
-\(R\geq1\), the sequence \(h_n=(w_n-w_R)_+\) is supported on \(n<R\), and
-\(|h_i-h_j|\leq|w_i-w_j|\).  By the mean value theorem,
-\(|w_{m+r}-w_{m+s}|\leq p(s-r)(m+1)^{-p-1}\).  In \eqref{eq:localized}
-the three pairs \((r,s)\) contribute the squared distances \(1\), \(4\),
-\(1\), so the right-hand side is at most
-\[
-\frac{\epsilon p^2}{2}\sum_{m\geq0}
-\frac{5\delta_m^2+2\delta_{m+1}^2+5\delta_{m+2}^2}{(m+1)^{1+2p}}
-\leq\frac{\epsilon p^2}{2}\cdot12\cdot27\,Q_p
-=162\,\epsilon p^2Q_p,
-\]
-where we used \((m+r+1)/(m+1)\leq3\) and \(1+2p\leq3\).  As
-\(R\to\infty\), \(h_n\uparrow w_n\), and monotone convergence on the
-left of \eqref{eq:localized} gives \(cQ_p\leq162\,\epsilon p^2Q_p\).
-Choosing \(p=1/(18\sqrt K)\) makes \(162\,\epsilon p^2=c/2\), so
-\(cQ_p\leq\frac c2Q_p\).  Since \(Q_p<\infty\), \(Q_p=0\), hence
-\(\delta_n=0\) and \(v_n'=v_n\) for every \(n\).
+\begin{proof}
+All terms in \eqref{eq:integrated} are nonnegative, which gives the
+upper bounds.  Factoring \(v_n\) out of \eqref{eq:integrated} leaves the
+bracket \(1+\sum\prod v_i\), a sum over the \(d-1\) windows containing
+\(n\) of the products of their other \(d-2\) entries.  Each such entry
+has \(i\leq n+d-2\), so \(v_i\leq(i+1)\epsilon\leq(d-1)(n+1)\epsilon\),
+and the bracket is at most
+\(1+(d-1)\bigl((d-1)(n+1)\epsilon\bigr)^{d-2}\leq K(n+1)^{d-2}\).
 \end{proof}
 
-With \(a_n,b_n\) held fixed, \eqref{eq:linearized} is the
-Euler--Lagrange equation of the quadratic form
-\(\sum_na_n\delta_n^2+\sum_nb_n(\delta_n+\delta_{n+1}+\delta_{n+2})^2\).
-In the variables \(u_n=\log v_n\), \eqref{eq:integrated} itself is the
-coordinatewise stationarity condition of the formal energy
-\(\sum_n\bigl[\e^{u_n}+\e^{u_n+u_{n+1}+u_{n+2}}-(n+1)\epsilon\,u_n\bigr]\),
-whose increments along finitely supported variations are well defined
-and strictly convex.  Convexity alone does not compare two infinite
-sequences; the power-weighted estimate of Steps~3 and~4 controls the
-boundary at infinity.
+\emph{An approximate solution.}  For \(t>0\), let \(q(t)>0\) be the
+root of \(q+(d-1)q^{d-1}=\epsilon t\); since the left-hand side is
+increasing in \(q\), \(q\) is well defined, smooth and increasing.  Put
+\(q_n=q(n+1)\), \(Q_m=q_mq_{m+1}\cdots q_{m+d-2}\) for \(m\geq0\),
+\(Q_m=0\) for \(m<0\), and
+\[
+r_n=q_n+\sum_{m=n-d+2}^{n}Q_m-(n+1)\epsilon .
+\]
 
-\begin{remark}\label{rem:higher-d}
-For general \(d\geq3\), the substitution \(V_n=a^{2/(d-2)}v_n\) and
-\(\epsilon=a^{-d/(d-2)}\) turns \eqref{eq:FH-recurrence} into
-\(v_n+\sum_{m=n-d+2}^{n}T_m=(n+1)\epsilon\), where \(T_m\) is the product
-of the \(d-1\) consecutive terms \(v_m,\ldots,v_{m+d-2}\).  The upper
-bounds of Step~1 persist, but the same argument then gives only
-\(v_n\geq c(n+1)^{-(d-3)}\).  For \(d\geq5\) this is too weak for
-Step~4.  Using only \(a_n\geq c(n+1)^{-A}\) and \(b_n\leq(n+1)\epsilon\),
-Step~4 needs a weight \(w_n>0\) decreasing to \(0\) with
-\(\epsilon(w_n-w_{n+1})^2\lesssim c(n+1)^{-A-1}w_n^2\).  When \(A>1\) the
-relative decrements \((w_n-w_{n+1})/w_n\) are then summable, so \(w_n\)
-cannot tend to \(0\).  Thus the present estimates do not extend
-Theorem~\ref{thm:unique} to \(d\geq5\).
-\end{remark}
+\begin{lemma}[the approximate solution]\label{lem:reference}
+For \(t\geq1\),
+\(q(1)t^{1/(d-1)}\leq q(t)\leq\bigl(\epsilon t/(d-1)\bigr)^{1/(d-1)}\) and
+\(q(1)\geq\epsilon/K\).  Moreover \(Q_m\leq(m+1)\epsilon\) and
+\(|r_n|\leq4\epsilon(d-1)^4/(n+1)\) for all \(m,n\geq0\).
+\end{lemma}
+
+\begin{proof}
+The upper bound follows from \((d-1)q^{d-1}\leq\epsilon t\).  For
+\(x=q(1)t^{1/(d-1)}\) and \(t\geq1\),
+\(x+(d-1)x^{d-1}\leq t\bigl(q(1)+(d-1)q(1)^{d-1}\bigr)=\epsilon t\), so
+\(q(t)\geq x\).  For \(x=\epsilon/K\),
+\(x+(d-1)x^{d-1}=\frac\epsilon K\bigl(1+(d-1)\epsilon^{d-2}K^{-(d-2)}\bigr)
+\leq\epsilon\), so \(q(1)\geq\epsilon/K\).  By the upper bound,
+\(Q_m\leq\epsilon(m+d-1)/(d-1)\leq(m+1)\epsilon\).
+
+Let \(f=\log q\).  Differentiating \(q+(d-1)q^{d-1}=\epsilon t\) gives
+\(f'=\epsilon/\bigl(q+(d-1)^2q^{d-1}\bigr)\), so \(0<f'(t)\leq1/t\), and
+\[
+f''=-f'^2\,\frac{1+(d-1)^3q^{d-2}}{1+(d-1)^2q^{d-2}},
+\qquad
+|f''(t)|\leq\frac{d-1}{t^2}.
+\]
+Let \(t=n+1\geq2(d-1)\).  For \(0\leq j\leq d-2\) and \(0\leq x\leq1\)
+put \(P_j(x)=\prod_{k=0}^{d-2}q\bigl(t+x(k-j)\bigr)\); all arguments lie
+in \([t/2,3t/2]\).  Since \(n\geq d-2\),
+\(\sum_{m=n-d+2}^{n}Q_m=\sum_jQ_{n-j}=\sum_jP_j(1)\), while
+\(\sum_jP_j(0)=(d-1)q(t)^{d-1}=\epsilon t-q(t)\) and
+\(\sum_jP_j'(0)=q(t)^{d-1}f'(t)\sum_{j,k}(k-j)=0\).  Hence
+\(r_n=\sum_j\bigl(P_j(1)-P_j(0)-P_j'(0)\bigr)\).  On \([t/2,3t/2]\) we have
+\(f'\leq2/t\) and \(|f''|\leq4(d-1)/t^2\), so
+\(|(\log P_j)'|\leq(d-1)^2/t\) and \(|(\log P_j)''|\leq4(d-1)^4/t^2\);
+also \(P_j\leq q(3t/2)^{d-1}\leq3\epsilon t/(2(d-1))\).  Therefore
+\(|P_j''|=P_j\,|(\log P_j)''+((\log P_j)')^2|\leq15\epsilon(d-1)^3/(2t)\),
+and Taylor's formula gives
+\(|r_n|\leq\frac12(d-1)\cdot15\epsilon(d-1)^3/(2t)\leq4\epsilon(d-1)^4/t\).
+If \(t<2(d-1)\), then \(-\epsilon t\leq r_n\leq\sum_mQ_m\leq(d-1)\epsilon t\),
+and \((d-1)\epsilon t<4\epsilon(d-1)^3/t\).
+\end{proof}
+
+\begin{proposition}[a priori bound]\label{prop:apriori}
+There is a constant \(M\), depending only on \(d\) and \(\epsilon\), such
+that every positive solution of \eqref{eq:integrated} satisfies
+\[
+\sum_{n\geq0}\log^2\frac{v_n}{q_n}\leq M^2 .
+\]
+In particular \(v_n/q_n\to1\), and
+\(v_n\bigl((d-1)/(\epsilon(n+1))\bigr)^{1/(d-1)}\to1\).
+\end{proposition}
+
+\begin{proof}
+Put \(\delta_n=\log(v_n/q_n)\) and \(H(t)=\log K+(d-2)\log t\).  By
+Lemmas~\ref{lem:crude} and~\ref{lem:reference}, both \(v_n\) and \(q_n\)
+lie in \([\frac\epsilon K(n+1)^{-(d-3)},(n+1)\epsilon]\), so
+\(|\delta_n|\leq H(n+1)\).  Let \(a_n=\operatorname{LM}(v_n,q_n)\),
+\(b_m=\operatorname{LM}(T_m,Q_m)\) for \(m\geq0\), and
+\(D_m=\sum_{i=m}^{m+d-2}\delta_i\).  Then \(v_n-q_n=a_n\delta_n\) and
+\(T_m-Q_m=b_mD_m\), and subtracting the definition of \(r_n\) from
+\eqref{eq:integrated} gives
+\begin{equation}
+a_n\delta_n+\sum_{m=\max(0,n-d+2)}^{n}b_mD_m=-r_n,
+\qquad n\geq0.
+\label{eq:linearized}
+\end{equation}
+By Lemmas~\ref{lem:crude} and~\ref{lem:reference},
+\(0<b_m\leq(m+1)\epsilon\), and by \eqref{eq:lm-lower},
+\begin{equation}
+a_n\geq\frac{q_n}{1+|\delta_n|}
+\geq\frac{q(1)(n+1)^{1/(d-1)}}{1+H(n+1)} .
+\label{eq:log-means}
+\end{equation}
+Let \(h\) be real with finite support.  Multiplying
+\eqref{eq:linearized} by \(h_n^2\delta_n\), summing over \(n\), collecting
+the terms with the same \(b_m\), and using \eqref{eq:square-identity}, we
+obtain
+\begin{equation}
+\sum_na_nh_n^2\delta_n^2
++\sum_mb_m\Bigl(\sum_{i=m}^{m+d-2}h_i\delta_i\Bigr)^2
+=-\sum_nr_nh_n^2\delta_n
+-\sum_mb_m\sum_{m\leq i<j\leq m+d-2}(h_i-h_j)^2\delta_i\delta_j .
+\label{eq:localized}
+\end{equation}
+Let \(p=1/(4(d-1))\), \(w_n=(n+1)^{-p}\), and, for an integer \(R\geq1\),
+\(h_n=(w_n-w_R)_+\), which is supported on \(n<R\).  Then \(h\leq w\) and,
+for \(m\leq i<j\), \(|h_i-h_j|\leq|w_i-w_j|\leq p(j-i)(m+1)^{-p-1}\).  By
+Lemma~\ref{lem:reference}, the first term on the right of
+\eqref{eq:localized} is at most
+\(B_1=4\epsilon(d-1)^4\sum_{t\geq1}t^{-1-2p}H(t)\).  Using
+\(2|\delta_i\delta_j|\leq\delta_i^2+\delta_j^2\), \(|\delta_i|\leq H(m+d-1)\)
+for \(i\leq m+d-2\), and the fact that a window has fewer than
+\((d-1)^2/2\) pairs, each with \((j-i)^2\leq(d-1)^2\), the second term is
+at most
+\(B_2=\frac12\epsilon p^2(d-1)^4\sum_{m\geq0}(m+1)^{-1-2p}H(m+d-1)^2\).
+Both series converge, and \(B=B_1+B_2\) depends only on \(d\) and
+\(\epsilon\).  Dropping the squares on the left of \eqref{eq:localized},
+\(\sum_na_nh_n^2\delta_n^2\leq B\) for every \(R\).  As \(R\to\infty\),
+\(h_n\uparrow w_n\), and monotone convergence gives
+\(\sum_na_nw_n^2\delta_n^2\leq B\).  By \eqref{eq:log-means} and
+\(2p=1/(2(d-1))\),
+\[
+a_nw_n^2\geq\frac{q(1)(n+1)^{1/(2(d-1))}}{1+H(n+1)}\geq\frac{q(1)}{G},
+\qquad
+G=\sup_{t\geq1}\frac{1+H(t)}{t^{1/(2(d-1))}}<\infty,
+\]
+so \(\sum_n\delta_n^2\leq BG/q(1)=:M^2\).  Finally,
+\((d-1)q(t)^{d-1}=\epsilon t-q(t)\) and \(q(t)/t\to0\) give
+\(q(t)\bigl((d-1)/(\epsilon t)\bigr)^{1/(d-1)}\to1\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:unique}]
+The asymptotic statement is part of Proposition~\ref{prop:apriori}.  Let
+\(v\) and \(v'\) be positive solutions, with products \(T_m\) and
+\(T_m'\), and put \(\eta_n=\log(v_n'/v_n)\).  By
+Proposition~\ref{prop:apriori}, \(\eta\in\ell^2\).  With
+\(A_n=\operatorname{LM}(v_n,v_n')>0\),
+\(B_m=\operatorname{LM}(T_m,T_m')\leq(m+1)\epsilon\) and
+\(E_m=\sum_{i=m}^{m+d-2}\eta_i\), subtracting the two copies of
+\eqref{eq:integrated} gives
+\(A_n\eta_n+\sum_{m=\max(0,n-d+2)}^{n}B_mE_m=0\), and the argument
+leading to \eqref{eq:localized}, now without a source term, gives
+\[
+\sum_nA_nh_n^2\eta_n^2
+\leq\sum_mB_m\sum_{m\leq i<j\leq m+d-2}(h_i-h_j)^2|\eta_i\eta_j|
+\]
+for finitely supported \(h\).  Take \(h_n=1\) for \(n\leq R\),
+\(h_n=2-n/R\) for \(R<n<2R\), and \(h_n=0\) for \(n\geq2R\).  Then
+\(|h_i-h_j|\leq|i-j|/R\), and only windows with \(m<2R\) contribute, for
+which \(B_m\leq2R\epsilon\).  A site lies in at most \(d-1\) windows, and
+within a window \(\sum_{j\neq i}(j-i)^2\leq(d-1)^3\).  Hence
+\[
+\sum_nA_nh_n^2\eta_n^2
+\leq\frac{2R\epsilon}{R^2}\cdot\frac{(d-1)^4}{2}\,\|\eta\|_{\ell^2}^2
+=\frac{\epsilon(d-1)^4}{R}\|\eta\|_{\ell^2}^2 .
+\]
+For fixed \(n\) and \(R\geq n\), \(h_n=1\), so
+\(A_n\eta_n^2\leq\epsilon(d-1)^4\|\eta\|_{\ell^2}^2/R\) for all large
+\(R\).  Hence \(\eta_n=0\) for every \(n\), and \(v=v'\).  The last
+assertions of the theorem follow from Theorems~\ref{thm:main}(ii)
+and~\ref{thm:quartic}, since \(V_n=a^{2/(d-2)}v_n\) and
+\(\epsilon=a^{-d/(d-2)}\) carry \eqref{eq:FH-recurrence} into
+\eqref{eq:general-recurrence}.
+\end{proof}
+
+In the variables \(u_n=\log v_n\), \eqref{eq:integrated} is the
+coordinatewise stationarity condition of the formal energy
+\(\sum_n\bigl[\e^{u_n}+\e^{u_n+u_{n+1}+\cdots+u_{n+d-2}}-(n+1)\epsilon\,u_n\bigr]\),
+whose increments along finitely supported variations are well defined
+and strictly convex, and \eqref{eq:linearized} is a difference of its
+gradients.  Convexity alone does not compare two infinite sequences.
+In \eqref{eq:log-means} the convexity constant is controlled by the
+known approximate solution \(q\), so it grows like \(n^{1/(d-1)}\) up to
+a logarithm, whereas a direct comparison of two unknown solutions only
+yields the much weaker lower bound of Lemma~\ref{lem:crude}.
 
 \section*{AI-use disclosure}
 
@@ -1191,8 +1294,9 @@ and~\ref{sec:signs}) was developed with assistance from Anthropic's
 Claude Code using Claude Opus~5.5.  The manuscript was revised, and the
 Lean formalization of the case \(d=4\) was produced, with assistance
 from Claude Code using Claude Opus~5.5, Claude Fable~5 and Claude
-Haiku~5.5.  The weighted energy estimate in the proof of
-Theorem~\ref{thm:unique} was obtained in a consultation with OpenAI's
+Haiku~5.5.  The proof of Theorem~\ref{thm:unique}, by comparison
+with an approximate solution, and the weighted energy estimate of an
+earlier proof for \(d=4\) were obtained in consultations with OpenAI's
 GPT-6 Pro, which was also used for independent referee-style checks of
 the proofs, the citations and the Lean statements.  These systems were
 used as interactive research assistants to develop and stress-test the
@@ -1204,15 +1308,16 @@ mathematical claims, citations, computations, and wording.
 \section*{Code availability}
 
 The Lean~4 formalization of the case \(d=4\) of
-Theorem~\ref{thm:main} and of Theorems~\ref{thm:quartic}
-and~\ref{thm:unique} is in the directory \path{lean} of release
-\path{v2.0} of the repository
+Theorems~\ref{thm:main} and~\ref{thm:unique} and of
+Theorem~\ref{thm:quartic} is in the directory \path{lean} of release
+\path{v2.1} of the repository
 \href{https://github.com/skypher/painleve}{github.com/skypher/painleve}
 (Lean~4.33.0, Mathlib commit \path{db584cd6d46c}).  It follows the
-quartic argument of the version of this paper in release \path{v1.1}.
+quartic arguments of the version of this paper in release \path{v1.1}.
 The statements \path{Painleve.Stmt_main} (the case \(d=4\) of
 Theorem~\ref{thm:main} with Theorem~\ref{thm:quartic}) and
-\path{Painleve.Stmt_unique} (Theorem~\ref{thm:unique}) are proved by
+\path{Painleve.Stmt_unique} (the case \(d=4\) of
+Theorem~\ref{thm:unique}) are proved by
 \path{Painleve.main_theorem} and \path{Painleve.unique_theorem}.  These
 proofs use only the axioms \path{propext}, \path{Classical.choice} and
 \path{Quot.sound}; the repository README gives the build commands and

@@ -217,9 +217,12 @@ positive: $V_n=\mathfrak h_{n+1}/\mathfrak h_n>0$.
    (Section 5 of the paper) is needed only to write the $d=4$ initial data with Bessel functions.
 2. **Explicit positive formula.** Unwinding Lemma 3 writes $(-1)^{rk+S_k}\Delta^{(r)}_k$ as a
    $k(d-1)$-fold integral of a positive function, as in the paper's Prop. 4.4.
-3. **Uniqueness for d ≥ 5 is still open.** The analogue of Theorem 1.2 for $d\ge5$ is not
-   proved. The a priori lower bound of Section 7 weakens to $v_n\ge c(n+1)^{-(d-3)}$, and the
-   power-weight argument needs exponent at most 1. Local scans for $d=5,6$ support uniqueness.
+3. **Uniqueness for every d ≥ 3.** Section 8 of `paper.tex` (release v2.1) proves that the
+   positive solution is unique for every $d\ge3$. It compares an arbitrary positive solution
+   with the approximate solution $q$, where $q+(d-1)q^{d-1}=\epsilon t$. That gives an a
+   priori $\ell^2$ bound on $\log(v_n/q_n)$, and a cutoff argument then compares two
+   solutions. The power-weight method of the d = 4 proof fails for $d\ge5$; this method
+   does not.
 4. **Recurrence.** Section 6 re-derives [FH, (3.1)–(3.3)] for general $d$. FH stated them "by
    the calculation of Theorem 2.4", assuming the conjecture.
 
