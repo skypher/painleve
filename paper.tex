@@ -308,7 +308,7 @@ Section~\ref{sec:completion} identifies the norm ratios with the
 solution of \eqref{eq:quartic-recurrence}, and Section~\ref{sec:unique}
 proves Theorem~\ref{thm:unique}.  Theorems~\ref{thm:main} and~\ref{thm:unique} have been formally
 verified in Lean~4 (version~4.33) with Mathlib, as the declarations
-\texttt{Painleve.main\_theorem} and \texttt{Painleve.unique\_theorem};
+\path{Painleve.main_theorem} and \path{Painleve.unique_theorem};
 the formalization follows the arguments given here.
 
 \section{The quartic Gram form}\label{sec:gram}
@@ -1192,15 +1192,15 @@ computations, and wording.
 \section*{Code availability}
 
 The Lean~4 formalization of Theorems~\ref{thm:main} and~\ref{thm:unique}
-is available at \href{https://github.com/skypher/painleve}%
-{github.com/skypher/painleve}, in the directory \texttt{lean}.  The
-statements are \texttt{Painleve.Stmt\_main} and
-\texttt{Painleve.Stmt\_unique}, proved by \texttt{Painleve.main\_theorem}
-and \texttt{Painleve.unique\_theorem} using only the axioms
-\texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}; the
+is in the directory \path{lean} of the repository
+\href{https://github.com/skypher/painleve}{github.com/skypher/painleve}.
+The two statements, \path{Painleve.Stmt_main} and
+\path{Painleve.Stmt_unique}, are proved by \path{Painleve.main_theorem}
+and \path{Painleve.unique_theorem}.  These proofs use only the axioms
+\path{propext}, \path{Classical.choice} and \path{Quot.sound}, and the
 repository README gives the build and checking commands.  The directory
-\texttt{runs/uniq} contains the numerical scans of initial values that
-were used as a sanity check for Theorem~\ref{thm:unique}.
+\path{runs/uniq} contains the numerical scans of initial values that were
+used as a sanity check for Theorem~\ref{thm:unique}.
 
 \bibliographystyle{alphacitation}
 \bibliography{references}
