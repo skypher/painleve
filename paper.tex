@@ -115,6 +115,7 @@
 \newcommand{\e}{\mathrm e}
 \newcommand{\fh}{\mathfrak h}
 \newcommand{\fall}[1]{^{\underline{#1}}}
+\newcommand{\stir}[2]{\genfrac\{\}{0pt}{}{#1}{#2}}
 
 \title{Positivity of the Quartic Solution of a\\
 Discrete Painlev\'e-Type Recurrence}
@@ -136,13 +137,15 @@ nondegenerate, and all signed norms of the corresponding orthogonal
 polynomials are positive.  Consequently, the solution of the quartic
 discrete Painlev\'e-type recurrence arising from the quantum minimal
 surface \(w_2=w_1^3\), with initial data given by Bessel functions of
-orders \(\pm\frac14\), is positive.  The proof writes the Bessel
+orders \(\pm\frac14\), is positive, and we show that it is the only
+positive solution of the recurrence.  The proof writes the Bessel
 amplitude as a positive Laplace integral and uses independent source
 parameters for \(z^4\) and \(\bar z^4\) to express each of the four
 symmetry blocks through a bi-moment matrix with a positive weight.  A
 triangular factorization and Andr\'eief's identity then give every
 leading block minor as a prescribed sign times an explicit positive
-multiple integral.
+multiple integral.  Uniqueness follows from a weighted energy estimate
+for the convex variational structure of the recurrence.
 \vskip5pt
 \noindent\textbf{Keywords.}\enspace
 discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
@@ -211,7 +214,7 @@ J_{1/4}\left(\frac{a^2}{4}\right)\\
 This is the function \(h(a)=\int_\C\rho_a\dd A\) of
 \cite[equation~(3.4)]{FelderHoppe2025} for \(d=4\) (the density
 \(\rho_a\) is recalled in \eqref{eq:density}), in the Bessel form given
-in \cite[Section~4]{FelderHoppe2025}; Lemma~\ref{lem:positive-source}
+in \cite[Section~4]{FelderHoppe2025}; Lemma~\ref{lem:bessel}
 below rederives it.
 Felder and Hoppe proved the required Gram nondegeneracy for
 \(d=1,2,3\) and conjectured it for every \(d\)
@@ -237,20 +240,42 @@ extend uniquely to a real sequence satisfying
 \(n\geq0\).
 \end{enumerate}
 \end{theorem}
-Uniqueness in (ii) refers to the prescribed initial data; we do not
-discuss solutions with other initial values.
+Uniqueness in (ii) refers to the prescribed initial data.  The next
+theorem shows that the positive solution itself is unique, so that the
+Bessel values \eqref{eq:initial-values} are the only initial values
+leading to a positive solution.
+
+\begin{theorem}\label{thm:unique}
+For every \(\epsilon>0\), there is at most one sequence of positive
+numbers \((v_n)_{n\geq0}\) satisfying \eqref{eq:quartic-recurrence} for
+every \(n\geq0\).  In particular, for \(a>0\) and \(\epsilon=a^{-2}\),
+the sequence of Theorem~\ref{thm:main} is the unique positive solution
+of \eqref{eq:quartic-recurrence}.
+\end{theorem}
+For the cubic analogue, the existence of a positive solution was
+proved in \cite{ArnlindHoppeKontsevich2019} and its uniqueness in
+\cite[Section~2]{ClarksonEtAl2025}; for the quartic recurrence,
+\cite[Section~5]{ClarksonEtAl2025} reports preliminary evidence for a
+positive solution with analogous properties.  Our proof of
+Theorem~\ref{thm:unique} (Section~\ref{sec:unique}) uses only the
+recurrence and is independent of the rest of the paper: in logarithmic
+variables the recurrence is the stationarity condition of a convex
+functional, and a weighted energy estimate controls the boundary at
+infinity.
 
 The proof is an integral sign mechanism that treats all indices at
 once.  The square map \(z\mapsto z^2\) and Gaussian integrals turn the
-quartic planar integral into a positive Laplace integral
-(Lemma~\ref{lem:positive-source}), which the Dixon--Ferrar formula
-identifies with \eqref{eq:h-bessel}.  Independent source parameters
-\(u\) and \(v\) for \(z^4\) and \(\bar z^4\) turn the Gram block of each
-residue class modulo \(4\) into the matrix of mixed derivatives
-\(\partial_u^p\partial_v^q\) of a positive kernel that depends only on
-\(uv\) (Lemmas~\ref{lem:four-kernels} and~\ref{lem:source-moments}).
+quartic planar integral with coupling \(\lambda\) into a positive
+Laplace integral (Lemma~\ref{lem:positive-source}).  Independent source
+parameters \(u\) and \(v\) for \(z^4\) and \(\bar z^4\) are used on
+disks, where the two-source integral is entire and, by rotation
+invariance, depends only on \(uv\).  In exponential coordinates
+\(u=\e^{t_1}\), \(v=\e^{t_2}\) this turns the Gram block of each residue
+class modulo \(4\), after a unitriangular Stirling transformation, into
+the Hankel matrix of derivatives of a positive kernel \(F_r(t)\)
+(Lemmas~\ref{lem:four-kernels} and~\ref{lem:source-moments}).
 Triangular row operations and nonzero diagonal column rescalings reduce
-these matrices to bi-moment matrices
+these Hankel matrices to bi-moment matrices
 \[
 \left[
 \int_0^\infty s^p
@@ -275,11 +300,15 @@ of the residue classes \(2\) and \(3\) manifestly positive.  We do not
 consider higher \(d\) here.
 
 Section~\ref{sec:gram} recalls the quartic Hermitian form.
-Section~\ref{sec:sign-lemma} proves the determinant identity for
-bi-moment matrices.  Section~\ref{sec:blocks} derives the four positive
-kernels and evaluates the block determinants.
+Section~\ref{sec:sign-lemma} proves the Hankel determinant identity.
+Section~\ref{sec:blocks} derives the four positive kernels and evaluates
+the block determinants.  Section~\ref{sec:bessel} identifies the planar
+integral with the Bessel combination \eqref{eq:h-bessel}, and
 Section~\ref{sec:completion} identifies the norm ratios with the
-solution of \eqref{eq:quartic-recurrence}.
+solution of \eqref{eq:quartic-recurrence}, and Section~\ref{sec:unique}
+proves Theorem~\ref{thm:unique}.  Theorem~\ref{thm:main} has
+been formally verified in Lean~4 with Mathlib; the formalization
+follows the arguments given here.
 
 \section{The quartic Gram form}\label{sec:gram}
 
@@ -380,21 +409,15 @@ matrices of \cite[Conjecture~3.6]{FelderHoppe2025}.
 Section~\ref{sec:blocks} proves that all \(\Delta_k^{(r)}\) are nonzero
 and that \(\fh_n>0\).
 
-\section{A determinant identity for bi-moment matrices}
+\section{A Hankel determinant identity}
 \label{sec:sign-lemma}
 
 Let \(y>0\), \(\alpha\geq0\), \(\beta\geq0\), and \(b=\beta+\frac12\).
-For \(w>0\) and \(p,q\geq0\), define
+For \(w>0\), define
 \begin{equation}
 \Phi_{\alpha,\beta}(w;y)
 =\int_0^\infty
-\e^{-ys}s^{\alpha-1/2}(1+ws^2)^{-b}\dd s,
-\qquad
-D_{pq}^{\alpha,\beta}
-=\left.
-\partial_u^p\partial_v^q
-\Phi_{\alpha,\beta}(uv;y)
-\right|_{u=v=1}.
+\e^{-ys}s^{\alpha-1/2}(1+ws^2)^{-b}\dd s .
 \label{eq:Phi}
 \end{equation}
 Let \(\mu\) be the measure
@@ -413,14 +436,17 @@ uniformly in \(w,y>0\): the derivative
 absolute value at most \((b)_jw^{-j}\), and each \(y\)-derivative
 multiplies the integrand by \(-s\).  Here
 \((b)_j=b(b+1)\cdots(b+j-1)\) is the rising Pochhammer symbol.  In
-particular, \(\Phi_{\alpha,\beta}(uv;y)\) is smooth in \((u,v)\), and
-\(\partial_y^iB_{0q}=(-1)^iB_{iq}\).  We write \(S_k=k(k-1)/2\).
+particular, \(\Phi_{\alpha,\beta}(\cdot\,;y)\) is smooth on \((0,\infty)\),
+and \(\partial_y^iB_{0q}=(-1)^iB_{iq}\).  We write \(S_k=k(k-1)/2\) and
+\(\stir{q}{j}\) for the Stirling numbers of the second kind, defined by
+\(\stir00=1\), \(\stir q j=0\) for \(j>q\) or \(j=0<q\), and
+\(\stir{q+1}{j}=j\stir qj+\stir q{j-1}\).
 
-\begin{lemma}[bi-moment determinants]
+\begin{lemma}[Hankel determinants of the kernel]
 \label{lem:leading-source-signs}
-For every \(k\geq1\),
+Let \(F(t)=\Phi_{\alpha,\beta}(\e^t;y)\).  For every \(k\geq1\),
 \begin{equation}
-(-1)^{S_k}\det\left[D_{pq}^{\alpha,\beta}\right]_{p,q=0}^{k-1}
+(-1)^{S_k}\det\left[F^{(p+q)}(0)\right]_{p,q=0}^{k-1}
 =\left(\frac y2\right)^{S_k}
 \prod_{q=0}^{k-1}(b)_q\,
 \det[B_{pq}]_{p,q=0}^{k-1},
@@ -435,49 +461,61 @@ and
 \label{eq:andreief}
 \end{equation}
 In particular,
-\(\sgn\det[D_{pq}^{\alpha,\beta}]_{p,q=0}^{k-1}=(-1)^{S_k}\).
+\(\sgn\det[F^{(p+q)}(0)]_{p,q=0}^{k-1}=(-1)^{S_k}\).
 \end{lemma}
 
 \begin{proof}
-Fix \(q\).  Since
-\(\partial_v^qF(uv)|_{v=1}=u^qF^{(q)}(u)\),
-\[
-\left.\partial_v^q\Phi_{\alpha,\beta}(uv;y)\right|_{v=1}
-=(-1)^q(b)_q\int_0^\infty
-\e^{-ys}s^{\alpha-1/2}\frac{(us^2)^q}{(1+us^2)^{b+q}}\dd s.
-\]
-The substitution \(s=t/\sqrt u\) turns
-\((us^2)^q(1+us^2)^{-q}\) into \(\psi(t)^q\) and gives
+For a function \(G\) that is smooth on \((0,\infty)\), induction on \(q\)
+with the recurrence for \(\stir qj\) gives
 \begin{equation}
-\left.\partial_v^q\Phi_{\alpha,\beta}(uv;y)\right|_{v=1}
-=(-1)^q(b)_q\,u^{-\gamma}B_{0q}\bigl(yu^{-1/2}\bigr),
+\frac{\dd^q}{\dd t^q}G(\e^t)
+=\sum_{j=0}^q\stir qj\e^{jt}G^{(j)}(\e^t),
+\label{eq:stirling}
+\end{equation}
+because \(\frac{\dd}{\dd t}\bigl[\e^{jt}G^{(j)}(\e^t)\bigr]
+=j\e^{jt}G^{(j)}(\e^t)+\e^{(j+1)t}G^{(j+1)}(\e^t)\).  Differentiating
+\eqref{eq:Phi} \(j\) times in \(w\) and substituting \(s=t/\sqrt w\), which
+turns \((ws^2)^j(1+ws^2)^{-j}\) into \(\psi(t)^j\), gives
+\begin{equation}
+w^j\,\partial_w^j\Phi_{\alpha,\beta}(w;y)
+=(-1)^j(b)_j\,w^{-\gamma}B_{0j}\bigl(yw^{-1/2}\bigr),
 \qquad
 \gamma=\frac\alpha2+\frac14.
 \label{eq:Phi-scaling}
 \end{equation}
-By the chain rule there are coefficients \(c_{pi}(y)\), depending on
-\(\gamma\) but not on \(g\), such that
+Hence, by \eqref{eq:stirling} with \(G=\Phi_{\alpha,\beta}(\cdot\,;y)\),
 \[
-\left.\partial_u^p\left[u^{-\gamma}g\bigl(yu^{-1/2}\bigr)\right]
-\right|_{u=1}
-=\sum_{i=0}^pc_{pi}(y)g^{(i)}(y)
+F^{(q)}(t)=\sum_{j=0}^q\stir qj(-1)^j(b)_j\,
+\e^{-\gamma t}B_{0j}\bigl(y\e^{-t/2}\bigr).
 \]
-for every smooth function \(g\) on \((0,\infty)\).  The derivative
-\(g^{(p)}\) arises only when all \(p\) derivatives fall on the inner
-function \(yu^{-1/2}\), so \(c_{pp}(y)=(-y/2)^p\).  Applying this to
-\(g=B_{0q}\) in \eqref{eq:Phi-scaling} and using
-\(\partial_y^iB_{0q}=(-1)^iB_{iq}\) gives
+Next, for a function \(g\) that is smooth on \((0,\infty)\), put
+\(Y=y\e^{-t/2}\); since
+\(\frac{\dd}{\dd t}\bigl[\e^{-\gamma t}Y^ig^{(i)}(Y)\bigr]
+=\e^{-\gamma t}\bigl[(-\gamma-\tfrac i2)Y^ig^{(i)}(Y)
+-\tfrac12Y^{i+1}g^{(i+1)}(Y)\bigr]\), induction on \(p\) gives
 \[
-D_{pq}^{\alpha,\beta}
-=(-1)^q(b)_q\sum_{i=0}^p
-(-1)^ic_{pi}(y)B_{iq}.
+\left.\frac{\dd^p}{\dd t^p}\Bigl[\e^{-\gamma t}g\bigl(y\e^{-t/2}\bigr)\Bigr]
+\right|_{t=0}
+=\sum_{i=0}^p\kappa_{pi}\,y^ig^{(i)}(y)
 \]
-Thus the \(k\times k\) truncations satisfy \(D=TB\Lambda\), where
-\(T_{pi}=(-1)^ic_{pi}(y)\) for \(i\leq p\), \(T_{pi}=0\) for \(i>p\), and
-\(\Lambda=\operatorname{diag}\bigl((-1)^q(b)_q\bigr)_{q=0}^{k-1}\).
-Since \(T\) is lower triangular with \(T_{pp}=(y/2)^p\), we have
-\(\det T=(y/2)^{S_k}\), while
-\(\det\Lambda=(-1)^{S_k}\prod_{q=0}^{k-1}(b)_q\).  This proves
+with constants \(\kappa_{pi}\) depending only on \(\gamma\), determined by
+\(\kappa_{00}=1\) and
+\(\kappa_{p+1,i}=(-\gamma-\frac i2)\kappa_{pi}-\frac12\kappa_{p,i-1}\);
+in particular \(\kappa_{pp}=(-\frac12)^p\).  Applying this to
+\(g=B_{0j}\), with \(g^{(i)}=(-1)^iB_{ij}\), we obtain
+\[
+F^{(p+q)}(0)
+=\sum_{i=0}^p\sum_{j=0}^q
+\kappa_{pi}(-y)^i\,B_{ij}\,(-1)^j(b)_j\stir qj .
+\]
+Thus the \(k\times k\) truncations satisfy
+\([F^{(p+q)}(0)]=TB\Lambda\Sigma^{\mathsf T}\), where
+\(T_{pi}=\kappa_{pi}(-y)^i\) is lower triangular with
+\(T_{pp}=(y/2)^p\),
+\(\Lambda=\operatorname{diag}\bigl((-1)^j(b)_j\bigr)_{j=0}^{k-1}\), and
+\(\Sigma_{qj}=\stir qj\) is lower triangular with ones on the diagonal.
+Hence \(\det T=(y/2)^{S_k}\), \(\det\Sigma=1\), and
+\(\det\Lambda=(-1)^{S_k}\prod_{j=0}^{k-1}(b)_j\).  This proves
 \eqref{eq:triangular-factorization}.
 
 Andr\'eief's identity \cite{Andreief1886,Forrester2019}, applied to the
@@ -506,43 +544,22 @@ y=\frac{a^2}{2},
 \qquad
 C=\sqrt{\frac{\pi}{2}}.
 \]
-For \(R>0\) and \(u,v>0\), expand the exponential below and integrate
-termwise; the series converges uniformly in \(\theta\).  Only the terms
-with equal powers of \(\e^{4\ii\theta}\) and \(\e^{-4\ii\theta}\)
-survive, so
-\begin{equation}
-\int_0^{2\pi}
-\exp\left(
-\frac{\ii R^4}{4}
-(u\e^{4\ii\theta}+v\e^{-4\ii\theta})
-\right)\dd\theta
-=2\pi\sum_{m\geq0}\frac{(-R^8uv/16)^m}{(m!)^2}
-=2\pi J_0\left(\frac{R^4\sqrt{uv}}2\right).
-\label{eq:angular-source}
-\end{equation}
 
 \begin{lemma}[positive source]\label{lem:positive-source}
 For every \(\lambda>0\),
 \begin{equation}
 \int_{\C}\exp\left(-a|z|^2+\frac{\ii\lambda}{4}(z^4+\bar z^4)\right)
 \dd A(z)
-=\pi\int_0^\infty \e^{-at}J_0\left(\frac{\lambda t^2}{2}\right)\dd t
 =C\,\Phi_{0,0}(\lambda^2;y).
 \label{eq:positive-source}
 \end{equation}
-For \(\lambda=1\), these three quantities equal the Bessel combination
-\(h(a)\) of \eqref{eq:h-bessel}.
 \end{lemma}
 
 \begin{proof}
-The integrand on the left is bounded by \(\e^{-a|z|^2}\).  Polar
-coordinates \(z=R\e^{\ii\theta}\), \eqref{eq:angular-source} with
-\(u=v=\lambda\), and \(t=R^2\) give the first equality.
-
-For the second, the map \(z\mapsto w=z^2\) is two-to-one from
-\(\C\setminus\{0\}\) onto itself with Jacobian \(4|z|^2=4|w|\), and
-\(z^4+\bar z^4=2(X^2-Y^2)\) for \(w=X+\ii Y\).  Hence the left-hand side
-of \eqref{eq:positive-source} equals
+The integrand is bounded by \(\e^{-a|z|^2}\).  The map \(z\mapsto w=z^2\)
+is two-to-one from \(\C\setminus\{0\}\) onto itself with Jacobian
+\(4|z|^2=4|w|\), and \(z^4+\bar z^4=2(X^2-Y^2)\) for \(w=X+\ii Y\).
+Hence the left-hand side of \eqref{eq:positive-source} equals
 \[
 \frac12\int_{\mathbb R^2}
 \frac{\e^{-a|w|}}{|w|}\,
@@ -573,59 +590,21 @@ The substitution \(\sigma=1/(2s)\), for which
 \[
 C\int_0^\infty\frac{\e^{-ys}}{\sqrt{s(1+\lambda^2s^2)}}\dd s
 =C\,\Phi_{0,0}(\lambda^2;y).
+\qedhere
 \]
-
-For \(\lambda=1\), the connection formula
-\(J_{-1/4}=(J_{1/4}-Y_{1/4})/\sqrt2\)
-\cite[equation~(10.2.3)]{NISTHandbook2010} reduces \eqref{eq:h-bessel}
-to
-\[
-h(a)=\frac{\pi^2a}{8}
-\bigl[J_{1/4}(x)^2+Y_{1/4}(x)^2\bigr],
-\qquad
-x=\frac{a^2}{4}.
-\]
-The Dixon--Ferrar formula \cite[entry~6.518]{GradshteynRyzhik2015}
-states that, for \(x>0\) and
-\(|\operatorname{Re}\nu|<\frac12\),
-\[
-J_\nu(x)^2+Y_\nu(x)^2
-=\frac{8\cos(\pi\nu)}{\pi^2}
-\int_0^\infty K_{2\nu}(2x\sinh t)\dd t.
-\]
-With \(\nu=\frac14\),
-\(K_{1/2}(u)=\sqrt{\pi/(2u)}\,\e^{-u}\)
-\cite[equation~(10.39.2)]{NISTHandbook2010}, and \(s=\sinh t\), this
-gives \(h(a)=C\,\Phi_{0,0}(1;y)\).  The radial representation for
-\(\lambda=1\) and the Bessel form of \(h\) also appear in
-\cite[pp.~10--11]{FelderHoppe2025}.
 \end{proof}
 
-By Lemma~\ref{lem:positive-source} with \(\lambda=\sqrt{uv}\), the
-radial generating function
-\begin{equation}
-\mathcal Z(a;u,v)
-=\pi\int_0^\infty
-\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)\dd t
-\qquad(u,v>0)
-\label{eq:source}
-\end{equation}
-satisfies
-\begin{equation}
-\mathcal Z(a;u,v)=C\,\Phi_{0,0}(uv;y),
-\qquad
-\mathcal Z(a;1,1)=h(a).
-\label{eq:source-positive}
-\end{equation}
-For \(u\neq v\), the independently sourced planar density is not
-absolutely integrable: the factor
-\(\exp\bigl(\frac{\ii}{4}(uz^4+v\bar z^4)\bigr)\) has modulus
-\(\exp\bigl(\frac{v-u}{4}\operatorname{Im}z^4\bigr)\), which defeats the
-Gaussian factor.  We therefore define \(\mathcal Z\) by the radial
-integral \eqref{eq:source}; it is the limit of the corresponding
-disk-truncated planar integrals, and its relation to the planar moments
-is Lemma~\ref{lem:source-moments}.  For \(r=0,1,2,3\), put
-\(\mathcal Z_r=(-\partial_a)^r\mathcal Z\).
+For \(r\in\{0,1,2,3\}\) and \(\lambda>0\), define the weighted sources
+\[
+\mathcal W_r(a;\lambda)
+=\int_{\C}|z|^{2r}
+\exp\left(-a|z|^2+\frac{\ii\lambda}{4}(z^4+\bar z^4)\right)
+\dd A(z).
+\]
+Differentiation under the integral sign, dominated on \(a\geq a_0>0\) by
+\(|z|^{2r+2}\e^{-a_0|z|^2}\), gives
+\(\mathcal W_{r+1}=-\partial_a\mathcal W_r\), so
+\(\mathcal W_r=(-\partial_a)^r\mathcal W_0\).
 
 \begin{lemma}[four positive kernels]\label{lem:four-kernels}
 Define
@@ -639,104 +618,95 @@ r&A_r&\alpha_r&\beta_r\\ \hline
 \end{array}
 \label{eq:block-parameters}
 \end{equation}
-Then \(\mathcal Z_r(a;u,v)=A_r\Phi_{\alpha_r,\beta_r}(uv;y)\) for
-\(r=0,1,2,3\).
+Then \(\mathcal W_r(a;\lambda)=A_r\Phi_{\alpha_r,\beta_r}(\lambda^2;y)\)
+for \(r=0,1,2,3\) and \(\lambda>0\).
 \end{lemma}
 
 \begin{proof}
-Write \(w=uv\).  Since \(\partial_a=a\partial_y\) and
-\(\partial_y\Phi_{\alpha,\beta}=-\Phi_{\alpha+1,\beta}\), the cases
-\(r=0,1\) follow from \eqref{eq:source-positive}.  Next,
-\((-\partial_a)^2=\partial_y+2y\partial_y^2\), so
-\(\mathcal Z_2=C\bigl(2y\Phi_{2,0}-\Phi_{1,0}\bigr)(w;y)\).  Integration
+Write \(w=\lambda^2\).  The case \(r=0\) is
+Lemma~\ref{lem:positive-source}.  Since \(\partial_a=a\partial_y\) and
+\(\partial_y\Phi_{\alpha,\beta}=-\Phi_{\alpha+1,\beta}\), the case
+\(r=1\) follows.  Next, \((-\partial_a)^2=\partial_y+2y\partial_y^2\), so
+\(\mathcal W_2=C\bigl(2y\Phi_{2,0}-\Phi_{1,0}\bigr)(w;y)\).  Integration
 by parts, whose boundary terms vanish at \(0\) and \(\infty\), gives
 \begin{equation}
-\begin{split}
 y\int_0^\infty
 \frac{\e^{-ys}s^{3/2}}{\sqrt{1+ws^2}}\dd s
-={}&\frac12\int_0^\infty
+=\frac12\int_0^\infty
 \frac{\e^{-ys}s^{1/2}}{\sqrt{1+ws^2}}\dd s
 +\int_0^\infty
 \frac{\e^{-ys}s^{1/2}}{(1+ws^2)^{3/2}}\dd s,
-\end{split}
 \label{eq:ibp-kernel}
 \end{equation}
 that is, \(y\Phi_{2,0}=\frac12\Phi_{1,0}+\Phi_{1,1}\).  Hence
-\(\mathcal Z_2=2C\Phi_{1,1}\), and
-\(\mathcal Z_3=-a\partial_y\mathcal Z_2=2aC\Phi_{2,1}\).
+\(\mathcal W_2=2C\Phi_{1,1}\), and
+\(\mathcal W_3=-a\partial_y\mathcal W_2=2aC\Phi_{2,1}\).
 \end{proof}
 
-\begin{lemma}[source derivatives and planar moments]
+\begin{lemma}[the Gram blocks in exponential coordinates]
 \label{lem:source-moments}
-For \(r\in\{0,1,2,3\}\) and \(p,q\geq0\),
+For \(r\in\{0,1,2,3\}\) let
+\(M_{kl}^{(r)}=\int_\C z^{r+4k}\bar z^{r+4l}\rho_a(z)\dd A(z)\) and
+\(F_r(t)=A_r\Phi_{\alpha_r,\beta_r}(\e^t;y)\).  Then, for all
+\(p,q\geq0\),
 \begin{equation}
-\left.
-\partial_u^p\partial_v^q\mathcal Z_r(a;u,v)
-\right|_{u=v=1}
-=\left(\frac{\ii}{4}\right)^{p+q}
-\int_{\C}z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
+\sum_{k=0}^p\sum_{l=0}^q\stir pk\stir ql
+\left(\frac{\ii}{4}\right)^{k+l}M_{kl}^{(r)}
+=F_r^{(p+q)}(0).
 \label{eq:source-moments}
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Fix a compact rectangle \(Q\subset(0,\infty)^2\) containing \((1,1)\)
-and a compact interval \(I\subset(0,\infty)\) containing \(a\), with
-left endpoint \(a_0\).  Every derivative of \(J_0\) is a finite linear
-combination of integer-order Bessel functions, which are bounded by
-\(1\) on the real axis.  By induction on \(p+q\),
+For \(R>0\) and \(u,v\in\C\), define the disk integral
 \[
-\partial_u^p\partial_v^qJ_0\left(\frac{t^2\sqrt{uv}}2\right)
-=\sum_{j=0}^{p+q}a_j(u,v)\,t^{2j}J_0^{(j)}\left(\frac{t^2\sqrt{uv}}2\right)
+\mathcal Z_R(u,v)
+=\int_{|z|\leq R}|z|^{2r}
+\exp\left(-a|z|^2+\frac{\ii}{4}(uz^4+v\bar z^4)\right)\dd A(z).
 \]
-with coefficients \(a_j\) that are smooth, hence bounded, on \(Q\), and
-each \(-\partial_a\) produces a factor \(t\).  Hence, for fixed
-\(p,q,r\),
-\[
-\left|
-\partial_u^p\partial_v^q(-\partial_a)^r
-\left[
-\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)
-\right]\right|
-\leq C_{Q,I,p,q,r}\,\e^{-a_0t}(1+t)^{2p+2q+r}
-\qquad\bigl((u,v)\in Q,\ a\in I\bigr),
-\]
-and dominated convergence allows all these derivatives to pass through
-the \(t\)-integral in \eqref{eq:source}.
+Over the compact disk, all derivatives in \((u,v)\) may be taken under
+the integral sign, and \(\mathcal Z_R\) is entire in each variable.
 
-For \(R>0\), define the truncations
+\emph{Step 1: \(\mathcal Z_R(u,v)=\mathcal Z_R(uv,1)\) for \(u,v>0\).}
+For fixed \(u,v>0\), the function
+\(H(s)=\mathcal Z_R(u\e^s,v\e^{-s})\) is entire in \(s\in\C\).  The
+rotation \(z\mapsto\e^{\ii\varphi/4}z\), \(\varphi\in\mathbb R\),
+preserves the disk, \(|z|\) and the area measure, and multiplies \(z^4\)
+by \(\e^{\ii\varphi}\) and \(\bar z^4\) by \(\e^{-\ii\varphi}\); hence
+\(H(s+\ii\varphi)=H(s)\).  Differentiating in \(\varphi\) at
+\(\varphi=0\) gives \(\ii H'(s)=0\), so \(H\) is constant, and
+\(H(0)=H(\log v)\) is the claim.
+
+\emph{Step 2: the truncated identity.}  For real \(t_1,t_2\) put
+\(K(t_1,t_2)=\mathcal Z_R(\e^{t_1},\e^{t_2})\).  By Step~1,
+\(K(t_1,t_2)=f_R(t_1+t_2)\) with \(f_R(t)=\mathcal Z_R(\e^{t/2},\e^{t/2})\),
+so \(\partial_{t_2}^q\partial_{t_1}^pK(0,0)=f_R^{(p+q)}(0)\).  On the other
+hand, \eqref{eq:stirling} with \(G(w)=\exp(cw)\) gives
+\(\frac{\dd^p}{\dd t^p}\exp(c\e^t)=\sum_k\stir pk(c\e^t)^k\exp(c\e^t)\);
+applying this under the integral, first with \(c=\ii z^4/4\) and then
+with \(c=\ii\bar z^4/4\), yields
 \[
-\mathcal Z^{[R]}(a;u,v)
-=\pi\int_0^{R^2}
-\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)\dd t,
-\qquad
-\mathcal Z_r^{[R]}=(-\partial_a)^r\mathcal Z^{[R]}.
+\partial_{t_2}^q\partial_{t_1}^pK(0,0)
+=\sum_{k=0}^p\sum_{l=0}^q\stir pk\stir ql
+\left(\frac{\ii}{4}\right)^{k+l}
+\int_{|z|\leq R}z^{r+4k}\bar z^{r+4l}\rho_a(z)\dd A(z),
 \]
-By polar coordinates and \eqref{eq:angular-source},
-\[
-\mathcal Z^{[R]}(a;u,v)
-=\int_{|z|\leq R}
-\exp\left(
--a|z|^2+\frac{\ii}{4}(uz^4+v\bar z^4)
-\right)\dd A(z).
-\]
-On the compact disk all derivatives in the real parameters \(u,v,a\)
-may be taken under the integral sign.  At \(u=v=1\), each
-\(u\)-derivative contributes \(\ii z^4/4\), each \(v\)-derivative
-contributes \(\ii\bar z^4/4\), and each \(-\partial_a\) contributes
-\(|z|^2=z\bar z\).  Therefore
-\[
-\left.
-\partial_u^p\partial_v^q\mathcal Z_r^{[R]}(a;u,v)
-\right|_{u=v=1}
-=\left(\frac{\ii}{4}\right)^{p+q}
-\int_{|z|\leq R}
-z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
-\]
-As \(R\to\infty\), the left-hand side converges to the left-hand side of
-\eqref{eq:source-moments} by the integrable bound above, and the
-right-hand side converges to the full planar moment because its
-integrand is bounded by \(|z|^{2r+4p+4q}\e^{-a|z|^2}\).
+where \(|z|^{2r}z^{4k}\bar z^{4l}=z^{r+4k}\bar z^{r+4l}\).
+
+\emph{Step 3: \(R\to\infty\).}  The truncated moments converge to
+\(M_{kl}^{(r)}\), since their integrands are bounded by
+\(|z|^{2r+4k+4l}\e^{-a|z|^2}\).  For real \(t\), the factor
+\(\exp\bigl(\frac{\ii}{4}\e^{t/2}(z^4+\bar z^4)\bigr)\) has modulus \(1\),
+and by \eqref{eq:stirling} its \(t\)-derivatives of order \(m\) are this
+factor times a polynomial in \(\e^{t/2}(z^4+\bar z^4)\); for \(|t|\leq1\)
+they are bounded by \(c_m(1+|z|)^{4m}\).  Hence derivatives of all
+orders may be taken under the integral both for \(f_R\) and for its
+full-plane counterpart \(t\mapsto\mathcal W_r(a;\e^{t/2})\), and dominated
+convergence gives
+\(f_R^{(m)}(0)\to\frac{\dd^m}{\dd t^m}\mathcal W_r(a;\e^{t/2})|_{t=0}\).
+By Lemma~\ref{lem:four-kernels} with \(\lambda=\e^{t/2}\),
+\(\mathcal W_r(a;\e^{t/2})=F_r(t)\).  Letting \(R\to\infty\) in Step~2
+proves \eqref{eq:source-moments}.
 \end{proof}
 
 \begin{proposition}[block determinants]
@@ -764,26 +734,24 @@ The right-hand side is strictly positive, so
 \end{proposition}
 
 \begin{proof}
-Let
-\(D_{pq}^{(r)}=\partial_u^p\partial_v^q\mathcal Z_r(a;u,v)|_{u=v=1}\).
-Lemma~\ref{lem:source-moments} and \eqref{eq:gram-block} give
-\[
-G_{pq}^{(r)}
-=(-1)^{r+q}\left(\frac4\ii\right)^{p+q}
-D_{pq}^{(r)}.
-\]
+By \eqref{eq:gram-block},
+\(G_{pq}^{(r)}=(-1)^{r+q}(4/\ii)^{p+q}\bigl[(\ii/4)^{p+q}M_{pq}^{(r)}\bigr]\).
 Taking \((4/\ii)^p\) out of row \(p\) and \((-1)^{r+q}(4/\ii)^q\) out of
 column \(q\), and using \((4/\ii)^2=-16\), gives
 \[
 \Delta_k^{(r)}
-=\left(\frac4\ii\right)^{2S_k}(-1)^{rk+S_k}
-\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}
 =(-1)^{rk}16^{S_k}
-\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}.
+\det\left[\left(\frac\ii4\right)^{p+q}M_{pq}^{(r)}\right]_{p,q=0}^{k-1}.
 \]
-By Lemma~\ref{lem:four-kernels},
-\(D^{(r)}=A_rD^{\alpha_r,\beta_r}\), so
-Lemma~\ref{lem:leading-source-signs} and
+The left-hand side of \eqref{eq:source-moments} is the \((p,q)\) entry
+of \(\Sigma\,[(\ii/4)^{k+l}M_{kl}^{(r)}]\,\Sigma^{\mathsf T}\), with
+\(\Sigma\) the unitriangular Stirling matrix of
+Lemma~\ref{lem:leading-source-signs}; its \(k\times k\) truncations
+therefore have the same determinant.  By
+Lemma~\ref{lem:source-moments} that determinant equals
+\(\det[F_r^{(p+q)}(0)]=A_r^k\det[F^{(p+q)}(0)]\), where \(F\) is the
+function of Lemma~\ref{lem:leading-source-signs} for
+\((\alpha,\beta)=(\alpha_r,\beta_r)\).  Hence that lemma and
 \(16^{S_k}(y/2)^{S_k}=(4a^2)^{S_k}\) give
 \[
 (-1)^{rk+S_k}\Delta_k^{(r)}
@@ -846,6 +814,97 @@ ratios \(v_n=\fh_{n+1}/(a\fh_n)\) of Section~\ref{sec:completion}, can
 therefore be evaluated without the cancellation inherent in the
 oscillatory moment determinants.
 \end{remark}
+
+\section{The Bessel form of the initial function}\label{sec:bessel}
+
+\begin{lemma}[Bessel form]\label{lem:bessel}
+For every \(a>0\),
+\(\int_\C\rho_a\dd A=h(a)\), the Bessel combination \eqref{eq:h-bessel}.
+\end{lemma}
+
+\begin{proof}
+Put \(H(a)=\int_\C\rho_a\dd A\) and
+\(m_{pq}=\int_\C z^p\bar z^q\rho_a(z)\dd A(z)\) for \(a>0\).
+
+\emph{Step 1: \(H'''+a^2H'+aH=0\) on \((0,\infty)\).}  Differentiation
+under the integral sign gives \(H^{(k)}(a)=(-1)^km_{kk}\).  With the
+Wirtinger derivative
+\(\partial_z=\frac12(\partial_{\operatorname{Re}z}-\ii\partial_{\operatorname{Im}z})\),
+\(\partial_z\bar z^q=0\) and
+\(\partial_z\rho_a=(-a\bar z+\ii z^3)\rho_a\), so integrating
+\(\partial_z(z^p\bar z^q\rho_a)\) over \(\C\), with no boundary terms
+because of the Gaussian decay, gives
+\[
+p\,m_{p-1,q}+\ii\,m_{p+3,q}=a\,m_{p,q+1}.
+\]
+For \((p,q)=(1,0)\) and \((0,3)\) this reads
+\(m_{00}+\ii m_{40}=am_{11}\) and \(\ii m_{33}=am_{04}\).  The
+substitution \(z\mapsto\eta z\) of Section~\ref{sec:gram} gives
+\(\overline{m_{qp}}=\bar\eta^{\,p}\eta^q m_{pq}\); hence every
+\(m_{kk}\) is real and \(\overline{m_{40}}=-m_{04}\).  Therefore
+\(m_{33}=am_{00}-a^2m_{11}\), which is the claimed equation.
+
+\emph{Step 2: the Bessel side.}  For \(x>0\),
+\(J_\nu(x)=(x/2)^\nu s_\nu(x)\) with the even entire function
+\(s_\nu(x)=\sum_{k\geq0}(-1)^kx^{2k}/\bigl(4^kk!\,\Gamma(k+\nu+1)\bigr)\)
+\cite[equation~(10.2.2)]{NISTHandbook2010}, and Bessel's equation
+\cite[equation~(10.2.1)]{NISTHandbook2010} becomes
+\(xs_\nu''+(2\nu+1)s_\nu'+xs_\nu=0\).  Writing \(s_\pm=s_{\pm1/4}\) and
+\(x=a^2/4\), so that \((x/2)^{\mp1/4}=(a^2/8)^{\mp1/4}\), we get, for
+\(a>0\),
+\[
+h(a)=h_S(a):=\frac{\pi^2}{4}\left[\sqrt8\,s_-(x)^2
+-\sqrt2\,a\,s_-(x)s_+(x)+\frac{a^2}{\sqrt8}\,s_+(x)^2\right].
+\]
+The function \(h_S\) is smooth on \(\mathbb R\).  Differentiating three
+times and eliminating \(s_\pm''\) and \(s_\pm'''\) with the equations for
+\(s_\pm\) and their derivatives shows
+\(h_S'''+a^2h_S'+ah_S=0\) on \(\mathbb R\).  Since
+\(s_\nu(0)=1/\Gamma(\nu+1)\) and \(s_\nu'(0)=0\),
+\[
+h_S(0)=\frac{\pi^2\sqrt8}{4\,\Gamma(\frac34)^2},
+\qquad
+h_S'(0)=-\frac{\pi^2\sqrt2}{4\,\Gamma(\frac34)\Gamma(\frac54)},
+\qquad
+h_S''(0)=\frac{\pi^2}{2\sqrt8\,\Gamma(\frac54)^2}.
+\]
+
+\emph{Step 3: the planar side as \(a\to0^+\).}  By
+Lemmas~\ref{lem:positive-source} and~\ref{lem:four-kernels} with
+\(\lambda=1\),
+\[
+\begin{split}
+H&=C\,\Phi_{0,0}(1;y),\\
+H'&=-\mathcal W_1(a;1)=-aC\,\Phi_{1,0}(1;y),\\
+H''&=\mathcal W_2(a;1)=2C\,\Phi_{1,1}(1;y).
+\end{split}
+\]
+As \(y\downarrow0\), monotone convergence and
+\(\int_0^\infty s^{2x-1}(1+s^2)^{-x-z}\dd s=\frac12B(x,z)\)
+\cite[equation~(5.12.3)]{NISTHandbook2010} give
+\(\Phi_{0,0}(1;y)\to\frac12B(\frac14,\frac14)=\Gamma(\frac14)^2/(2\sqrt\pi)\)
+and \(\Phi_{1,1}(1;y)\to\frac12B(\frac34,\frac34)=\Gamma(\frac34)^2/\sqrt\pi\).
+The substitution \(s=u/y\) gives
+\(a\Phi_{1,0}(1;y)=\sqrt2\int_0^\infty\e^{-u}u^{1/2}(y^2+u^2)^{-1/2}\dd u\),
+which tends to \(\sqrt2\,\Gamma(\frac12)=\sqrt{2\pi}\).  Using
+\(\Gamma(\frac14)\Gamma(\frac34)=\pi\sqrt2\),
+\(\Gamma(\frac54)=\frac14\Gamma(\frac14)\) and \(\Gamma(\frac12)=\sqrt\pi\)
+\cite[equations~(5.5.3), (5.5.1), (5.4.6)]{NISTHandbook2010}, the limits
+of \(H\), \(H'\), \(H''\) as \(a\to0^+\) are \(h_S(0)\),
+\(h_S'(0)=-\pi\) and \(h_S''(0)\).
+
+\emph{Step 4: uniqueness.}  The function \(W=H-h_S\) is smooth on
+\((0,\infty)\), satisfies \(W'''=-a^2W'-aW\), and \(W,W',W''\to0\) as
+\(a\to0^+\).  Fix \(a_1>0\).  For \(0<a\leq a_1\), the energy
+\(E=W^2+W'^2+W''^2\) satisfies \(E'\leq(2+a_1^2+a_1)E\), by
+\(2|uv|\leq u^2+v^2\).  Hence \(\e^{-(2+a_1^2+a_1)a}E(a)\) is
+nonincreasing on \((0,a_1]\) and tends to \(0\) as \(a\to0^+\), so
+\(E=0\) there.  Thus \(H=h_S=h\) on \((0,\infty)\).
+\end{proof}
+
+The identity of Lemma~\ref{lem:bessel} also follows from
+Lemma~\ref{lem:positive-source} and the Dixon--Ferrar formula
+\cite[entry~6.518]{GradshteynRyzhik2015}.
 
 \section{Identification with the quartic recurrence}
 \label{sec:completion}
@@ -965,7 +1024,7 @@ This is the case \(d=4\) of \eqref{eq:FH-recurrence}, and with
 \(V_m=av_m\) it is \eqref{eq:quartic-recurrence}.
 
 Finally, \(P_0=1\), \(P_1=z\), and \(P_2=z^2\).  By
-Lemma~\ref{lem:positive-source}, \(h(a)=\int_\C\rho_a\dd A\), and
+Lemma~\ref{lem:bessel}, \(h(a)=\int_\C\rho_a\dd A\), and
 differentiation under this absolutely convergent integral gives
 \[
 h'(a)=-\int_{\C}|z|^2\rho_a(z)\dd A(z),
@@ -988,6 +1047,115 @@ properties and \(\widetilde v_j=v_j\) for \(j\leq m+1\), then
 \(\widetilde v_{m+2}=v_{m+2}\).  Induction proves uniqueness.  This
 proves Theorem~\ref{thm:main}: part~(i) is
 Corollary~\ref{cor:positive-norms}, and part~(ii) has just been shown.
+
+\section{Uniqueness of the positive solution}\label{sec:unique}
+
+\begin{proof}[Proof of Theorem~\ref{thm:unique}]
+Fix \(\epsilon>0\) and let \((v_n)\) and \((v_n')\) be positive solutions
+of \eqref{eq:quartic-recurrence}.  Put \(T_n=v_nv_{n+1}v_{n+2}\) and
+\(T_{-1}=T_{-2}=0\), and similarly \(T_n'\).  Since
+\(v_n(v_{n-1}v_{n-2}+v_{n+1}v_{n-1}+v_{n+2}v_{n+1})=T_{n-2}+T_{n-1}+T_n\),
+the recurrence reads
+\begin{equation}
+v_n+T_n+T_{n-1}+T_{n-2}=(n+1)\epsilon,
+\qquad n\geq0.
+\label{eq:integrated}
+\end{equation}
+
+\emph{Step 1: a priori bounds.}  All terms in \eqref{eq:integrated} are
+nonnegative, so \(v_n\leq(n+1)\epsilon\) and \(T_n\leq(n+1)\epsilon\).
+Hence the bracket in \eqref{eq:quartic-recurrence} is at most
+\(1+\epsilon^2[n(n-1)+n(n+2)+(n+2)(n+3)]=1+3\epsilon^2((n+1)^2+1)\leq
+K(n+1)^2\) with \(K=1+6\epsilon^2\), and therefore
+\begin{equation}
+v_n\geq\frac{c}{n+1},
+\qquad
+c=\frac{\epsilon}{K}.
+\label{eq:lower-bound}
+\end{equation}
+The same bounds hold for \(v'\).  With
+\(\delta_n=\log(v_n'/v_n)\), it follows that
+\(|\delta_n|\leq\log K+2\log(n+1)\).
+
+\emph{Step 2: exact linearization.}  Let \(a_n\) and \(b_n\) be the
+logarithmic means of \(v_n,v_n'\) and of \(T_n,T_n'\), so that
+\(v_n'-v_n=a_n\delta_n\) and \(T_n'-T_n=b_nD_n\) with
+\(D_n=\delta_n+\delta_{n+1}+\delta_{n+2}\).  A logarithmic mean lies
+between its arguments, so by Step~1
+\begin{equation}
+a_n\geq\frac{c}{n+1},
+\qquad
+0<b_n\leq(n+1)\epsilon.
+\label{eq:log-means}
+\end{equation}
+Subtracting \eqref{eq:integrated} for the two solutions gives
+\begin{equation}
+a_n\delta_n+b_nD_n+b_{n-1}D_{n-1}+b_{n-2}D_{n-2}=0,
+\qquad n\geq0,
+\label{eq:linearized}
+\end{equation}
+where terms with negative indices are omitted.
+
+\emph{Step 3: a localized energy identity.}  Let \((h_n)_{n\geq0}\) be real
+with finite support.  Multiplying \eqref{eq:linearized} by
+\(h_n^2\delta_n\), summing over \(n\), and collecting the terms with the
+same \(b_m\) gives
+\[
+\sum_{n\geq0}a_nh_n^2\delta_n^2
++\sum_{m\geq0}b_m
+\Bigl(\sum_{r=0}^2\delta_{m+r}\Bigr)
+\Bigl(\sum_{r=0}^2h_{m+r}^2\delta_{m+r}\Bigr)=0.
+\]
+For real \(z_0,z_1,z_2\) and \(h_0,h_1,h_2\),
+\[
+\Bigl(\sum_{r}z_r\Bigr)\Bigl(\sum_{r}h_r^2z_r\Bigr)
+=\Bigl(\sum_{r}h_rz_r\Bigr)^2
++\sum_{0\leq r<s\leq2}(h_r-h_s)^2z_rz_s .
+\]
+Dropping the nonnegative squares, using \(2|z_rz_s|\leq z_r^2+z_s^2\) and
+\eqref{eq:log-means}, we obtain
+\begin{equation}
+c\sum_{n\geq0}\frac{h_n^2\delta_n^2}{n+1}
+\leq\frac\epsilon2\sum_{m\geq0}(m+1)
+\sum_{0\leq r<s\leq2}(h_{m+r}-h_{m+s})^2
+\bigl(\delta_{m+r}^2+\delta_{m+s}^2\bigr).
+\label{eq:localized}
+\end{equation}
+
+\emph{Step 4: a power weight.}  Let \(0<p<1\), put
+\(w_n=(n+1)^{-p}\), and
+\[
+S_p=\sum_{n\geq0}\frac{\delta_n^2}{(n+1)^{1+2p}},
+\]
+which is finite by the logarithmic bound of Step~1.  For an integer
+\(R\geq1\), the sequence \(h_n=(w_n-w_R)_+\) is supported on \(n<R\), and
+\(|h_i-h_j|\leq|w_i-w_j|\).  By the mean value theorem,
+\(|w_{m+r}-w_{m+s}|\leq p(s-r)(m+1)^{-p-1}\).  In \eqref{eq:localized}
+the three pairs \((r,s)\) contribute the squared distances \(1\), \(4\),
+\(1\), so the right-hand side is at most
+\[
+\frac{\epsilon p^2}{2}\sum_{m\geq0}
+\frac{5\delta_m^2+2\delta_{m+1}^2+5\delta_{m+2}^2}{(m+1)^{1+2p}}
+\leq\frac{\epsilon p^2}{2}\cdot12\cdot27\,S_p
+=162\,\epsilon p^2S_p,
+\]
+where we used \((m+r+1)/(m+1)\leq3\) and \(1+2p\leq3\).  As
+\(R\to\infty\), \(h_n\uparrow w_n\), and monotone convergence on the
+left of \eqref{eq:localized} gives \(cS_p\leq162\,\epsilon p^2S_p\).
+Choosing \(p=1/(18\sqrt K)\) makes \(162\,\epsilon p^2=c/2\), so
+\(cS_p\leq\frac c2S_p\).  Since \(S_p<\infty\), \(S_p=0\), hence
+\(\delta_n=0\) and \(v_n'=v_n\) for every \(n\).
+\end{proof}
+
+The linearized equation \eqref{eq:linearized} is the Euler--Lagrange
+equation of the convex quadratic form
+\(\sum_na_n\delta_n^2+\sum_nb_n(\delta_n+\delta_{n+1}+\delta_{n+2})^2\);
+in the variables \(u_n=\log v_n\), \eqref{eq:integrated} itself is the
+coordinatewise stationarity condition of
+\(\sum_n\bigl[\e^{u_n}+\e^{u_n+u_{n+1}+u_{n+2}}-(n+1)\epsilon\,u_n\bigr]\),
+taken over finitely supported variations.  Convexity is what makes the
+positive solution unique; the power weight controls the boundary at
+infinity.
 
 \bibliographystyle{alphacitation}
 \bibliography{references}
