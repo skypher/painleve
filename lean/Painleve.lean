@@ -19,3 +19,6 @@ import Painleve.PlanarOde
 import Painleve.Source
 import Painleve.DiskHankel
 import Painleve.BesselSeries
+import Painleve.OdeUnique
+import Painleve.Weighted
+import Painleve.PhiHankel

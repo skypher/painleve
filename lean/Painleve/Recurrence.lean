@@ -468,4 +468,95 @@ theorem rec_complex (ha : 0 < a) (n : ℕ) (hn : 1 ≤ n) :
 
 end OPData
 
+
+namespace OPData
+
+variable (hB : FormHyp B a) (D : OPData B)
+include hB
+
+/-- The real recurrence on the signed norms, solved for `𝔥_{m+3}`. -/
+theorem rec_real (ha : 0 < a) (m : ℕ) :
+    D.h (m + 3) = a * ((m : ℝ) + 1) * D.h m - a ^ 2 * D.h (m + 1)
+      - ((if 3 ≤ m + 1 then D.h (m + 1) / D.h (m + 1 - 3) else 0)
+        + (if 3 ≤ m + 2 then D.h (m + 2) / D.h (m + 2 - 3) else 0)) * D.h m := by
+  have hc := rec_complex hB D ha (m + 1) (by omega)
+  simp only [show m + 1 - 1 = m by omega, show m + 1 + 1 = m + 2 by omega,
+    show m + 1 + 2 = m + 3 by omega] at hc
+  have ha' : (a : ℂ) ≠ 0 := by exact_mod_cast ha.ne'
+  have hII : ∀ k : ℕ, Complex.I * D.cc a k =
+      -(((if 3 ≤ k then D.h k / D.h (k - 3) else 0 : ℝ) : ℂ) / a) := by
+    intro k
+    unfold cc
+    split_ifs
+    · push_cast
+      field_simp
+      rw [Complex.I_sq]
+      ring
+    · simp
+  have hsum : Complex.I * ((D.cc a (m + 1) + D.cc a (m + 2) + D.cc a (m + 3)) *
+      B (D.P m) (D.P m)) = (Complex.I * D.cc a (m + 1) + Complex.I * D.cc a (m + 2) +
+        Complex.I * D.cc a (m + 3)) * B (D.P m) (D.P m) := by ring
+  rw [hsum, hII, hII, hII, if_pos (by omega : 3 ≤ m + 3), show m + 3 - 3 = m by omega,
+    D.norm, D.norm, rhoSign_succ m] at hc
+  have hτ : (tau m : ℂ) * tau m = 1 := by exact_mod_cast tau_mul_self m
+  have hρ0 : (rhoSign m : ℂ) ≠ 0 := by exact_mod_cast rhoSign_ne_zero m
+  have hm0 : (D.h m : ℂ) ≠ 0 := by exact_mod_cast (D.pos m).ne'
+  set A1 : ℝ := if 3 ≤ m + 1 then D.h (m + 1) / D.h (m + 1 - 3) else 0 with hA1
+  set A2 : ℝ := if 3 ≤ m + 2 then D.h (m + 2) / D.h (m + 2 - 3) else 0 with hA2
+  -- clear the denominators `a` and `𝔥_m`
+  have key : (rhoSign m : ℂ) * ((D.h (m + 3) : ℂ) - (a * ((m : ℂ) + 1) * D.h m - a ^ 2 * D.h (m + 1)
+      - ((A1 : ℂ) + A2) * D.h m)) = 0 := by
+    push_cast at hc
+    field_simp at hc
+    linear_combination (-(rhoSign m : ℂ)) * hc - (rhoSign m : ℂ) * (a : ℂ) ^ 2 * (D.h (m + 1) : ℂ) * hτ
+  rcases mul_eq_zero.mp key with h | h
+  · exact absurd h hρ0
+  · have := sub_eq_zero.mp h
+    exact_mod_cast this
+
+/-- **Section 5.** The ratios `v_n = 𝔥_{n+1} / (a 𝔥_n)` solve the quartic recurrence. -/
+theorem quarticRec (ha : 0 < a) : QuarticRec a (fun n => D.h (n + 1) / (a * D.h n)) := by
+  intro m
+  have hr := rec_real hB D ha m
+  have ha' : a ≠ 0 := ha.ne'
+  have h0 : ∀ k, D.h k ≠ 0 := fun k => (D.pos k).ne'
+  have hm3 : D.h (m + 2 + 1) = D.h (m + 3) := rfl
+  rcases (by omega : m = 0 ∨ m = 1 ∨ 2 ≤ m) with rfl | rfl | hm
+  · simp only [extZ, show ((0 : ℕ) : ℤ) - 1 < 0 by omega, show ((0 : ℕ) : ℤ) - 2 < 0 by omega,
+      if_true]
+    norm_num at hr ⊢
+    rw [hr]
+    have := h0 0; have := h0 1; have := h0 2
+    field_simp
+    ring
+  · simp only [extZ, show ¬ (((1 : ℕ) : ℤ) - 1 < 0) by omega,
+      show ((1 : ℕ) : ℤ) - 2 < 0 by omega, if_true, if_false]
+    norm_num at hr ⊢
+    rw [hr]
+    have := h0 0; have := h0 1; have := h0 2; have := h0 3
+    field_simp
+    ring
+  · obtain ⟨j, rfl⟩ : ∃ j, m = j + 2 := ⟨m - 2, by omega⟩
+    have e1 : extZ (fun n => D.h (n + 1) / (a * D.h n)) (((j + 2 : ℕ) : ℤ) - 1) =
+        D.h (j + 2) / (a * D.h (j + 1)) := by
+      simp only [extZ, show ¬ (((j + 2 : ℕ) : ℤ) - 1 < 0) by omega, if_false]
+      rw [show (((j + 2 : ℕ) : ℤ) - 1).toNat = j + 1 by omega]
+    have e2 : extZ (fun n => D.h (n + 1) / (a * D.h n)) (((j + 2 : ℕ) : ℤ) - 2) =
+        D.h (j + 1) / (a * D.h j) := by
+      simp only [extZ, show ¬ (((j + 2 : ℕ) : ℤ) - 2 < 0) by omega, if_false]
+      rw [show (((j + 2 : ℕ) : ℤ) - 2).toNat = j by omega]
+    rw [e1, e2]
+    rw [if_pos (by omega), if_pos (by omega), show j + 2 + 1 - 3 = j by omega,
+      show j + 2 + 2 - 3 = j + 1 by omega] at hr
+    simp only [show j + 2 + 1 + 1 = j + 4 by omega, show j + 2 + 2 = j + 4 by omega,
+      show j + 2 + 1 = j + 3 by omega, show j + 2 + 3 = j + 5 by omega,
+      show j + 4 + 1 = j + 5 by omega] at hr ⊢
+    rw [hr]
+    have := h0 j; have := h0 (j + 1); have := h0 (j + 2); have := h0 (j + 3); have := h0 (j + 4)
+    push_cast
+    field_simp
+    ring
+
+end OPData
+
 end Painleve
