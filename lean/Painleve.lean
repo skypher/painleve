@@ -34,3 +34,5 @@ import Painleve.BesselMatch
 import Painleve.Main
 import Painleve.StatementUnique
 import Painleve.UniqBounds
+import Painleve.Energy
+import Painleve.Unique

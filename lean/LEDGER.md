@@ -49,13 +49,15 @@ recurrence (Herm, Ibp, Recurrence = Section 5) → Bessel initial data
 (BesselSeries, HSeries, PlanarOde, Limits, OdeUnique, BesselMatch) → MainOf,
 Main.
 
-## Theorem 1.2 (uniqueness of the positive solution), 2026-10-23
+## Theorem 1.2 (uniqueness of the positive solution): COMPLETE, 2026-10-23
 
-Frozen statement `Painleve.Stmt_unique` (Painleve/StatementUnique.lean),
-APPROVED by independent statement check (GPT-6 Pro, job_abc1a83b, all knobs
-PASS). Proof plan (paper Section 7): UniqBounds (integrated form, upper and
-lower bounds, logarithmic mean) and Energy (power-weighted localized energy
-estimate) in progress on lanes A and E; assembly by main.
+`Painleve.unique_theorem : Painleve.Stmt_unique` (Painleve/Unique.lean).
+Statement approved by independent check (GPT-6 Pro, job_abc1a83b). Acceptance:
+`example : Stmt_unique := unique_theorem` compiles; axioms propext,
+Classical.choice, Quot.sound only; no sorry in 38 modules (8458 lines).
+Proof: UniqBounds (integrated form, bounds, logarithmic mean), Energy
+(power-weighted localized energy estimate), Unique (assembly), following
+paper Section 7.
 
 ## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
 
