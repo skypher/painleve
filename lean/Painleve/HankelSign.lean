@@ -193,7 +193,7 @@ theorem claim_phiL : ∀ (βs : List ℝ), (∀ b ∈ βs, 0 < b) → ∀ {k : �
     · exact claim_phiL βs hβs w hw
     · exact det_qLog_shift_pos hβ u w hu hw
 
-lemma iteratedDeriv_add_eq (f : ℝ → ℝ) (p q : ℕ) :
+lemma iteratedDeriv_add_eq_comp (f : ℝ → ℝ) (p q : ℕ) :
     iteratedDeriv (p + q) f = iteratedDeriv q (iteratedDeriv p f) := by
   induction q with
   | zero => simp
@@ -219,7 +219,7 @@ theorem hankel_sign (β : ℝ) (βs : List ℝ) (hβ : 0 < β) (hβs : ∀ b ∈
           (fun (q : Fin k) w => qLog β (w - u) * (Q q).eval (Real.exp (w - u))) q x := by
     ext p q
     simp only [Matrix.of_apply]
-    rw [iteratedDeriv_add_eq, iteratedDeriv_convT hβ hf p]
+    rw [iteratedDeriv_add_eq_comp, iteratedDeriv_convT hβ hf p]
     obtain ⟨C, hC⟩ := hf.2 p
     rw [iteratedDeriv_convT_kernel hβ (hf.continuous_iteratedDeriv p) hC q]
     simp only [hker]
