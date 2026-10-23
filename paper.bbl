@@ -1,79 +1,93 @@
-\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
-\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
-% \MRhref is called by the amsart/book/proc definition of \MR.
-\providecommand{\MRhref}[2]{%
-  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
-}
-\providecommand{\href}[2]{#2}
-\begin{thebibliography}{10}
+\begin{thebibliography}{CDHM25}
+\newcommand{\enquote}[1]{``#1''}
 
-\bibitem{Andreief1886}
-C.~Andr{\'e}ief, \emph{Note sur une relation entre les int{\'e}grales
-  d{\'e}finies des produits des fonctions}, M{\'e}moires de la Soci{\'e}t{\'e}
-  des Sciences Physiques et Naturelles de Bordeaux (3) \textbf{2} (1886),
-  1--14.
+\bibitem[AHK19]{ArnlindHoppeKontsevich2019}
+Joakim Arnlind, Jens Hoppe, and Maxim Kontsevich.
+\newblock \enquote{Quantum minimal surfaces.} (2019).
+\newblock \href{https://arxiv.org/abs/1903.10792}{arXiv:1903.10792}.
 
-\bibitem{ArnlindHoppeKontsevich2019}
-Joakim Arnlind, Jens Hoppe, and Maxim Kontsevich, \emph{Quantum minimal
-  surfaces}, 2019, \href{https://arxiv.org/abs/1903.10792}{arXiv:1903.10792}.
+\bibitem[And86]{Andreief1886}
+C.~Andr{\'e}ief.
+\newblock \enquote{Note sur une relation entre les int{\'e}grales d{\'e}finies
+  des produits des fonctions.}
+\newblock \emph{M{\'e}moires de la Soci{\'e}t{\'e} des Sciences Physiques et
+  Naturelles de Bordeaux (3)} \textbf{2} (1886), 1--14.
 
-\bibitem{Borodin1998}
-Alexei Borodin, \emph{Biorthogonal ensembles}, Nuclear Physics B \textbf{536}
-  (1998), no.~3, 704--732,
+\bibitem[Bor99]{Borodin1998}
+Alexei Borodin.
+\newblock \enquote{Biorthogonal ensembles.}
+\newblock \emph{Nuclear Physics B} \textbf{536} (1999), 704--732.
+\newblock
   \href{https://doi.org/10.1016/S0550-3213(98)00642-7}{doi:10.1016/S0550-3213(98)00642-7}.
 
-\bibitem{ClarksonEtAl2025}
-Peter~A. Clarkson, Anton~V. Dzhamay, Andrew N.~W. Hone, and Ben Mitchell,
-  \emph{Special solutions of a discrete {Painlev{\'e}} equation for quantum
-  minimal surfaces}, Theoretical and Mathematical Physics \textbf{224} (2025),
-  1359--1397,
+\bibitem[CDHM25]{ClarksonEtAl2025}
+Peter~A. Clarkson, Anton~V. Dzhamay, Andrew N.~W. Hone, and Ben Mitchell.
+\newblock \enquote{Special solutions of a discrete {Painlev{\'e}} equation for
+  quantum minimal surfaces.}
+\newblock \emph{Theoretical and Mathematical Physics} \textbf{224} (2025),
+  1359--1397.
+\newblock
   \href{https://doi.org/10.1134/S0040577925080045}{doi:10.1134/S0040577925080045}.
 
-\bibitem{CornalbaTaylor1998}
-Lorenzo Cornalba and Washington Taylor, IV, \emph{Holomorphic curves from
-  matrices}, Nuclear Physics B \textbf{536} (1999), no.~3, 513--552,
+\bibitem[CT99]{CornalbaTaylor1998}
+Lorenzo Cornalba and Washington Taylor, IV.
+\newblock \enquote{Holomorphic curves from matrices.}
+\newblock \emph{Nuclear Physics B} \textbf{536} (1999), 513--552.
+\newblock
   \href{https://doi.org/10.1016/S0550-3213(98)00702-0}{doi:10.1016/S0550-3213(98)00702-0}.
 
-\bibitem{DixonFerrar1933}
-A.~L. Dixon and W.~L. Ferrar, \emph{Integrals for the product of two {Bessel}
-  functions}, The Quarterly Journal of Mathematics \textbf{os-4} (1933), no.~1,
-  193--208,
+\bibitem[DF33]{DixonFerrar1933}
+A.~L. Dixon and W.~L. Ferrar.
+\newblock \enquote{Integrals for the product of two {Bessel} functions.}
+\newblock \emph{The Quarterly Journal of Mathematics} \textbf{os-4} (1933),
+  193--208.
+\newblock
   \href{https://doi.org/10.1093/qmath/os-4.1.193}{doi:10.1093/qmath/os-4.1.193}.
 
-\bibitem{FelderHoppe2025}
-Giovanni Felder and Jens Hoppe, \emph{Orthogonal polynomials with complex
-  densities and quantum minimal surfaces}, SIGMA \textbf{21} (2025), 103, 13
-  pages,
+\bibitem[FH25]{FelderHoppe2025}
+Giovanni Felder and Jens Hoppe.
+\newblock \enquote{Orthogonal polynomials with complex densities and quantum
+  minimal surfaces.}
+\newblock \emph{SIGMA} \textbf{21} (2025), 103.
+\newblock 13 pages,
   \href{https://doi.org/10.3842/SIGMA.2025.103}{doi:10.3842/SIGMA.2025.103}.
 
-\bibitem{Forrester2019}
-Peter~J. Forrester, \emph{Meet {Andr{\'e}ief}, {Bordeaux} 1886, and {Andreev},
-  {Kharkov} 1882--1883}, Random Matrices: Theory and Applications \textbf{8}
-  (2019), no.~2, 1930001,
+\bibitem[For19]{Forrester2019}
+Peter~J. Forrester.
+\newblock \enquote{Meet {Andr{\'e}ief}, {Bordeaux} 1886, and {Andreev},
+  {Kharkov} 1882--1883.}
+\newblock \emph{Random Matrices: Theory and Applications} \textbf{8} (2019),
+  1930001.
+\newblock
   \href{https://doi.org/10.1142/S2010326319300018}{doi:10.1142/S2010326319300018}.
 
-\bibitem{GradshteynRyzhik2015}
-I.~S. Gradshteyn and I.~M. Ryzhik, \emph{Table of integrals, series, and
-  products}, eighth ed., Academic Press, Amsterdam, 2015, Edited by Daniel
-  Zwillinger and Victor H. Moll.
+\bibitem[GR15]{GradshteynRyzhik2015}
+I.~S. Gradshteyn and I.~M. Ryzhik.
+\newblock \emph{Table of Integrals, Series, and Products} (Amsterdam: Academic
+  Press, 2015), eighth edition.
+\newblock Edited by Daniel Zwillinger and Victor H. Moll.
 
-\bibitem{Hoppe2025}
-Jens Hoppe, \emph{Quantum states from minimal surfaces}, 2025,
-  \href{https://arxiv.org/abs/2502.18422}{arXiv:2502.18422}.
+\bibitem[Hop25]{Hoppe2025}
+Jens Hoppe.
+\newblock \enquote{Quantum states from minimal surfaces.} (2025).
+\newblock \href{https://arxiv.org/abs/2502.18422}{arXiv:2502.18422}.
 
-\bibitem{Karlin1968}
-Samuel Karlin, \emph{Total positivity}, vol.~1, Stanford University Press,
-  Stanford, CA, 1968.
+\bibitem[Kar68]{Karlin1968}
+Samuel Karlin.
+\newblock \emph{Total Positivity}, volume~1 (Stanford, CA: Stanford University
+  Press, 1968).
 
-\bibitem{NISTHandbook2010}
-Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark
-  (eds.), \emph{{NIST} handbook of mathematical functions}, Cambridge
-  University Press, New York, 2010, \href{https://dlmf.nist.gov/}{Digital
-  companion: DLMF}.
+\bibitem[OLBC10]{NISTHandbook2010}
+Frank W.~J. Olver, Daniel~W. Lozier, Ronald~F. Boisvert, and Charles~W. Clark,
+  eds.
+\newblock \emph{{NIST} Handbook of Mathematical Functions} (New York: Cambridge
+  University Press, 2010).
+\newblock \href{https://dlmf.nist.gov/}{Digital companion: DLMF}.
 
-\bibitem{Szego1975}
-G{\'a}bor Szeg\H{o}, \emph{Orthogonal polynomials}, fourth ed., American
-  Mathematical Society Colloquium Publications, vol. XXIII, American
-  Mathematical Society, Providence, RI, 1975.
+\bibitem[Sze75]{Szego1975}
+G{\'a}bor Szeg\H{o}.
+\newblock \emph{Orthogonal Polynomials}, volume XXIII of \emph{American
+  Mathematical Society Colloquium Publications} (Providence, RI: American
+  Mathematical Society, 1975), fourth edition.
 
 \end{thebibliography}

@@ -129,24 +129,20 @@ Discrete Painlev\'e-Type Recurrence}
 \maketitle
 
 \begin{abstract}
-For \(a>0\), we prove positivity of the solution of the quartic discrete
-Painlev\'e-type recurrence arising from the quantum minimal surface
-\(w_2=w_1^3\).  This proves the \(d=4\), \(a>0\) case of
-Felder--Hoppe Conjecture~3.6 \cite{FelderHoppe2025}.  The initial data
-are given by a quadratic combination
-of Bessel functions of orders \(\pm\frac14\).  The proof converts the Bessel
-amplitude into a positive Laplace integral and uses two quartic source
-variables to reduce the four residue classes modulo \(4\) to one family
-of bi-moment matrices.  A triangular factorization and Andr\'eief's
-identity fix the strict sign
-of every leading principal minor in the four symmetry blocks and give
-an explicit positive
-multiple-integral formula for each minor once its predicted sign is
-divided out.  Consequently all signed
-orthogonal-polynomial norms are positive, and their scaled consecutive
-ratios give \(v_n(a)>0\) for every \(a>0\) and \(n\geq0\).
-No claim is made about an oscillatory or regularized interpretation at
-the endpoint \(a=0\).
+For \(a>0\), we prove the \(d=4\) case of a conjecture of Felder and
+Hoppe: every leading Gram matrix of their indefinite Hermitian form with
+density \(\exp\bigl(-a|z|^2+\frac{\ii}{4}(z^4+\bar z^4)\bigr)\) is
+nondegenerate, and all signed norms of the corresponding orthogonal
+polynomials are positive.  Consequently, the solution of the quartic
+discrete Painlev\'e-type recurrence arising from the quantum minimal
+surface \(w_2=w_1^3\), with initial data given by Bessel functions of
+orders \(\pm\frac14\), is positive.  The proof writes the Bessel
+amplitude as a positive Laplace integral and uses independent source
+parameters for \(z^4\) and \(\bar z^4\) to express each of the four
+symmetry blocks through a bi-moment matrix with a positive weight.  A
+triangular factorization and Andr\'eief's identity then give every
+leading block minor as a prescribed sign times an explicit positive
+multiple integral.
 \vskip5pt
 \noindent\textbf{Keywords.}\enspace
 discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
@@ -161,28 +157,26 @@ Primary 34M55; Secondary 39A36, 33C45, 15B52, 53A10.
 
 \section{Introduction}
 
-Discrete Painlev\'e-type recurrences occur in matrix regularizations of
-minimal surfaces and in the recurrence coefficients of orthogonal
-polynomials.  To our knowledge, the operator formulation of quantum
-minimal surfaces has its origins in \cite{CornalbaTaylor1998} and was
-developed further in \cite{ArnlindHoppeKontsevich2019}, where higher
-recurrences are discussed.  The quartic recurrence below is written explicitly in
-\cite[equation~(38)]{Hoppe2025} and in \cite{ClarksonEtAl2025}; those
-works also treat the
-special-function positive solution in the \(d=3\), or cubic-potential,
-case.
+Discrete Painlev\'e-type recurrences occur both in matrix
+regularizations of minimal surfaces and as recurrences for the
+coefficients of orthogonal polynomials.  For the quantum minimal
+surfaces associated with the holomorphic curves \(w_2=w_1^{d-1}\),
+recurrences of this type were obtained in
+\cite{CornalbaTaylor1998,ArnlindHoppeKontsevich2019,Hoppe2025} (see
+\cite[Section~3.1]{FelderHoppe2025}).  The quartic recurrence studied
+here is written explicitly in \cite[equation~(38)]{Hoppe2025} and
+\cite[Section~5]{ClarksonEtAl2025}; those works also treat the positive
+special-function solution in the cubic case \(d=3\).
 
-For the quantum minimal surface associated with the holomorphic curve
-\(w_2=w_1^{d-1}\), Felder and Hoppe
-\cite{FelderHoppe2025} constructed an indefinite Hermitian form and
-showed that, whenever the relevant leading Gram matrices are
-nondegenerate, its orthogonal-polynomial norm ratios obey
+Felder and Hoppe \cite{FelderHoppe2025} constructed an indefinite
+Hermitian form for each \(d\) and showed that, whenever its leading Gram
+matrices are nondegenerate, the ratios of its orthogonal-polynomial
+norms obey
 \begin{equation}
 V_n+\frac1{a^2}\sum_{j=0}^{d-2}
 \prod_{k=0}^{d-2}V_{n+j-k}=\frac{n+1}{a}.
 \label{eq:FH-recurrence}
 \end{equation}
-
 For \(d=4\), after setting \(v_n=V_n/a\) and
 \(\epsilon=a^{-2}\), the recurrence becomes
 \begin{equation}
@@ -195,7 +189,7 @@ v_n\left(
 \qquad n\geq0,
 \label{eq:quartic-recurrence}
 \end{equation}
-where \(v_n=0\) for \(n<0\).  The two initial values are determined by
+where \(v_n=0\) for \(n<0\).  The two initial values are
 \begin{equation}
 v_0=-\frac1a\frac{h'(a)}{h(a)},
 \qquad
@@ -214,614 +208,459 @@ J_{1/4}\left(\frac{a^2}{4}\right)\\
 \end{split}
 \label{eq:h-bessel}
 \end{equation}
+This is the function \(h(a)=\int_\C\rho_a\dd A\) of
+\cite[equation~(3.4)]{FelderHoppe2025} for \(d=4\) (the density
+\(\rho_a\) is recalled in \eqref{eq:density}), in the Bessel form given
+in \cite[Section~4]{FelderHoppe2025}; Lemma~\ref{lem:positive-source}
+below rederives it.
 Felder and Hoppe proved the required Gram nondegeneracy for
-\(d=1,2,3\) and formulated it as a conjecture for general \(d\)
-\cite[Conjecture~3.6 and Theorem~3.7]{FelderHoppe2025}.
-The quartic case is the first one not covered by their argument.  Their
-conjecture is phrased for \(a\geq0\).  At \(a=0\), however, the planar
-moments are no longer absolutely convergent and an oscillatory or
-regularized interpretation must be specified.  We work throughout in
-the canonical absolutely convergent range \(a>0\), where the result
-below proves the \(a>0\) part of the \(d=4\) assertion.  We make no claim
-about an endpoint interpretation at \(a=0\).
-
-Our result is the following.
+\(d=1,2,3\) and conjectured it for every \(d\)
+\cite[Conjecture~3.6 and Theorem~3.7]{FelderHoppe2025}; the quartic
+case is the first one not covered by their argument.  Their conjecture
+is stated for \(a\geq0\).  We treat \(a>0\), where all planar moments
+converge absolutely; at \(a=0\) they do not, and the endpoint would
+require an oscillatory or regularized interpretation, which we do not
+discuss.
 
 \begin{theorem}\label{thm:main}
-For every \(a>0\), the initial values
-\eqref{eq:initial-values}--\eqref{eq:h-bessel} extend uniquely by
-\eqref{eq:quartic-recurrence} to a sequence defined for every
-\(n\geq0\).  This sequence satisfies
-\[
-v_n(a)>0\qquad\text{for every }n\geq0.
-\]
-In particular, the \(d=4\), \(a>0\) case of Felder--Hoppe
-Conjecture~3.6 \cite{FelderHoppe2025} holds.
+Let \(a>0\).
+\begin{enumerate}
+\item[\textup{(i)}] Every leading Gram matrix of the Felder--Hoppe
+Hermitian form for \(d=4\) \textup{(Section~\ref{sec:gram})} is
+nondegenerate, and all its signed norms \(\fh_n\) are positive.  Thus
+\cite[Conjecture~3.6]{FelderHoppe2025} holds for \(d=4\) and \(a>0\).
+\item[\textup{(ii)}] The initial values
+\eqref{eq:initial-values}--\eqref{eq:h-bessel} are well defined and
+extend uniquely to a real sequence satisfying
+\eqref{eq:quartic-recurrence} for every \(n\geq0\).  This sequence is
+\(v_n=\fh_{n+1}/(a\fh_n)\); in particular, \(v_n(a)>0\) for every
+\(n\geq0\).
+\end{enumerate}
 \end{theorem}
-Here and throughout, an extension means a sequence of finite real
-numbers satisfying \eqref{eq:quartic-recurrence} at every index.
-Thus the uniqueness assertion concerns the prescribed Bessel initial
-data; it is not a classification of positive sequences arising from
-other initial data.
+Uniqueness in (ii) refers to the prescribed initial data; we do not
+discuss solutions with other initial values.
 
-The main point is an integral sign mechanism that applies uniformly to
-all indices.  The Bessel expression \eqref{eq:h-bessel} has a positive
-Laplace representation.  Adding independent source variables for
-\(z^4\) and \(\bar z^4\) produces four positive integral kernels, one
-for each residue class modulo \(4\).  Their mixed derivative matrices
-are reduced by triangular row operations to
+The proof is an integral sign mechanism that treats all indices at
+once.  The square map \(z\mapsto z^2\) and Gaussian integrals turn the
+quartic planar integral into a positive Laplace integral
+(Lemma~\ref{lem:positive-source}), which the Dixon--Ferrar formula
+identifies with \eqref{eq:h-bessel}.  Independent source parameters
+\(u\) and \(v\) for \(z^4\) and \(\bar z^4\) turn the Gram block of each
+residue class modulo \(4\) into the matrix of mixed derivatives
+\(\partial_u^p\partial_v^q\) of a positive kernel that depends only on
+\(uv\) (Lemmas~\ref{lem:four-kernels} and~\ref{lem:source-moments}).
+Triangular row operations reduce these matrices to bi-moment matrices
 \[
 \left[
 \int_0^\infty s^p
-\left(\frac{s^2}{1+s^2}\right)^q\dd\mu(s)
-\right]_{p,q=0}^{k-1}.
+\left(\frac{s^2}{1+s^2}\right)^q\dd\mu_r(s)
+\right]_{p,q=0}^{k-1}
 \]
-Both \(s\) and \(s^2/(1+s^2)\) are strictly increasing.  Andr\'eief's
-identity therefore expresses the determinant as an integral of a
-product of two Vandermonde determinants with a fixed positive sign.
-This proves the required sign pattern for every finite block at once.
-The monotone-Vandermonde determinant argument belongs to the broader
-theory of sign regularity and total positivity; for the terminology and
-general framework, see \cite[Chapter~2]{Karlin1968}.  Related
-nonsymmetric moment determinants occur in biorthogonal ensembles
-\cite{Borodin1998}.  Those standard mechanisms do not by themselves
-supply a positive measure for the oscillatory quartic Gram blocks.
-Indeed, a single radial source records only the total quartic degree,
-whereas the block entry indexed by \((p,q)\) requires the powers of
-\(z^4\) and \(\bar z^4\) to be varied independently.  To our knowledge,
-the key new ingredient is the two-source identity in
-Section~\ref{sec:blocks}.  It first
-separates those two powers on truncated disks and then, after the
-sources are set equal, converts each of the four blocks into the
-positive bi-moment family of Section~\ref{sec:sign-lemma}.  Thus the
-standard determinant argument applies only after the new source
-representation has removed the oscillatory obstruction.  The closure
-into four positive kernels uses the special \(K_{1/2}\) evaluation of
-the quartic Bessel amplitude; consequently the same construction does
-not automatically extend to higher \(d\).  Keeping track of the
-triangular factors also yields an explicit positive multiple-integral
-formula for every leading block determinant.
+with positive measures \(\mu_r\).  Since \(s\) and \(s^2/(1+s^2)\) are
+both strictly increasing, Andr\'eief's identity writes their
+determinants as positive integrals (Lemma~\ref{lem:leading-source-signs}).
+This fixes the sign of every leading block minor and gives an explicit
+positive multiple-integral formula for it
+(Proposition~\ref{prop:block-determinants}).  The determinant step is a
+continuous Cauchy--Binet argument of the kind used in total positivity
+\cite[Chapter~1, \S2]{Karlin1968} and for biorthogonal ensembles
+\cite{Borodin1998}.  To our knowledge, the new ingredient is the
+two-source representation: a single radial source records only the
+total quartic degree, whereas the \((p,q)\) entry of a block requires
+the powers of \(z^4\) and \(\bar z^4\) to vary independently.  The
+construction uses two features of \(d=4\): the square map makes the
+quartic phase quadratic, and one integration by parts makes the kernels
+of the residue classes \(2\) and \(3\) manifestly positive.  We do not
+consider higher \(d\) here.
 
-The paper is organized as follows.  Section~\ref{sec:gram} recalls the
-quartic Hermitian form and its relation to the recurrence.
-Section~\ref{sec:sign-lemma} proves the leading-determinant sign lemma.
-Section~\ref{sec:blocks} derives the four positive kernels and applies
-the lemma to the four symmetry blocks.  Section~\ref{sec:completion}
-then identifies the positive norm ratios with the solution of
-\eqref{eq:quartic-recurrence}.
+Section~\ref{sec:gram} recalls the quartic Hermitian form.
+Section~\ref{sec:sign-lemma} proves the determinant identity for
+bi-moment matrices.  Section~\ref{sec:blocks} derives the four positive
+kernels and evaluates the block determinants.
+Section~\ref{sec:completion} identifies the norm ratios with the
+solution of \eqref{eq:quartic-recurrence}.
 
 \section{The quartic Gram form}\label{sec:gram}
 
-Fix \(a>0\) and write
+Fix \(a>0\) and put
 \begin{equation}
 \rho_a(z)=
-\exp\left(-a|z|^2+\frac{\ii}{4}(z^4+\bar z^4)\right).
+\exp\left(-a|z|^2+\frac{\ii}{4}(z^4+\bar z^4)\right),
 \label{eq:density}
 \end{equation}
-The Gaussian factor makes all polynomial moments absolutely
-convergent.  Let \(\eta=\e^{\pi\ii/4}\).  Decompose the polynomial ring
-into \(C_4\)-weight spaces
+the density of \cite[Section~3.1]{FelderHoppe2025} for \(d=4\).  The
+Gaussian factor makes all polynomial moments absolutely convergent.  Let
+\(\eta=\e^{\pi\ii/4}\).  Since \(\eta^4=-1\),
+\[
+\rho_a(\ii z)=\rho_a(z),
+\qquad
+\rho_a(\eta z)=\overline{\rho_a(z)}.
+\]
+Decompose the polynomial ring into \(C_4\)-weight spaces
 \[
 \C[z]=\bigoplus_{r=0}^3\mathcal P_r,
 \qquad
-\mathcal P_r=\{f\in\C[z]:f(\ii z)=\ii^r f(z)\}.
+\mathcal P_r=\{f\in\C[z]:f(\ii z)=\ii^r f(z)\}
+=\Span\{z^{r+4q}:q\geq0\}.
 \]
-For \(f\in\mathcal P_r\), set
-\[
-(\sigma f)(z)=(-\eta)^{-r}f(\eta z),
-\]
-and extend \(\sigma\) linearly to \(\C[z]\).  With
-\(\dd A=\dd(\operatorname{Re}z)\dd(\operatorname{Im}z)\), define
+For \(f\in\mathcal P_r\), set \((\sigma f)(z)=(-\eta)^{-r}f(\eta z)\),
+extend \(\sigma\) linearly to \(\C[z]\), and define
 \begin{equation}
 (f,g)_a
-=\int_{\C}f(z)\overline{\sigma g(z)}\rho_a(z)\dd A(z).
+=\int_{\C}f(z)\overline{\sigma g(z)}\rho_a(z)\dd A(z),
+\qquad
+\dd A=\dd(\operatorname{Re}z)\dd(\operatorname{Im}z),
 \label{eq:pairing}
 \end{equation}
-We use the convention that \((\ ,\ )_a\) is linear in its first
-argument and conjugate-linear in its second.  This form is Hermitian.
-Indeed, distinct weight spaces are orthogonal
-because the density is invariant under \(z\mapsto\ii z\).  For
-monomials in a common weight space, put
-\[
-M_{pq}^{(r)}
-=\int_{\C}z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
-\]
-Since \(\rho_a(\eta z)=\overline{\rho_a(z)}\), the change of variables
-\(z\mapsto\eta z\) gives
-\[
-\overline{M_{qp}^{(r)}}=(-1)^{q-p}M_{pq}^{(r)}.
-\]
-Together with the twist signs below, this shows
-\((z^{r+4p},z^{r+4q})_a
-=\overline{(z^{r+4q},z^{r+4p})_a}\), and hence proves the assertion by
-sesquilinearity.  If \(m=r+4q\), then
+which is linear in \(f\) and conjugate-linear in \(g\).  This is the
+Hermitian form of \cite[Proposition~3.1]{FelderHoppe2025} for \(d=4\),
+with the right inverse \(\chi(r)=r\) \((0\leq r\leq3)\) chosen there.  If
+\(m=r+4q\) with \(0\leq r\leq3\), then
 \begin{equation}
 \sigma z^m=(-\eta)^{-r}\eta^m z^m=(-1)^{r+q}z^m.
 \label{eq:twist-sign}
 \end{equation}
-Thus the Gram matrix on \(\mathcal P_r\), in the ordered monomial basis
-\(z^r,z^{r+4},\ldots\), has entries
+Since \(\sigma\) preserves each \(\mathcal P_r\) and
+\(\rho_a(\ii z)=\rho_a(z)\), the substitution \(z\mapsto\ii z\) shows
+that distinct weight spaces are orthogonal.  On \(\mathcal P_r\), in the
+basis \(z^r,z^{r+4},\ldots\), the Gram matrix is therefore
 \begin{equation}
 G_{pq}^{(r)}
-=(-1)^{r+q}\int_{\C}
-z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z),
-\qquad p,q\geq0.
+=(z^{r+4p},z^{r+4q})_a=(-1)^{r+q}M_{pq}^{(r)},
+\qquad
+M_{pq}^{(r)}=\int_{\C}
+z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
 \label{eq:gram-block}
 \end{equation}
+The substitution \(z\mapsto\eta z\) and
+\(\rho_a(\eta z)=\overline{\rho_a(z)}\) give
+\(\overline{M_{qp}^{(r)}}=(-1)^{q-p}M_{pq}^{(r)}\), so each \(G^{(r)}\) is
+a Hermitian matrix; with the orthogonality of the weight spaces, this
+confirms directly that \((\ ,\ )_a\) is Hermitian.
 
-Assume temporarily that the leading principal minors in all four
-blocks are nonzero.  Since distinct weight spaces are orthogonal,
-grouping the monomials \(1,z,\ldots,z^{n-1}\) by residue modulo \(4\)
-makes their Gram matrix block diagonal, with blocks that are leading
-principal submatrices of the four matrices \eqref{eq:gram-block}; the
-assumption therefore makes every such Gram matrix nondegenerate, and
-Gram--Schmidt gives monic polynomials \(P_n(z)=z^n+\cdots\).
-Moreover, orthogonalizing \(z^n\) against \(1,\ldots,z^{n-1}\)
-subtracts components only from the weight space of \(z^n\), so
-\(P_n\in\mathcal P_{n\bmod4}\).  For \(\ell\in\mathbb Z\), define
+For \(k\geq1\), let
+\begin{equation}
+\Delta_k^{(r)}
+=\det[G_{pq}^{(r)}]_{p,q=0}^{k-1},
+\qquad
+\Delta_0^{(r)}=1.
+\label{eq:Delta}
+\end{equation}
+Assume for the moment that all \(\Delta_k^{(r)}\) are nonzero.  After
+the monomials \(1,z,\ldots,z^N\) are grouped by residue modulo \(4\),
+their Gram matrix is block diagonal, with leading principal submatrices
+of the \(G^{(r)}\) as blocks.  Hence every leading Gram matrix
+\(\big[(z^p,z^q)_a\big]_{p,q=0}^{N}\) is nondegenerate, and Gram--Schmidt
+gives unique monic orthogonal polynomials \(P_n(z)=z^n+\cdots\).
+Orthogonalizing \(z^n\) against lower monomials subtracts only
+components in the weight space of \(z^n\), so
+\(P_n\in\mathcal P_{n\bmod4}\).  Following
+\cite[Lemma~3.4 and Example~3.5]{FelderHoppe2025}, for \(\ell\in\mathbb Z\)
+put
 \begin{equation}
 \tau(\ell)=
 \begin{cases}
 -1,&\ell\equiv3\pmod4,\\
-1,&\ell\not\equiv3\pmod4,
+1,&\text{otherwise},
 \end{cases}
 \qquad
 \varrho(n)=(-1)^n\prod_{\ell=0}^{n-1}\tau(\ell)
 =(-1)^{n+\lfloor n/4\rfloor}.
 \label{eq:rho-sign}
 \end{equation}
-The signed norms \(\fh_n\) are fixed by
+The signed norms \(\fh_n\) of \cite[Section~3.1]{FelderHoppe2025},
+denoted \(h_n\) there, are defined by
 \begin{equation}
 (P_n,P_n)_a=\varrho(n)\fh_n.
 \label{eq:signed-norm}
 \end{equation}
-Thus the scalar function \(h(a)\) in \eqref{eq:h-bessel} will become
-the first signed norm \(\fh_0\).
-Section~\ref{sec:blocks} will prove simultaneously that all the
-required minors are nonzero and that \(\fh_n>0\).
+The matrices \(\big[(z^p,z^q)_a\big]_{p,q=0}^{N}\) are exactly the Gram
+matrices of \cite[Conjecture~3.6]{FelderHoppe2025}.
+Section~\ref{sec:blocks} proves that all \(\Delta_k^{(r)}\) are nonzero
+and that \(\fh_n>0\).
 
-The pairing \eqref{eq:pairing} is precisely the monomial-potential
-Hermitian product of Felder and Hoppe for \(d=4\).  Indeed,
-\(\eta=\e^{\pi\ii/4}\) satisfies \(\eta^4=-1\); the density
-\eqref{eq:density} is the density of
-\cite[Section~3.1]{FelderHoppe2025}; the twist \(\sigma\) is the map
-of \cite[Proposition~3.1]{FelderHoppe2025} for the right inverse
-\(\chi\) chosen there, which is given by \(\chi(r)=r\) for
-\(0\leq r\leq3\); the sign \(\tau\) in \eqref{eq:rho-sign} is the
-twist sign of \cite[Lemma~3.4]{FelderHoppe2025}; and
-\eqref{eq:signed-norm} is their normalization of the signed norms,
-which they denote \(h_n\).
-Consequently the Gram matrices appearing in
-\cite[Conjecture~3.6]{FelderHoppe2025} are exactly the matrices
-\(\big[(z^p,z^q)_a\big]_{p,q=0}^{N}\) considered below.
+\section{A determinant identity for bi-moment matrices}
+\label{sec:sign-lemma}
 
-\section{A leading-determinant sign lemma}\label{sec:sign-lemma}
-
-We isolate the integral argument that drives the proof.  Let
-\(y>0\), \(\alpha\geq0\), and \(\beta\geq0\), and define
+Let \(y>0\), \(\alpha\geq0\), \(\beta\geq0\), and \(b=\beta+\frac12\).
+For \(w>0\) and \(p,q\geq0\), define
 \begin{equation}
 \Phi_{\alpha,\beta}(w;y)
 =\int_0^\infty
-\e^{-ys}s^{\alpha-1/2}(1+ws^2)^{-\beta-1/2}\dd s,
-\qquad w>0.
-\label{eq:Phi}
-\end{equation}
-For \(p,q\geq0\), put
-\begin{equation}
+\e^{-ys}s^{\alpha-1/2}(1+ws^2)^{-b}\dd s,
+\qquad
 D_{pq}^{\alpha,\beta}
 =\left.
 \partial_u^p\partial_v^q
 \Phi_{\alpha,\beta}(uv;y)
 \right|_{u=v=1}.
-\label{eq:D-def}
+\label{eq:Phi}
 \end{equation}
-Both \(\Phi_{\alpha,\beta}\) and \(D_{pq}^{\alpha,\beta}\) depend on
-the parameter \(y\), which is fixed throughout; the dependence is
-suppressed from the notation.
+Let \(\mu\) be the measure
+\(\dd\mu(s)=\e^{-ys}s^{\alpha-1/2}(1+s^2)^{-b}\dd s\) on \((0,\infty)\),
+put \(\psi(s)=s^2/(1+s^2)\), and define the bi-moments
+\begin{equation}
+B_{pq}(y)
+=\int_0^\infty
+s^p\psi(s)^q\dd\mu(s).
+\label{eq:B-moments}
+\end{equation}
+These integrals converge absolutely because \(\alpha\geq0\) and \(y>0\),
+and they may be differentiated under the integral sign, locally
+uniformly in \(w,y>0\): the derivative
+\(\partial_w^j(1+ws^2)^{-b}=(-1)^j(b)_js^{2j}(1+ws^2)^{-b-j}\) has
+absolute value at most \((b)_jw^{-j}\), and each \(y\)-derivative
+multiplies the integrand by \(-s\).  Here
+\((b)_j=b(b+1)\cdots(b+j-1)\) is the rising Pochhammer symbol.  In
+particular, \(\Phi_{\alpha,\beta}(uv;y)\) is smooth in \((u,v)\), and
+\(\partial_y^iB_{0q}=(-1)^iB_{iq}\).  We write \(S_k=k(k-1)/2\).
 
-\begin{lemma}[signs of the leading source determinants]
+\begin{lemma}[bi-moment determinants]
 \label{lem:leading-source-signs}
 For every \(k\geq1\),
 \begin{equation}
-\sgn\det
-\left[D_{pq}^{\alpha,\beta}\right]_{p,q=0}^{k-1}
-=(-1)^{k(k-1)/2}.
-\label{eq:D-sign}
+(-1)^{S_k}\det\left[D_{pq}^{\alpha,\beta}\right]_{p,q=0}^{k-1}
+=\left(\frac y2\right)^{S_k}
+\prod_{q=0}^{k-1}(b)_q\,
+\det[B_{pq}]_{p,q=0}^{k-1},
+\label{eq:triangular-factorization}
 \end{equation}
+and
+\begin{equation}
+\det[B_{pq}]_{p,q=0}^{k-1}
+=\frac1{k!}\int_{(0,\infty)^k}
+\prod_{1\leq i<j\leq k}(s_j-s_i)\bigl(\psi(s_j)-\psi(s_i)\bigr)
+\prod_{j=1}^k\dd\mu(s_j)>0.
+\label{eq:andreief}
+\end{equation}
+In particular,
+\(\sgn\det[D_{pq}^{\alpha,\beta}]_{p,q=0}^{k-1}=(-1)^{S_k}\).
 \end{lemma}
 
 \begin{proof}
-Set
+Fix \(q\).  Since
+\(\partial_v^qF(uv)|_{v=1}=u^qF^{(q)}(u)\),
 \[
-b=\beta+\frac12,
-\qquad
-\gamma=\frac{\alpha}{2}+\frac14,
-\qquad
-L(y)=\Phi_{\alpha,\beta}(1;y).
+\left.\partial_v^q\Phi_{\alpha,\beta}(uv;y)\right|_{v=1}
+=(-1)^q(b)_q\int_0^\infty
+\e^{-ys}s^{\alpha-1/2}\frac{(us^2)^q}{(1+us^2)^{b+q}}\dd s.
 \]
-The substitution \(t=\sqrt w\,s\) in \eqref{eq:Phi} gives
+The substitution \(s=t/\sqrt u\) turns
+\((us^2)^q(1+us^2)^{-q}\) into \(\psi(t)^q\) and gives
 \begin{equation}
-\Phi_{\alpha,\beta}(w;y)
-=w^{-\gamma}L\left(\frac{y}{\sqrt w}\right).
+\left.\partial_v^q\Phi_{\alpha,\beta}(uv;y)\right|_{v=1}
+=(-1)^q(b)_q\,u^{-\gamma}B_{0q}\bigl(yu^{-1/2}\bigr),
+\qquad
+\gamma=\frac\alpha2+\frac14.
 \label{eq:Phi-scaling}
 \end{equation}
-Let \(\vartheta=w\partial_w\), and use the falling-factorial notation
+By the chain rule there are coefficients \(c_{pi}(y)\), depending on
+\(\gamma\) but not on \(g\), such that
 \[
-(\vartheta)\fall{p}
-=\vartheta(\vartheta-1)\cdots(\vartheta-p+1).
+\left.\partial_u^p\left[u^{-\gamma}g\bigl(yu^{-1/2}\bigr)\right]
+\right|_{u=1}
+=\sum_{i=0}^pc_{pi}(y)g^{(i)}(y)
 \]
-Under \eqref{eq:Phi-scaling}, \(\vartheta\) acts on \(L\) as
+for every smooth function \(g\) on \((0,\infty)\).  The derivative
+\(g^{(p)}\) arises only when all \(p\) derivatives fall on the inner
+function \(yu^{-1/2}\), so \(c_{pp}(y)=(-y/2)^p\).  Applying this to
+\(g=B_{0q}\) in \eqref{eq:Phi-scaling} and using
+\(\partial_y^iB_{0q}=(-1)^iB_{iq}\) gives
 \[
-\mathcal A=-\gamma-\frac y2\partial_y.
-\]
-More precisely, for every smooth function \(g\) on \((0,\infty)\), a
-direct computation gives
-\[
-\vartheta\left[w^{-\gamma}g\left(yw^{-1/2}\right)\right]
-=w^{-\gamma}(\mathcal Ag)\left(yw^{-1/2}\right),
-\]
-with \(\mathcal A\) applied in the argument of \(g\).  The right-hand
-side has the same scaling form as the left, so the identity can be
-iterated for any polynomial in \(\vartheta\), and evaluation at
-\(w=1\) replaces the argument by \(y\).
-Since \(w=uv\),
-\[
-\left.
-\partial_u^p\partial_v^q F(uv)
-\right|_{u=v=1}
-=\left.
-(\vartheta)\fall{p}(\vartheta)\fall{q}F(w)
-\right|_{w=1}.
-\]
-It follows that
-\begin{equation}
-D_{pq}^{\alpha,\beta}
-=(\mathcal A)\fall{p}(\mathcal A)\fall{q}L(y).
-\label{eq:D-operator}
-\end{equation}
-
-Define
-\[
-f(s)=\frac{s^2}{1+s^2}
-\]
-and the bi-moments
-\begin{equation}
-B_{pq}
-=\int_0^\infty
-s^p f(s)^q
-\e^{-ys}s^{\alpha-1/2}(1+s^2)^{-\beta-1/2}\dd s.
-\label{eq:B-moments}
-\end{equation}
-Each \(w\)-derivative of the integrand in \eqref{eq:Phi} multiplies
-it by a factor that is bounded uniformly for \(w\) in compact subsets
-of \((0,\infty)\), and each \(y\)-derivative multiplies it by \(-s\);
-the differentiated integrands are therefore dominated, locally
-uniformly in \((w,y)\), by integrable functions of \(s\).  This
-justifies every differentiation under the integral sign in this
-proof.  Since \((\vartheta)\fall{q}=w^q\partial_w^q\), direct
-differentiation of \eqref{eq:Phi} with respect to \(w\) gives
-\begin{equation}
-(\mathcal A)\fall{q}L(y)
-=(-1)^q(b)_qB_{0q},
-\label{eq:A-on-L}
-\end{equation}
-where \((b)_q\) is the rising Pochhammer symbol.  On the other hand,
-\begin{equation}
-(\mathcal A)\fall{p}
-=\sum_{i=0}^p c_{pi}(y)\partial_y^i,
-\qquad
-c_{pp}(y)=\left(-\frac y2\right)^p.
-\label{eq:A-expansion}
-\end{equation}
-Since \(\partial_y^iB_{0q}=(-1)^iB_{iq}\),
-\eqref{eq:D-operator}--\eqref{eq:A-expansion} give a factorization
-\begin{equation}
-D=RB\Lambda,
-\label{eq:triangular-factorization}
-\end{equation}
-because, entrywise,
-\begin{equation}
 D_{pq}^{\alpha,\beta}
 =(-1)^q(b)_q\sum_{i=0}^p
 (-1)^ic_{pi}(y)B_{iq}.
-\label{eq:D-entry-factorization}
-\end{equation}
-Here and below the factorization is for the \(k\times k\) truncations
-of \(D\) and \(B\), where \(R\) is
-lower triangular and \(\Lambda\) is diagonal, with entries
-\[
-R_{pi}=
-\begin{cases}
-(-1)^i c_{pi}(y),&0\leq i\leq p,\\
-0,&i>p,
-\end{cases}
-\qquad
-\Lambda_{qq}=(-1)^q(b)_q.
 \]
-Since \(b=\beta+\frac12>0\), every factor \((b)_q\) is strictly
-positive.  In particular, the only signs on the diagonal of
-\(\Lambda\) are the displayed factors \((-1)^q\).
-Also,
-\[
-R_{pp}=\left(\frac y2\right)^p>0.
-\]
+Thus the \(k\times k\) truncations satisfy \(D=TB\Lambda\), where
+\(T_{pi}=(-1)^ic_{pi}(y)\) for \(i\leq p\), \(T_{pi}=0\) for \(i>p\), and
+\(\Lambda=\operatorname{diag}\bigl((-1)^q(b)_q\bigr)_{q=0}^{k-1}\).
+Since \(T\) is lower triangular with \(T_{pp}=(y/2)^p\), we have
+\(\det T=(y/2)^{S_k}\), while
+\(\det\Lambda=(-1)^{S_k}\prod_{q=0}^{k-1}(b)_q\).  This proves
+\eqref{eq:triangular-factorization}.
 
-It remains to determine the sign of \(\det B\).  Andr\'eief's
-integration identity \cite{Andreief1886,Forrester2019} applies because
-\(\alpha\geq0\) gives integrability at the origin and \(y>0\) gives
-exponential decay at infinity, so every moment in
-\eqref{eq:B-moments} is finite.  It gives
-\begin{equation}
-\begin{split}
+Andr\'eief's identity \cite{Andreief1886,Forrester2019}, applied to the
+functions \(s^p\) and \(\psi(s)^q\), all of whose products are
+\(\mu\)-integrable, gives
+\[
 \det[B_{pq}]_{p,q=0}^{k-1}
 =\frac1{k!}\int_{(0,\infty)^k}
-&\det[s_j^p]_{p=0,\ldots,k-1}^{j=1,\ldots,k}\\
-{}\times&
-\det[f(s_j)^q]_{q=0,\ldots,k-1}^{j=1,\ldots,k}
-\prod_{j=1}^k\dd\mu(s_j),
-\end{split}
-\label{eq:andreief}
-\end{equation}
-where
-\[
-\dd\mu(s)
-=\e^{-ys}s^{\alpha-1/2}
-(1+s^2)^{-\beta-1/2}\dd s.
+\det[s_j^p]_{p=0,\ldots,k-1}^{j=1,\ldots,k}\,
+\det[\psi(s_j)^q]_{q=0,\ldots,k-1}^{j=1,\ldots,k}
+\prod_{j=1}^k\dd\mu(s_j).
 \]
-The two determinants in \eqref{eq:andreief} are Vandermonde
-determinants.  Because both \(s\) and
-\(f(s)=s^2/(1+s^2)\) are strictly increasing on \((0,\infty)\),
-their product is nonnegative and is strictly positive whenever the
-\(s_j\)'s are distinct.  Moreover, \(\mu\) has a strictly positive
-density on \((0,\infty)\), while the diagonals \(s_i=s_j\) have
-\(\mu^{\otimes k}\)-measure zero.  Hence \(\det B>0\).
-
-The determinant of \(R\) is positive, whereas
-\[
-\sgn\det\Lambda=(-1)^{0+1+\cdots+(k-1)}
-=(-1)^{k(k-1)/2}.
-\]
-The factorization \eqref{eq:triangular-factorization} proves
-\eqref{eq:D-sign}.
+Both determinants are Vandermonde determinants, which gives the
+integrand in \eqref{eq:andreief}.  Since \(s\) and \(\psi\) are strictly
+increasing on \((0,\infty)\), this integrand is positive off the
+diagonals \(s_i=s_j\), which are \(\mu^{\otimes k}\)-null, and \(\mu\)
+has a positive density.  Hence \(\det B>0\).  Finally, \((b)_q>0\)
+because \(b>0\).
 \end{proof}
 
 \section{The four positive kernels}\label{sec:blocks}
 
-We first turn the Bessel initial function into a positive integral.
-For \(x>0\), the connection formula
-\[
-J_{-1/4}(x)
-=\frac{J_{1/4}(x)-Y_{1/4}(x)}{\sqrt2}
-\]
-reduces \eqref{eq:h-bessel} to
-\begin{equation}
-h(a)=\frac{\pi^2a}{8}
-\left[
-J_{1/4}\left(\frac{a^2}{4}\right)^2
-+Y_{1/4}\left(\frac{a^2}{4}\right)^2
-\right].
-\label{eq:h-amplitude}
-\end{equation}
-The Dixon--Ferrar formula \cite{DixonFerrar1933} (see also
-\cite[entry~6.518]{GradshteynRyzhik2015}) states that, for \(x>0\)
-and \(|\operatorname{Re}\nu|<\frac12\),
-\begin{equation}
-J_\nu(x)^2+Y_\nu(x)^2
-=\frac{8\cos(\pi\nu)}{\pi^2}
-\int_0^\infty K_{2\nu}(2x\sinh t)\dd t.
-\label{eq:dixon-ferrar}
-\end{equation}
-Using
-\[
-K_{1/2}(u)=\sqrt{\frac{\pi}{2u}}\e^{-u}
-\]
-in \eqref{eq:h-amplitude}, and then setting \(s=\sinh t\), gives
-\begin{equation}
-h(a)=\sqrt{\frac{\pi}{2}}\int_0^\infty
-\frac{\e^{-a^2s/2}}{\sqrt{s(1+s^2)}}\dd s.
-\label{eq:h-positive}
-\end{equation}
-In particular, differentiation under this positive integral gives
-\begin{equation}
-h(a)>0,
-\qquad
-h'(a)=-a\sqrt{\frac{\pi}{2}}\int_0^\infty
-\frac{\e^{-a^2s/2}\sqrt{s}}{\sqrt{1+s^2}}\dd s<0.
-\label{eq:h-first-signs}
-\end{equation}
-Thus both denominators in the prescribed initial values
-\eqref{eq:initial-values} are nonzero for \(a>0\).  Positivity of
-\(h''\), and hence positivity of \(v_1\), will follow from the third
-kernel in Lemma~\ref{lem:four-kernels}.
-
-Set
+Throughout this section,
 \[
 y=\frac{a^2}{2},
 \qquad
 C=\sqrt{\frac{\pi}{2}}.
 \]
-We now introduce an angular source.  For \(u,v>0\), define the radial
-generating function
-\begin{equation}
-\mathcal Z(a;u,v)
-=\pi\int_0^\infty
-\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)\dd t.
-\label{eq:source}
-\end{equation}
-This is the angularly integrated two-source expression.  It is not
-being defined as a two-dimensional integral away from \(u=v\); such an
-integral need not be absolutely convergent.  For each fixed \(R\),
-however, termwise angular integration is legitimate and gives
+For \(R>0\) and \(u,v>0\), expand the exponential below and integrate
+termwise; the series converges uniformly in \(\theta\).  Only the terms
+with equal powers of \(\e^{4\ii\theta}\) and \(\e^{-4\ii\theta}\)
+survive, so
 \begin{equation}
 \int_0^{2\pi}
 \exp\left(
 \frac{\ii R^4}{4}
 (u\e^{4\ii\theta}+v\e^{-4\ii\theta})
 \right)\dd\theta
-=2\pi J_0\left(\frac{R^4\sqrt{uv}}2\right),
+=2\pi\sum_{m\geq0}\frac{(-R^8uv/16)^m}{(m!)^2}
+=2\pi J_0\left(\frac{R^4\sqrt{uv}}2\right).
 \label{eq:angular-source}
 \end{equation}
-and \(t=R^2\) gives \eqref{eq:source}.  On compact subsets of
-\((0,\infty)^2\), every \(u,v\)-derivative of the Bessel integrand is
-bounded by \(\e^{-at}\) times a polynomial in \(t\): every derivative
-of \(J_0\) is a finite linear combination of integer-order Bessel
-functions, which are bounded on the real axis, and the chain-rule
-factors involving \(u\) and \(v\) are uniformly bounded on such a
-compact set.  Thus derivatives may be passed under the \(t\)-integral.
-The precise comparison with the planar moments is recorded in
-Lemma~\ref{lem:source-moments} below.
 
-\begin{lemma}[source normalization]\label{lem:source-normalization}
-For every \(a>0\),
+\begin{lemma}[positive source]\label{lem:positive-source}
+For every \(\lambda>0\),
 \begin{equation}
-\int_{\C}\rho_a(z)\dd A(z)
-=\pi\int_0^\infty \e^{-at}J_0\left(\frac{t^2}{2}\right)\dd t
-=\mathcal Z(a;1,1)
-=h(a),
-\label{eq:h-planar}
+\int_{\C}\exp\left(-a|z|^2+\frac{\ii\lambda}{4}(z^4+\bar z^4)\right)
+\dd A(z)
+=\pi\int_0^\infty \e^{-at}J_0\left(\frac{\lambda t^2}{2}\right)\dd t
+=C\,\Phi_{0,0}(\lambda^2;y).
+\label{eq:positive-source}
 \end{equation}
-where \(h\) is the Bessel combination \eqref{eq:h-bessel}.
+For \(\lambda=1\), these three quantities equal the Bessel combination
+\(h(a)\) of \eqref{eq:h-bessel}.
 \end{lemma}
 
 \begin{proof}
-Polar coordinates and \eqref{eq:angular-source}, with \(u=v=1\),
-give the first two equalities in \eqref{eq:h-planar}.  It remains to
-identify the radial Laplace integral with the Bessel combination,
-including its normalization.  Put
-\[
-Z(a)=\pi\int_0^\infty \e^{-at}J_0(t^2/2)\dd t,
-\qquad
-g(t)=J_0(t^2/2).
-\]
-The Bessel equation for \(J_0\) gives
-\[
-g''(t)+\frac1t g'(t)+t^2g(t)=0,
-\qquad\text{or equivalently}\qquad
--t^3g(t)=(tg'(t))'.
-\]
-At the origin, the power series for \(J_0\) gives
-\[
-g(t)=1+O(t^4),\qquad g'(t)=O(t^3),
-\]
-so in particular \(tg'(t)\to0\).  At infinity, \(g\) and \(g'\) have at
-most polynomial growth, while \(\e^{-at}\) gives exponential decay.
-These estimates justify the following differentiations and ensure that
-all boundary terms in the two integrations by parts vanish.  More
-explicitly,
-\[
-\int_0^\infty \e^{-at}(tg'(t))'\dd t
-=a\int_0^\infty \e^{-at}tg'(t)\dd t
-=a\int_0^\infty \e^{-at}(at-1)g(t)\dd t.
-\]
-We therefore obtain
-\[
-\begin{split}
-Z'''(a)+a^2Z'(a)+aZ(a)
-={}&\pi\int_0^\infty \e^{-at}
-\bigl(-t^3-a^2t+a\bigr)g(t)\dd t\\
-={}&0.
-\end{split}
-\]
-Moreover, after setting \(u=at\), boundedness of \(J_0\) on the real
-axis and dominated convergence yield
-\begin{equation}
-\lim_{a\to\infty}aZ(a)
-=\pi\int_0^\infty\e^{-u}\dd u=\pi.
-\label{eq:Z-normalization}
-\end{equation}
+The integrand on the left is bounded by \(\e^{-a|z|^2}\).  Polar
+coordinates \(z=R\e^{\ii\theta}\), \eqref{eq:angular-source} with
+\(u=v=\lambda\), and \(t=R^2\) give the first equality.
 
-These two properties determine \(Z\) uniquely within the
-three-dimensional solution space: for any solution \(H\), the
-existence of a finite limit of \(aH(a)\) eliminates the two
-independent oscillatory combinations, and
-the value of that limit fixes the remaining coefficient.  To verify
-this explicitly, let \(Q\) be a product of two solutions of the Bessel
-equation of order \(\nu\).  Its symmetric-square equation is
+For the second, the map \(z\mapsto w=z^2\) is two-to-one from
+\(\C\setminus\{0\}\) onto itself with Jacobian \(4|z|^2=4|w|\), and
+\(z^4+\bar z^4=2(X^2-Y^2)\) for \(w=X+\ii Y\).  Hence the left-hand side
+of \eqref{eq:positive-source} equals
 \[
-x^2Q'''+3xQ''
- +(4x^2+1-4\nu^2)Q'+4xQ=0.
+\frac12\int_{\mathbb R^2}
+\frac{\e^{-a|w|}}{|w|}\,
+\e^{\ii\lambda(X^2-Y^2)/2}\dd X\dd Y.
 \]
-With \(x=a^2/4\) and \(\nu=1/4\), direct substitution shows that
-\(H(a)=aQ(a^2/4)\) satisfies
+By \cite[equations~(10.32.10) and (10.39.2)]{NISTHandbook2010} with
+\(\nu=-\frac12\),
 \[
-H'''+a^2H'+aH=0
+\frac{\e^{-a|w|}}{|w|}
+=\frac1{\sqrt\pi}\int_0^\infty
+\sigma^{-1/2}\exp\left(-\sigma|w|^2-\frac{a^2}{4\sigma}\right)\dd\sigma.
 \]
-and hence that the solution space of this equation is spanned by
+The resulting triple integral converges absolutely, because
+\(\int_{\mathbb R^2}\e^{-\sigma|w|^2}\dd X\dd Y=\pi/\sigma\) and
+\(\int_0^\infty\sigma^{-3/2}\e^{-a^2/(4\sigma)}\dd\sigma<\infty\).  By
+Fubini's theorem and the Gaussian integrals
+\(\int_{\mathbb R}\e^{-(\sigma\mp\ii\lambda/2)X^2}\dd X
+=\sqrt\pi\,(\sigma\mp\ii\lambda/2)^{-1/2}\) (principal branch), whose
+product is \(\pi(\sigma^2+\lambda^2/4)^{-1/2}\), the left-hand side
+equals
 \[
-aJ_\nu(x)^2,\qquad
-aJ_\nu(x)Y_\nu(x),\qquad
-aY_\nu(x)^2.
+\frac{\sqrt\pi}{2}\int_0^\infty
+\sigma^{-1/2}\e^{-a^2/(4\sigma)}
+\left(\sigma^2+\frac{\lambda^2}{4}\right)^{-1/2}\dd\sigma .
 \]
-These three functions are linearly independent because, on any
-interval avoiding the zeros of \(Y_\nu\), a linear relation among them
-would be a quadratic polynomial relation in the function
-\(J_\nu/Y_\nu\); the latter is nonconstant there, since the Wronskian
-identity \cite[equation~(10.5.2)]{NISTHandbook2010} gives
-\((J_\nu/Y_\nu)'=-2/(\pi xY_\nu^2)\neq0\).
-Since the equation has order three, they form a basis of its solution
-space.  With \(\chi=x-\nu\pi/2-\pi/4\), the standard large-\(x\)
-Bessel asymptotics
-\cite[\S10.17, equations~(10.17.3)--(10.17.4)]{NISTHandbook2010}
-give
+The substitution \(\sigma=1/(2s)\), for which
+\(\sigma^2+\lambda^2/4=(1+\lambda^2s^2)/(4s^2)\), turns this into
 \[
-\begin{split}
-a\bigl[aJ_\nu(x)^2\bigr]
-&=\frac4\pi\bigl(1+\cos(2\chi)\bigr)+O(a^{-2}),\\
-a\bigl[aJ_\nu(x)Y_\nu(x)\bigr]
-&=\frac4\pi\sin(2\chi)+O(a^{-2}),\\
-a\bigl[aY_\nu(x)^2\bigr]
-&=\frac4\pi\bigl(1-\cos(2\chi)\bigr)+O(a^{-2}).
-\end{split}
+C\int_0^\infty\frac{\e^{-ys}}{\sqrt{s(1+\lambda^2s^2)}}\dd s
+=C\,\Phi_{0,0}(\lambda^2;y).
 \]
-Write a general solution as
+
+For \(\lambda=1\), the connection formula
+\(J_{-1/4}=(J_{1/4}-Y_{1/4})/\sqrt2\)
+\cite[equation~(10.2.3)]{NISTHandbook2010} reduces \eqref{eq:h-bessel}
+to
 \[
-H=c_1aJ_\nu(x)^2+c_2aJ_\nu(x)Y_\nu(x)+c_3aY_\nu(x)^2.
+h(a)=\frac{\pi^2a}{8}
+\bigl[J_{1/4}(x)^2+Y_{1/4}(x)^2\bigr],
+\qquad
+x=\frac{a^2}{4}.
 \]
-Since \(2\chi=a^2/2-3\pi/4\) is continuous, strictly increasing, and
-unbounded, there are sequences tending to infinity on which its value
-modulo \(2\pi\) is respectively \(0,\pi/2,\pi,3\pi/2\).  Comparing the
-limit of \(aH(a)\) along these four sequences shows that
-\(c_1-c_3=0\) and \(c_2=0\).  The condition
-\(\lim_{a\to\infty}aH(a)=\pi\) then gives
-\(c_1=c_3=\pi^2/8\).  Thus the unique solution with the prescribed
-limit is
+The Dixon--Ferrar formula \cite{DixonFerrar1933} (see also
+\cite[entry~6.518]{GradshteynRyzhik2015}) states that, for \(x>0\) and
+\(|\operatorname{Re}\nu|<\frac12\),
 \[
-H(a)=\frac{\pi^2a}{8}
-\left[
-J_{1/4}\left(\frac{a^2}{4}\right)^2
-+Y_{1/4}\left(\frac{a^2}{4}\right)^2
-\right].
+J_\nu(x)^2+Y_\nu(x)^2
+=\frac{8\cos(\pi\nu)}{\pi^2}
+\int_0^\infty K_{2\nu}(2x\sinh t)\dd t.
 \]
-This is \(h(a)\) by \eqref{eq:h-amplitude}, proving the final equality
-in \eqref{eq:h-planar}.  The radial representation and its \(d=4\)
-Bessel evaluation also appear in
+With \(\nu=\frac14\),
+\(K_{1/2}(u)=\sqrt{\pi/(2u)}\,\e^{-u}\)
+\cite[equation~(10.39.2)]{NISTHandbook2010}, and \(s=\sinh t\), this
+gives \(h(a)=C\,\Phi_{0,0}(1;y)\).  The radial representation for
+\(\lambda=1\) and the Bessel form of \(h\) also appear in
 \cite[pp.~10--11]{FelderHoppe2025}.
 \end{proof}
 
-Put \(w=uv\).  The change of variables \(t=w^{-1/4}x\) in
-\eqref{eq:source}, followed by \eqref{eq:h-positive}, now gives
-\[
-\mathcal Z(a;u,v)
-=w^{-1/4}h(aw^{-1/4}),
-\]
-or, more explicitly,
-\[
-\mathcal Z(a;u,v)
-=Cw^{-1/4}\int_0^\infty
-\frac{\e^{-yw^{-1/2}t}}{\sqrt{t(1+t^2)}}\dd t.
-\]
-The further substitution \(t=\sqrt w\,s\) therefore gives
+By Lemma~\ref{lem:positive-source} with \(\lambda=\sqrt{uv}\), the
+radial generating function
 \begin{equation}
 \mathcal Z(a;u,v)
-=C\int_0^\infty
-\frac{\e^{-ys}}{\sqrt{s(1+uvs^2)}}\dd s
-=C\Phi_{0,0}(uv;y).
+=\pi\int_0^\infty
+\e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)\dd t
+\qquad(u,v>0)
+\label{eq:source}
+\end{equation}
+satisfies
+\begin{equation}
+\mathcal Z(a;u,v)=C\,\Phi_{0,0}(uv;y),
+\qquad
+\mathcal Z(a;1,1)=h(a).
 \label{eq:source-positive}
 \end{equation}
-For \(r=0,1,2,3\), put
-\[
-\mathcal Z_r=(-\partial_a)^r\mathcal Z.
-\]
+For \(u\neq v\), \(\mathcal Z\) is not a planar integral: the factor
+\(\exp\bigl(\frac{\ii}{4}(uz^4+v\bar z^4)\bigr)\) has modulus
+\(\exp\bigl(\frac{v-u}{4}\operatorname{Im}z^4\bigr)\), which defeats the
+Gaussian factor.  Its relation to the planar moments is
+Lemma~\ref{lem:source-moments}.  For \(r=0,1,2,3\), put
+\(\mathcal Z_r=(-\partial_a)^r\mathcal Z\).
+
+\begin{lemma}[four positive kernels]\label{lem:four-kernels}
+Define
+\begin{equation}
+\begin{array}{c|c|c|c}
+r&A_r&\alpha_r&\beta_r\\ \hline
+0&C&0&0\\
+1&aC&1&0\\
+2&2C&1&1\\
+3&2aC&2&1
+\end{array}
+\label{eq:block-parameters}
+\end{equation}
+Then \(\mathcal Z_r(a;u,v)=A_r\Phi_{\alpha_r,\beta_r}(uv;y)\) for
+\(r=0,1,2,3\).
+\end{lemma}
+
+\begin{proof}
+Write \(w=uv\).  Since \(\partial_a=a\partial_y\) and
+\(\partial_y\Phi_{\alpha,\beta}=-\Phi_{\alpha+1,\beta}\), the cases
+\(r=0,1\) follow from \eqref{eq:source-positive}.  Next,
+\((-\partial_a)^2=\partial_y+2y\partial_y^2\), so
+\(\mathcal Z_2=C\bigl(2y\Phi_{2,0}-\Phi_{1,0}\bigr)(w;y)\).  Integration
+by parts, whose boundary terms vanish at \(0\) and \(\infty\), gives
+\begin{equation}
+\begin{split}
+y\int_0^\infty
+\frac{\e^{-ys}s^{3/2}}{\sqrt{1+ws^2}}\dd s
+={}&\frac12\int_0^\infty
+\frac{\e^{-ys}s^{1/2}}{\sqrt{1+ws^2}}\dd s
++\int_0^\infty
+\frac{\e^{-ys}s^{1/2}}{(1+ws^2)^{3/2}}\dd s,
+\end{split}
+\label{eq:ibp-kernel}
+\end{equation}
+that is, \(y\Phi_{2,0}=\frac12\Phi_{1,0}+\Phi_{1,1}\).  Hence
+\(\mathcal Z_2=2C\Phi_{1,1}\), and
+\(\mathcal Z_3=-a\partial_y\mathcal Z_2=2aC\Phi_{2,1}\).
+\end{proof}
 
 \begin{lemma}[source derivatives and planar moments]
 \label{lem:source-moments}
@@ -837,22 +676,27 @@ For \(r\in\{0,1,2,3\}\) and \(p,q\geq0\),
 \end{lemma}
 
 \begin{proof}
-Fix a compact rectangle \(Q\subset(0,\infty)^2\) containing
-\((1,1)\).  Repeated differentiation of the Bessel integrand in
-\eqref{eq:source}, using the standard derivative recurrences for
-\(J_\nu\), gives, for fixed \(p,q,r\), a bound of the form
+Fix a compact rectangle \(Q\subset(0,\infty)^2\) containing \((1,1)\)
+and a compact interval \(I\subset(0,\infty)\) containing \(a\), with
+left endpoint \(a_0\).  Every derivative of \(J_0\) is a finite linear
+combination of integer-order Bessel functions, which are bounded by
+\(1\) on the real axis.  Each \(u\)- or \(v\)-derivative of
+\(J_0(t^2\sqrt{uv}/2)\) produces a factor \(t^2\) times a function
+bounded on \(Q\), and each \(-\partial_a\) produces a factor \(t\).
+Hence, for fixed \(p,q,r\),
 \[
 \left|
 \partial_u^p\partial_v^q(-\partial_a)^r
 \left[
 \e^{-at}J_0\left(\frac{t^2\sqrt{uv}}2\right)
 \right]\right|
-\leq C_{Q,p,q,r}\e^{-at}(1+t)^{2p+2q+r}.
+\leq C_{Q,I,p,q,r}\,\e^{-a_0t}(1+t)^{2p+2q+r}
+\qquad\bigl((u,v)\in Q,\ a\in I\bigr),
 \]
-Thus dominated convergence permits all the indicated derivatives to
-pass through the \(t\)-integral.
+and dominated convergence allows all these derivatives to pass through
+the \(t\)-integral in \eqref{eq:source}.
 
-For \(R>0\), define the truncated radial source
+For \(R>0\), define the truncations
 \[
 \mathcal Z^{[R]}(a;u,v)
 =\pi\int_0^{R^2}
@@ -860,20 +704,18 @@ For \(R>0\), define the truncated radial source
 \qquad
 \mathcal Z_r^{[R]}=(-\partial_a)^r\mathcal Z^{[R]}.
 \]
-For real \(u,v>0\), also put
+By polar coordinates and \eqref{eq:angular-source},
 \[
-\mathcal I^{[R]}(a;u,v)
+\mathcal Z^{[R]}(a;u,v)
 =\int_{|z|\leq R}
 \exp\left(
 -a|z|^2+\frac{\ii}{4}(uz^4+v\bar z^4)
 \right)\dd A(z).
 \]
-Applying \eqref{eq:angular-source} in polar coordinates gives
-\(\mathcal I^{[R]}=\mathcal Z^{[R]}\).  All \(u,v\)-derivatives here
-are real parameter derivatives, and all differentiations are over the
-compact disk.  At \(u=v=1\), each \(u\)-derivative
-contributes \(\ii z^4/4\), each \(v\)-derivative contributes
-\(\ii\bar z^4/4\), and each \(-\partial_a\) contributes
+On the compact disk all derivatives in the real parameters \(u,v,a\)
+may be taken under the integral sign.  At \(u=v=1\), each
+\(u\)-derivative contributes \(\ii z^4/4\), each \(v\)-derivative
+contributes \(\ii\bar z^4/4\), and each \(-\partial_a\) contributes
 \(|z|^2=z\bar z\).  Therefore
 \[
 \left.
@@ -883,154 +725,16 @@ contributes \(\ii z^4/4\), each \(v\)-derivative contributes
 \int_{|z|\leq R}
 z^{r+4p}\bar z^{r+4q}\rho_a(z)\dd A(z).
 \]
-On the radial side, the preceding integrable bound and dominated
-convergence show that the left-hand side converges to the left-hand
-side of \eqref{eq:source-moments} as \(R\to\infty\).  On the planar
-side, the integrand is bounded in absolute value by
-\(|z|^{2r+4p+4q}\e^{-a|z|^2}\), so dominated convergence gives the
-full planar moment.  This proves \eqref{eq:source-moments}.
+As \(R\to\infty\), the left-hand side converges to the left-hand side of
+\eqref{eq:source-moments} by the integrable bound above, and the
+right-hand side converges to the full planar moment because its
+integrand is bounded by \(|z|^{2r+4p+4q}\e^{-a|z|^2}\).
 \end{proof}
 
-\begin{lemma}\label{lem:four-kernels}
-The four radial source functions are
-\begin{equation}
-\begin{array}{c|c}
-r&\mathcal Z_r(a;u,v)\\ \hline
-0&C\Phi_{0,0}(uv;y),\\[1mm]
-1&aC\Phi_{1,0}(uv;y),\\[1mm]
-2&2C\Phi_{1,1}(uv;y),\\[1mm]
-3&2aC\Phi_{2,1}(uv;y).
-\end{array}
-\label{eq:four-kernels}
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-The first two rows follow by differentiating
-\eqref{eq:source-positive}.  For the third row, integration by parts
-gives
-\begin{equation}
-\begin{split}
-y\int_0^\infty
-\frac{\e^{-ys}s^{3/2}}{\sqrt{1+uvs^2}}\dd s
-={}&\frac12\int_0^\infty
-\frac{\e^{-ys}s^{1/2}}{\sqrt{1+uvs^2}}\dd s\\
-&+\int_0^\infty
-\frac{\e^{-ys}s^{1/2}}{(1+uvs^2)^{3/2}}\dd s.
-\end{split}
-\label{eq:ibp-kernel}
-\end{equation}
-The boundary terms vanish at \(0\) and \(\infty\).  Since
-\[
-(-\partial_a)^2
-=\partial_y+2y\partial_y^2,
-\]
-equation \eqref{eq:ibp-kernel} gives
-\(\mathcal Z_2=2C\Phi_{1,1}\).  Since
-\[
-\partial_y\Phi_{1,1}(uv;y)=-\Phi_{2,1}(uv;y),
-\qquad -\partial_a=-a\partial_y,
-\]
-one more differentiation gives
-\[
-\mathcal Z_3
-=-\partial_a\mathcal Z_2
-=2aC\Phi_{2,1}(uv;y).
-\]
-In particular, at \(u=v=1\),
-\[
-h''(a)=\mathcal Z_2(a;1,1)
-=2C\Phi_{1,1}(1;y)>0.
-\]
-\end{proof}
-
-For \(k\geq1\), set
-\begin{equation}
-\Delta_k^{(r)}
-=\det[G_{pq}^{(r)}]_{p,q=0}^{k-1},
-\qquad
-\Delta_0^{(r)}=1.
-\label{eq:Delta}
-\end{equation}
-
-\begin{proposition}\label{prop:block-signs}
-For every \(r\in\{0,1,2,3\}\) and \(k\geq1\),
-\begin{equation}
-\sgn\Delta_k^{(r)}
-=(-1)^{rk+k(k-1)/2}.
-\label{eq:block-sign}
-\end{equation}
-\end{proposition}
-
-\begin{proof}
-Let
-\[
-D_{pq}^{(r)}
-=\left.
-\partial_u^p\partial_v^q\mathcal Z_r(a;u,v)
-\right|_{u=v=1}.
-\]
-Every scalar multiplier in \eqref{eq:four-kernels} is positive.
-Lemma~\ref{lem:leading-source-signs}, applied to the four parameter pairs
-\[
-(\alpha,\beta)=(0,0),(1,0),(1,1),(2,1),
-\]
-therefore gives
-\begin{equation}
-\sgn\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}
-=(-1)^{k(k-1)/2}.
-\label{eq:Dr-sign}
-\end{equation}
-
-Lemma~\ref{lem:source-moments}, combined with
-\eqref{eq:gram-block}, gives
-\begin{equation}
-G_{pq}^{(r)}
-=(-1)^{r+q}\left(\frac4\ii\right)^{p+q}
-D_{pq}^{(r)}.
-\label{eq:G-D}
-\end{equation}
-Let \(S_k=k(k-1)/2\).  Factoring the row and column phases in
-\eqref{eq:G-D} yields
-\begin{equation}
-\Delta_k^{(r)}
-=(-1)^{rk}16^{S_k}
-\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}.
-\label{eq:Delta-D}
-\end{equation}
-Indeed, taking \((4/\ii)^p\) from row \(p\) and
-\((-1)^{r+q}(4/\ii)^q\) from column \(q\) produces
-\[
-\left(\frac4\ii\right)^{S_k}
-(-1)^{rk+S_k}\left(\frac4\ii\right)^{S_k}
-=(-1)^{rk}16^{S_k},
-\]
-because \((4/\ii)^2=-16\).
-Now \eqref{eq:block-sign} follows from \eqref{eq:Dr-sign}.
-For example, the first two cases give the useful checks
-\[
-\sgn\Delta_1^{(r)}=(-1)^r,
-\qquad
-\sgn\Delta_2^{(r)}=-1.
-\]
-\end{proof}
-
-\begin{corollary}[positive multiple-integral formula]
-\label{cor:block-integrals}
-For \(r=0,1,2,3\), define
-\begin{equation}
-\begin{array}{c|c|c|c}
-r&A_r&\alpha_r&\beta_r\\ \hline
-0&C&0&0\\
-1&aC&1&0\\
-2&2C&1&1\\
-3&2aC&2&1
-\end{array}
-\qquad
-\left(C=\sqrt{\frac{\pi}{2}},\quad y=\frac{a^2}{2}\right).
-\label{eq:block-parameters}
-\end{equation}
-For \(k\geq1\), if \(S_k=k(k-1)/2\), then
+\begin{proposition}[block determinants]
+\label{prop:block-determinants}
+For \(r\in\{0,1,2,3\}\) and \(k\geq1\), with the parameters
+\eqref{eq:block-parameters},
 \begin{equation}
 \begin{split}
 (-1)^{rk+S_k}\Delta_k^{(r)}
@@ -1040,52 +744,54 @@ For \(k\geq1\), if \(S_k=k(k-1)/2\), then
 \int_{(0,\infty)^k}
 \prod_{j=1}^k
 \frac{\e^{-ys_j}s_j^{\alpha_r-1/2}}
-{(1+s_j^2)^{\beta_r+k-1/2}}\\
-&\hspace{27mm}\times
+{(1+s_j^2)^{\beta_r+k-1/2}}
 \prod_{1\leq i<j\leq k}
 (s_j-s_i)^2(s_i+s_j)
 \prod_{j=1}^k\dd s_j .
 \end{split}
 \label{eq:block-multiple-integral}
 \end{equation}
-In particular, the right-hand side is strictly positive.
-\end{corollary}
+The right-hand side is strictly positive, so
+\(\sgn\Delta_k^{(r)}=(-1)^{rk+S_k}\).
+\end{proposition}
 
 \begin{proof}
-For the parameters in \eqref{eq:block-parameters},
-\eqref{eq:four-kernels} says that
-\(D^{(r)}=A_rD^{\alpha_r,\beta_r}\).  The triangular factorization
-\eqref{eq:triangular-factorization}, with
-\(b=\beta_r+\frac12\), gives
+Let
+\(D_{pq}^{(r)}=\partial_u^p\partial_v^q\mathcal Z_r(a;u,v)|_{u=v=1}\).
+Lemma~\ref{lem:source-moments} and \eqref{eq:gram-block} give
 \[
-\det D^{\alpha_r,\beta_r}
-=(-1)^{S_k}\left(\frac y2\right)^{S_k}
+G_{pq}^{(r)}
+=(-1)^{r+q}\left(\frac4\ii\right)^{p+q}
+D_{pq}^{(r)}.
+\]
+Taking \((4/\ii)^p\) out of row \(p\) and \((-1)^{r+q}(4/\ii)^q\) out of
+column \(q\), and using \((4/\ii)^2=-16\), gives
+\[
+\Delta_k^{(r)}
+=\left(\frac4\ii\right)^{2S_k}(-1)^{rk+S_k}
+\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}
+=(-1)^{rk}16^{S_k}
+\det[D_{pq}^{(r)}]_{p,q=0}^{k-1}.
+\]
+By Lemma~\ref{lem:four-kernels},
+\(D^{(r)}=A_rD^{\alpha_r,\beta_r}\), so
+Lemma~\ref{lem:leading-source-signs} and
+\(16^{S_k}(y/2)^{S_k}=(4a^2)^{S_k}\) give
+\[
+(-1)^{rk+S_k}\Delta_k^{(r)}
+=A_r^k(4a^2)^{S_k}
 \prod_{q=0}^{k-1}\left(\beta_r+\frac12\right)_q
-\det B.
+\det[B_{pq}]_{p,q=0}^{k-1}.
 \]
-Combining this identity with \eqref{eq:Delta-D}, and using
-\(16^{S_k}(y/2)^{S_k}=(4a^2)^{S_k}\), fixes the prefactor in
-\eqref{eq:block-multiple-integral}.
-
-It remains only to rewrite the Andr\'eief integrand.  For
-\(f(s)=s^2/(1+s^2)\),
+Finally,
 \[
-f(s_j)-f(s_i)
+\psi(s_j)-\psi(s_i)
 =\frac{(s_j-s_i)(s_j+s_i)}
-{(1+s_i^2)(1+s_j^2)}.
+{(1+s_i^2)(1+s_j^2)},
 \]
-Consequently the product of the two Vandermonde determinants in
-\eqref{eq:andreief} is
-\[
-\prod_{1\leq i<j\leq k}
-\frac{(s_j-s_i)^2(s_i+s_j)}
-{(1+s_i^2)(1+s_j^2)}.
-\]
-Each factor \(1+s_j^2\) occurs \(k-1\) times in the denominator.
-Substitution into \eqref{eq:andreief} proves
-\eqref{eq:block-multiple-integral}; strict positivity follows because
-the integrand is positive away from the diagonals \(s_i=s_j\), which
-have measure zero, as in the proof of
+and each factor \(1+s_j^2\) occurs \(k-1\) times in the product over
+\(i<j\).  Substituting this into \eqref{eq:andreief} gives
+\eqref{eq:block-multiple-integral}, and its positivity is part of
 Lemma~\ref{lem:leading-source-signs}.
 \end{proof}
 
@@ -1097,161 +803,107 @@ norms in \eqref{eq:signed-norm} satisfy
 \[
 \fh_n>0\qquad(n\geq0).
 \]
-In particular, the \(a>0\) part of
-\cite[Conjecture~3.6]{FelderHoppe2025} holds for \(d=4\).
+In particular, \cite[Conjecture~3.6]{FelderHoppe2025} holds for \(d=4\)
+and \(a>0\).
 \end{corollary}
 
 \begin{proof}
-The block sign formula shows first that every
-\(\Delta_k^{(r)}\) is nonzero.  After simultaneously permuting rows and
-columns to group monomials by their residue modulo \(4\), every finite
-leading Gram matrix is block diagonal, and its blocks are leading
-matrices of the four types in \eqref{eq:Delta}.  More precisely, the
-block of residue \(r\) has size
-\[
-k_r(N)=
-\begin{cases}
-\left\lfloor (N-r)/4\right\rfloor+1,&r\leq N,\\
-0,&r>N.
-\end{cases}
-\]
-It is therefore
-nondegenerate, and all the monic orthogonal polynomials exist.  Let
-\(n=r+4j\).  The orthogonality conditions within \(\mathcal P_r\)
-determine the coefficients of \(P_n\) by Cramer's rule, and pairing
-\(P_n\) with \(z^{r+4j}\) gives the classical minor ratio
+By Proposition~\ref{prop:block-determinants}, every \(\Delta_k^{(r)}\)
+is nonzero, so by Section~\ref{sec:gram} every leading Gram matrix is
+nondegenerate and the polynomials \(P_n\) exist.  Let \(n=r+4j\).
+Replacing \(z^n\) by \(P_n\) in the basis
+\(z^r,z^{r+4},\ldots,z^{r+4j}\) is a unitriangular change of basis, and
+orthogonality makes the new Gram matrix
+\(\operatorname{diag}\bigl([G_{pq}^{(r)}]_{p,q=0}^{j-1},(P_n,P_n)_a\bigr)\).
+Comparing determinants gives
 \begin{equation}
 (P_n,P_n)_a
-=\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}},
+=\frac{\Delta_{j+1}^{(r)}}{\Delta_j^{(r)}};
 \label{eq:norm-delta-ratio}
 \end{equation}
-Indeed, replace the last vector \(z^{r+4j}\) in the ordered monomial
-basis by \(P_n=z^{r+4j}+\cdots\).  The change-of-basis matrix is
-unitriangular, and orthogonality makes the transformed Gram matrix
-\[
-\operatorname{diag}\left(
-[G_{pq}^{(r)}]_{p,q=0}^{j-1},(P_n,P_n)_a
-\right).
-\]
-Its determinant is unchanged, which gives
-\(\Delta_{j+1}^{(r)}=\Delta_j^{(r)}(P_n,P_n)_a\); for \(j=0\), this
-uses the convention \(\Delta_0^{(r)}=1\).  This is the Schur-complement
-identity and requires only the nonvanishing of the leading minors, not
-positive definiteness; compare \cite[Section~2.2]{Szego1975}.
-Taking the quotient of the signs in \eqref{eq:block-sign} gives
-\[
-\sgn(P_n,P_n)_a=(-1)^{r+j}.
-\]
-But \eqref{eq:rho-sign} gives
+this Schur-complement identity uses only the nonvanishing of the
+leading minors, not positive definiteness; compare
+\cite[Section~2.2]{Szego1975}.  By
+Proposition~\ref{prop:block-determinants},
+\(\sgn(P_n,P_n)_a=(-1)^{r+j}\), and \eqref{eq:rho-sign} gives
 \(\varrho(r+4j)=(-1)^{r+j}\).  Hence
-\(\fh_n=\varrho(n)(P_n,P_n)_a>0\).
-By the identification at the end of Section~\ref{sec:gram}, the
-nondegeneracy assertion is exactly the \(d=4\), \(a>0\) case of
-\cite[Conjecture~3.6]{FelderHoppe2025}.
+\(\fh_n=\varrho(n)(P_n,P_n)_a>0\).  The last assertion is the
+identification at the end of Section~\ref{sec:gram}.
 \end{proof}
 
-The multiple-integral formula also gives the norms and recurrence
-coefficients directly as determinant ratios.  Namely, if \(n=r+4j\),
-then
-\begin{equation}
-\fh_n=\frac{|\Delta_{j+1}^{(r)}|}{|\Delta_j^{(r)}|},
-\qquad
-v_n=\frac1a\frac{\fh_{n+1}}{\fh_n},
-\label{eq:integral-ratios}
-\end{equation}
-where each determinant on the right is given explicitly by
-\eqref{eq:block-multiple-integral}.  Since the integrand in
-\eqref{eq:block-multiple-integral} is positive, this evaluation is
-free of cancellation, in contrast with a direct computation of the
+\begin{remark}
+By \eqref{eq:norm-delta-ratio}, \(\fh_n=|\Delta_{j+1}^{(r)}|/|\Delta_j^{(r)}|\)
+for \(n=r+4j\), and \eqref{eq:block-multiple-integral} writes each
+determinant as an integral of a positive function.  The norms, and the
+ratios \(v_n=\fh_{n+1}/(a\fh_n)\) of Section~\ref{sec:completion}, can
+therefore be evaluated without the cancellation inherent in the
 oscillatory moment determinants.
+\end{remark}
 
 \section{Identification with the quartic recurrence}
 \label{sec:completion}
 
-It remains to verify that the positive norm ratios give precisely the
-sequence in Theorem~\ref{thm:main}.  Define
+Define
 \begin{equation}
 V_n=\frac{\fh_{n+1}}{\fh_n},
 \qquad
-v_n=\frac{V_n}{a}.
+v_n=\frac{V_n}{a}
+\qquad(n\geq0),
 \label{eq:ratios}
 \end{equation}
-For the recurrence formulas below, also set \(V_j=0\) for \(j<0\), in
-agreement with the convention \(v_j=0\) in
-\eqref{eq:quartic-recurrence}.
-Corollary~\ref{cor:positive-norms} already gives
-\begin{equation}
-v_n>0\qquad(n\geq0).
-\label{eq:ratio-positive}
-\end{equation}
+and \(V_j=v_j=0\) for \(j<0\).  By Corollary~\ref{cor:positive-norms},
+\(v_n>0\) for every \(n\geq0\).  We derive
+\eqref{eq:quartic-recurrence}, specializing
+\cite[Lemma~3.4 and equations~(3.1)--(3.3)]{FelderHoppe2025}.
 
-For clarity, we include the recurrence calculation from the quartic
-Gram form; it is the specialization of
-\cite[Lemma~3.4 and equations~(3.1)--(3.3)]{FelderHoppe2025}.  If \(g\)
-has \(C_4\)-weight \(\ell\), the definition of the twist gives
+If \(g\) has \(C_4\)-weight \(\ell\), then
 \begin{equation}
 \sigma(zg)=-\tau(\ell)z\,\sigma g.
 \label{eq:sigma-multiplication}
 \end{equation}
-Indeed, for \(\ell=0,1,2\) this follows directly by comparing the
-twist factors in weights \(\ell\) and \(\ell+1\); for \(\ell=3\), the
-weight returns to \(0\), and \(\eta^4=-1\) supplies the exceptional
-sign \(\tau(3)=-1\).
+For \(\ell=0,1,2\) this follows by comparing the twist factors in
+weights \(\ell\) and \(\ell+1\); for \(\ell=3\) the weight returns to
+\(0\), and \(\eta^4=-1\) supplies the sign \(\tau(3)=-1\).
 
-We use the Wirtinger derivative
-\(\partial_z=\frac12(\partial_x-\ii\partial_y)\).  Then
+Let \(L=\partial_z+\ii z^3\), where
+\(\partial_z=\frac12(\partial_{\operatorname{Re}z}
+-\ii\partial_{\operatorname{Im}z})\).  Since
 \(\partial_z\overline{\sigma g(z)}=0\) and
-\[
-\partial_z\rho_a(z)=(-a\bar z+\ii z^3)\rho_a(z).
-\]
-Differentiating \eqref{eq:density} and integrating by parts in
-\eqref{eq:pairing}, with the boundary term removed by the Gaussian
-decay, therefore give
+\(\partial_z\rho_a(z)=(-a\bar z+\ii z^3)\rho_a(z)\), integration by
+parts in \eqref{eq:pairing}, with no boundary terms because of the
+Gaussian decay, and \eqref{eq:sigma-multiplication} give, for \(g\) of
+weight \(\ell\),
 \begin{equation}
-\begin{split}
-\big((\partial_z+\ii z^3)f,g\big)_a
-&=\int_{\C}(\partial_zf+\ii z^3f)
-\overline{\sigma g}\,\rho_a\dd A\\
-&=a\int_{\C}f\bar z\,\overline{\sigma g}\,\rho_a\dd A\\
-&=-\tau(\ell)a(f,zg)_a,
-\end{split}
+(Lf,g)_a
+=a\int_{\C}f\,\bar z\,\overline{\sigma g}\,\rho_a\dd A
+=-\tau(\ell)a(f,zg)_a.
 \label{eq:ibp-pairing}
 \end{equation}
-where the last equality uses \eqref{eq:sigma-multiplication}.  We spell
-out the bandedness consequence, since
-weight considerations alone do not exclude more distant lower terms.
-Write \(L=\partial_z+\ii z^3\).  If \(j\leq n-7\) has the same weight
-as \(zP_n\), then \(\deg LP_j\leq j+3<n\), and
-\[
-(LP_j,P_n)_a=-\tau(n)a(P_j,zP_n)_a=0.
-\]
-Hermitian symmetry therefore gives \((zP_n,P_j)_a=0\).  Similarly, if
-\(j\leq n-5\) has the same weight as \(LP_n\), then
-\[
-(LP_n,P_j)_a=-\tau(j)a(P_n,zP_j)_a=0,
-\]
-because \(\deg(zP_j)<n\).  Weight, degree, and orthogonality now give
+
+The polynomials \(zP_n\) and \(LP_n\) have weights \(n+1\) and \(n-1\)
+modulo \(4\), degrees \(n+1\) and \(n+3\), and leading coefficients
+\(1\) and \(\ii\).  If \(j\leq n-7\) and \(j\equiv n+1\pmod 4\), then
+\(\deg LP_j<n\), so \eqref{eq:ibp-pairing} gives
+\(0=(LP_j,P_n)_a=-\tau(n)a(P_j,zP_n)_a\).  If \(j\leq n-5\) and
+\(j\equiv n-1\pmod 4\), then \(\deg zP_j<n\), so
+\((LP_n,P_j)_a=-\tau(j)a(P_n,zP_j)_a=0\).  Hence
 \begin{equation}
-\begin{split}
-zP_n
-&=P_{n+1}+\frac{\ii}{a}\frac{\fh_n}{\fh_{n-3}}P_{n-3},\\
-(\partial_z+\ii z^3)P_n
-&=\ii P_{n+3}+a\frac{\fh_n}{\fh_{n-1}}P_{n-1},
-\end{split}
+zP_n=P_{n+1}+c_nP_{n-3},
+\qquad
+LP_n=\ii P_{n+3}+d_nP_{n-1},
 \label{eq:polynomial-recurrences}
 \end{equation}
-where terms with negative indices are omitted.  Pairing the first
-expansion with \(P_{n-3}\), and using
-\eqref{eq:ibp-pairing} with \(f=P_{n-3}\), \(g=P_n\), determines its
-lower coefficient.  Pairing the second expansion with \(P_{n-1}\)
-determines the other one.  In both calculations one uses
+where terms with negative indices are omitted.  Among any four
+consecutive integers exactly one is congruent to \(3\) modulo \(4\), so
+\eqref{eq:rho-sign} gives
 \[
 \varrho(n)=\tau(n)\varrho(n-3),
 \qquad
 \varrho(n)=-\tau(n-1)\varrho(n-1).
 \]
-For completeness, if \(c_n\) is the coefficient of \(P_{n-3}\) in
-\(zP_n\), then
+Pairing \eqref{eq:polynomial-recurrences} with \(P_{n-3}\) and
+\(P_{n-1}\), and using \eqref{eq:ibp-pairing} and Hermitian symmetry,
+we obtain
 \[
 \begin{split}
 \ii\varrho(n)\fh_n
@@ -1259,44 +911,35 @@ For completeness, if \(c_n\) is the coefficient of \(P_{n-3}\) in
 =-\tau(n)a(P_{n-3},zP_n)_a,\\
 c_n
 &=\frac{(zP_n,P_{n-3})_a}{\varrho(n-3)\fh_{n-3}}
-=\frac{\ii}{a}\frac{\fh_n}{\fh_{n-3}},
-\end{split}
-\]
-where Hermitian symmetry and
-\(\varrho(n)=\tau(n)\varrho(n-3)\) are used in the second line.
-Similarly, if \(d_n\) is the coefficient of \(P_{n-1}\) in \(LP_n\),
-then
-\[
-\begin{split}
+=\frac{\ii}{a}\frac{\fh_n}{\fh_{n-3}},\\
 d_n
-&=\frac{(LP_n,P_{n-1})_a}{\varrho(n-1)\fh_{n-1}}\\
-&=-\tau(n-1)a
+&=\frac{(LP_n,P_{n-1})_a}{\varrho(n-1)\fh_{n-1}}
+=-\tau(n-1)a
 \frac{(P_n,zP_{n-1})_a}{\varrho(n-1)\fh_{n-1}}
-=a\frac{\fh_n}{\fh_{n-1}},
+=a\frac{\fh_n}{\fh_{n-1}};
 \end{split}
 \]
-because the leading term of \(zP_{n-1}\) is \(P_n\) and
-\(\varrho(n)=-\tau(n-1)\varrho(n-1)\).  These computations also make
-the phase cancellation in \eqref{eq:polynomial-recurrences} explicit.
+the first line holds because the leading term of \(LP_{n-3}\) is
+\(\ii P_n\), and the last because that of \(zP_{n-1}\) is \(P_n\).
+Thus \(c_m=\frac{\ii}{a}V_{m-3}V_{m-2}V_{m-1}\) for every \(m\geq0\),
+including \(c_m=0\) for \(m<3\).
 
-The coefficient of \(P_{n-1}\) in \(z^3P_n\) receives three
-contributions: the downward step in the first formula of
-\eqref{eq:polynomial-recurrences} may occur after zero, one, or two
-upward steps.  Hence that coefficient is
+Applying the first relation in \eqref{eq:polynomial-recurrences} three
+times shows that the coefficient of \(P_{n-1}\) in \(z^3P_n\) is
 \[
-\frac{\ii}{a}V_{n-1}
+c_n+c_{n+1}+c_{n+2}
+=\frac{\ii}{a}V_{n-1}
 \left(
 V_{n-2}V_{n-3}
 +V_nV_{n-2}
 +V_{n+1}V_n
 \right).
 \]
-Subtracting \(\ii z^3P_n\) from the second formula in
-\eqref{eq:polynomial-recurrences}, and using that the coefficient of
-\(P_{n-1}\) in \(\partial_zP_n\) is \(n\) (the basis is monic and
-graded, so this coefficient is the leading coefficient of
-\(\partial_zP_n\)), gives, after putting
-\(m=n-1\),
+Let \(n\geq1\).  The coefficient of \(P_{n-1}\) in \(\partial_zP_n\) is
+\(n\), since \(\partial_zP_n=nz^{n-1}+\cdots\) lies in the weight space
+of \(P_{n-1}\).  Comparing coefficients of \(P_{n-1}\) in
+\(LP_n=\partial_zP_n+\ii z^3P_n\) and using \(d_n=aV_{n-1}\), we obtain,
+with \(m=n-1\geq0\),
 \begin{equation}
 V_m\left[
 1+\frac1{a^2}
@@ -1309,64 +952,33 @@ V_{m-1}V_{m-2}
 =\frac{m+1}{a}.
 \label{eq:V-recurrence}
 \end{equation}
-Here \(n\geq1\), hence \(m\geq0\); the convention \(V_j=0\) for
-\(j<0\) incorporates the omitted negative-index terms when \(m=0,1\).
-For example, at \(m=0\), equation \eqref{eq:V-recurrence} reads
-\[
-V_0\left(1+\frac{V_2V_1}{a^2}\right)=\frac1a,
-\]
-and after \(V_j=av_j\) this is
-\[
-v_0(1+v_2v_1)=a^{-2},
-\]
-which is exactly the \(n=0\) case of
-\eqref{eq:quartic-recurrence}.
-With \(V_m=av_m\), equation \eqref{eq:V-recurrence} is
-\eqref{eq:quartic-recurrence}; before that substitution, it is the
-case \(d=4\) of \eqref{eq:FH-recurrence}.
+This is the case \(d=4\) of \eqref{eq:FH-recurrence}, and with
+\(V_m=av_m\) it is \eqref{eq:quartic-recurrence}.
 
-Finally, \(P_0=1\), \(P_1=z\), and \(P_2=z^2\).  From
-\eqref{eq:h-planar}, differentiation under the absolutely convergent
-planar integral gives
+Finally, \(P_0=1\), \(P_1=z\), and \(P_2=z^2\).  By
+Lemma~\ref{lem:positive-source}, \(h(a)=\int_\C\rho_a\dd A\), and
+differentiation under this absolutely convergent integral gives
 \[
 h'(a)=-\int_{\C}|z|^2\rho_a(z)\dd A(z),
 \qquad
 h''(a)=\int_{\C}|z|^4\rho_a(z)\dd A(z).
 \]
-The twist signs \eqref{eq:twist-sign} and
-\(\varrho(0)=-\varrho(1)=\varrho(2)=1\) consequently give
+With \eqref{eq:twist-sign} and \(\varrho(0)=-\varrho(1)=\varrho(2)=1\),
+this gives
 \[
 \fh_0=h,\qquad \fh_1=-h',\qquad \fh_2=h''.
 \]
-Therefore \eqref{eq:ratios} gives exactly
-\eqref{eq:initial-values}.  Conversely, solving
-\eqref{eq:quartic-recurrence} for its newest term gives
-\begin{equation}
-v_{m+2}
-=\frac{(m+1)a^{-2}/v_m-1-v_{m-1}v_{m-2}
--v_{m+1}v_{m-1}}{v_{m+1}},
-\qquad m\geq0.
-\label{eq:forward-recurrence}
-\end{equation}
-Thus \(v_{m+2}\) is uniquely determined by the
-preceding terms whenever \(v_mv_{m+1}\neq0\).  The norm-ratio sequence
-\eqref{eq:ratios} is positive, so \eqref{eq:forward-recurrence} applies
-at every step and constructs a global extension of the prescribed
-initial data.  If \((\widetilde v_n)\) is any other extension, then
-\(\widetilde v_0=v_0\) and \(\widetilde v_1=v_1\).  Assuming
-\(\widetilde v_j=v_j\) through \(j=m+1\), the positivity of
-\(v_mv_{m+1}\) allows the equation at index \(m\) to be solved for its
-newest term, forcing \(\widetilde v_{m+2}=v_{m+2}\).  Induction proves
-uniqueness.  Together with \eqref{eq:ratio-positive}, this proves
-Theorem~\ref{thm:main}.
-
-\begin{remark}
-The uniqueness in Theorem~\ref{thm:main} concerns the sequence with the
-prescribed initial data.  The argument does not claim a classification
-of positive solutions with other initial data, a closed evaluation of
-the Gram determinants, asymptotic formulas for \(v_n\), or a result at
-the endpoint \(a=0\).
-\end{remark}
+Hence \(h(a)>0\) and \(h'(a)<0\), so \eqref{eq:initial-values} is well
+defined, and \eqref{eq:ratios} reproduces it.  Thus \((v_n)\) extends
+the initial values and satisfies \eqref{eq:quartic-recurrence} for every
+\(n\geq0\).  If \((\widetilde v_n)\) is another real sequence with these
+properties and \(\widetilde v_j=v_j\) for \(j\leq m+1\), then
+\eqref{eq:quartic-recurrence} at index \(m\) is linear in
+\(\widetilde v_{m+2}\) with coefficient
+\(\widetilde v_m\widetilde v_{m+1}=v_mv_{m+1}>0\), so
+\(\widetilde v_{m+2}=v_{m+2}\).  Induction proves uniqueness.  This
+proves Theorem~\ref{thm:main}: part~(i) is
+Corollary~\ref{cor:positive-norms}, and part~(ii) has just been shown.
 
 \bibliographystyle{alphacitation}
 \bibliography{references}
