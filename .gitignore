@@ -5,3 +5,8 @@
 *.out
 *.toc
 *.synctex.gz
+
+# CI helpers
+__pycache__/
+*.py[cod]
+.ci-result/

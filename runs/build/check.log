@@ -1,2 +1,2 @@
-'Painleve.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Painleve.unique_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Painleve.main_theorem: allowed axioms [propext, Classical.choice, Quot.sound]
+Painleve.unique_theorem: allowed axioms [propext, Classical.choice, Quot.sound]

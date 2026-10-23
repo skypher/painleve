@@ -37,12 +37,16 @@ lake env lean Check.lean
 ```
 
 `Check.lean` type-checks both theorems against the frozen statements and
-prints their axioms. The expected output is
+fails unless their axioms are among `propext`, `Classical.choice` and
+`Quot.sound`. The expected output is
 
 ```
-'Painleve.main_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
-'Painleve.unique_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
+Painleve.main_theorem: allowed axioms [propext, Classical.choice, Quot.sound]
+Painleve.unique_theorem: allowed axioms [propext, Classical.choice, Quot.sound]
 ```
+
+GitHub CI (`.github/workflows/lean.yml`) builds the library and runs
+`Check.lean` on every push and pull request.
 
 The paper cites release `v1.1` of this repository.
 

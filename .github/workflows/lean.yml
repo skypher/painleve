@@ -1,0 +1,109 @@
+name: Lean proof
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      rebuild:
+        description: Ignore the saved verdict and rebuild
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  proof:
+    name: Lean proof
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Test verdict handling
+        run: python3 -u -m unittest discover -s .github/scripts -p 'test_lean_ci.py' -v
+
+      - name: Fingerprint proof inputs
+        id: inputs
+        run: python3 -u .github/scripts/lean_ci.py fingerprint
+
+      - name: Restore previous verdict
+        if: ${{ !inputs.rebuild }}
+        id: verdict-cache
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: .ci-result/result.json
+          key: lean-result-v1-${{ runner.os }}-${{ steps.inputs.outputs.hash }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: lean-result-v1-${{ runner.os }}-${{ steps.inputs.outputs.hash }}-
+
+      - name: Inspect previous verdict
+        id: previous
+        env:
+          PROOF_HASH: ${{ steps.inputs.outputs.hash }}
+          FORCE_REBUILD: ${{ inputs.rebuild || false }}
+        run: |
+          flags=()
+          if [[ "$FORCE_REBUILD" == true ]]; then flags+=(--force); fi
+          python3 -u .github/scripts/lean_ci.py inspect --fingerprint "$PROOF_HASH" "${flags[@]}"
+
+      - name: Restore Lean dependencies and build artifacts
+        if: steps.previous.outputs.result == 'miss'
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: |
+            ~/.elan
+            lean/.lake
+          key: lean-deps-v1-${{ runner.os }}-${{ hashFiles('lean/lean-toolchain', 'lean/lakefile.toml', 'lean/lake-manifest.json') }}
+
+      - name: Install pinned Lean toolchain
+        if: steps.previous.outputs.result == 'miss'
+        run: |
+          if [[ ! -x "$HOME/.elan/bin/elan" ]]; then
+            curl --proto '=https' --tlsv1.2 -fsSL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh"
+            sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          toolchain=$(cat lean/lean-toolchain)
+          "$HOME/.elan/bin/elan" toolchain install "$toolchain"
+          "$HOME/.elan/bin/elan" default "$toolchain"
+
+      - name: Fetch mathlib artifacts
+        if: steps.previous.outputs.result == 'miss'
+        working-directory: lean
+        run: |
+          mapfile -t modules < <(python3 -u ../.github/scripts/lean_ci.py mathlib-imports)
+          lake exe cache get "${modules[@]}"
+
+      - name: Build proof and audit principal statements
+        if: steps.previous.outputs.result == 'miss'
+        id: build
+        continue-on-error: true
+        run: |
+          lake -d lean build Painleve
+          lake -d lean env lean lean/Check.lean
+
+      - name: Record build outcome, including failures
+        if: ${{ always() && !cancelled() && steps.previous.outputs.result == 'miss' }}
+        env:
+          PROOF_HASH: ${{ steps.inputs.outputs.hash }}
+          BUILD_STATUS: ${{ steps.build.outcome == 'success' && 'success' || 'failure' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 -u .github/scripts/lean_ci.py record --fingerprint "$PROOF_HASH" --status "$BUILD_STATUS" --run-url "$RUN_URL"
+
+      - name: Save verdict even when the proof failed
+        if: ${{ always() && !cancelled() && steps.previous.outputs.result == 'miss' }}
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
+        with:
+          path: .ci-result/result.json
+          key: lean-result-v1-${{ runner.os }}-${{ steps.inputs.outputs.hash }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Return original green or red verdict
+        if: ${{ always() && !cancelled() }}
+        env:
+          PROOF_HASH: ${{ steps.inputs.outputs.hash }}
+        run: python3 -u .github/scripts/lean_ci.py verdict --fingerprint "$PROOF_HASH"
