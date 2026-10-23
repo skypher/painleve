@@ -43,3 +43,9 @@ import Painleve.LogGamma
 import Painleve.Polar
 import Painleve.GammaLaw
 import Painleve.GammaRep
+import Painleve.ExpTP
+import Painleve.PolyDeriv
+import Painleve.ConvSmooth
+import Painleve.SymPos
+import Painleve.KernelDeriv
+import Painleve.HankelSign
