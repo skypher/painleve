@@ -44,8 +44,7 @@ prints their axioms. The expected output is
 'Painleve.unique_theorem' depends on axioms: [propext, Classical.choice, Quot.sound]
 ```
 
-The paper cites release `v1.1` of this repository. (Tag `v1.0` was
-pushed by mistake on the commit before the final review fixes; use `v1.1`.)
+The paper cites release `v1.1` of this repository.
 
 `runs/uniq/` contains the numerical scans of initial values used as a sanity
 check for Theorem 1.2.
