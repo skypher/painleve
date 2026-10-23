@@ -1,2 +1,9 @@
 import Painleve.Statement
 import Painleve.Andreief
+import Painleve.OrthoPoly
+import Painleve.Signs
+import Painleve.BiMoment
+import Painleve.Moments
+import Painleve.Kernel
+import Painleve.Uniq
+import Painleve.Subord
