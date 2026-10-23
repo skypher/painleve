@@ -31,19 +31,23 @@ Toolchain: Lean v4.33.0, Mathlib db584cd (same pin as `~/yang.lean`).
 | 8 | Lemma 4.1 for λ = 1: `hBessel = ∫ρ_a` | `BesselMatch.lean` | 9 | open |
 | 9 | Theorem 1.1 assembly | `Main.lean` | final | open |
 
-## Landed (sorry-free, axioms propext/Classical.choice/Quot.sound), 2026-10-23
+## Status: COMPLETE (2026-10-23)
 
-Andreief, OrthoPoly, Signs, BiMoment, Moments, Kernel, Uniq, Subord, DiffInt,
-Gram, DiskSource, Calc, Herm, Ibp, Phi, PlanarOde, Source (Lemma 4.1),
-DiskHankel, BesselSeries, OdeUnique, Weighted (Lemma 4.2), PhiHankel
-(Lemma 3.1 in exponential coordinates), BlockAlg, Recurrence (Section 5:
-`OPData.quarticRec`).
+`Painleve.main_theorem : Painleve.Stmt_main` (Painleve/Main.lean).
+Acceptance check passed: `example : Painleve.Stmt_main := Painleve.main_theorem`
+compiles; `#print axioms Painleve.main_theorem` = [propext, Classical.choice,
+Quot.sound]; no `sorry`, `admit`, `axiom` or `native_decide` in the 34
+modules (7522 lines). Statement.lean is byte-identical to the version the
+independent statement check approved (commit de9c8b9).
 
-In progress (lanes): PlaneHankel (R → ∞ limit of the disk Hankel identity),
-block signs (Prop 4.4), Gram nondegeneracy + OP data (Cor 4.5), limits of the
-kernels at a → 0⁺ with Gamma identities, hSeries (Bessel side as a power
-series, ODE, values at 0). Remaining after those: Part B assembly
-(hBessel = Re ∫ρ_a on (0,∞) via OdeUnique) and Main (Stmt_main).
+Proof map: Gram blocks (Gram, BlockAlg) → Hankel identity in exponential
+coordinates (DiskSource, DiskHankel, PlaneHankel) → kernels (Source = Lemma
+4.1, Weighted = Lemma 4.2, Phi) → Hankel determinant (PhiHankel = Lemma 3.1,
+Andreief, BiMoment) → block signs (BlockSign, Blocks = Prop 4.4) →
+nondegeneracy and orthogonal polynomials (OrthoPoly, Assembly = Cor 4.5) →
+recurrence (Herm, Ibp, Recurrence = Section 5) → Bessel initial data
+(BesselSeries, HSeries, PlanarOde, Limits, OdeUnique, BesselMatch) → MainOf,
+Main.
 
 ## Route for Lemmas 3.1 and 4.3 in Lean (one-variable calculus only)
 
