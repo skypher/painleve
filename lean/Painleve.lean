@@ -49,3 +49,7 @@ import Painleve.ConvSmooth
 import Painleve.SymPos
 import Painleve.KernelDeriv
 import Painleve.HankelSign
+import Painleve.GramD
+import Painleve.HankelD
+import Painleve.BlockSignD
+import Painleve.AssemblyD
