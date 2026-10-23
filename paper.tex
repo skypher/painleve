@@ -16,7 +16,8 @@
   breaklinks=false,
   linktocpage=true
 ]{hyperref}
-
+% Referee copy: uncomment the next line for line numbers.
+% \usepackage{lineno}\linenumbers
 \hypersetup{
   colorlinks=true,
   linkcolor={purple},
@@ -25,7 +26,7 @@
   pdfauthor={Leslie P. Polzer},
   pdftitle={Positivity of the Quartic Solution of a Discrete Painleve-Type Recurrence},
   pdfsubject={Quartic discrete Painleve recurrence and quantum minimal surfaces},
-  pdfkeywords={discrete Painleve-type recurrence, quartic potential, orthogonal polynomials, positivity}
+  pdfkeywords={discrete Painleve-type recurrence, indefinite orthogonal polynomials, quartic potential, bi-moment determinant, quantum minimal surface}
 }
 
 \medmuskip=4mu
@@ -53,6 +54,25 @@
 \newtheorem{remark}[theorem]{Remark}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\fh}{\mathfrak h}
+\newcommand{\fall}[1]{^{\underline{#1}}}
+\newcommand{\stir}[2]{\genfrac\{\}{0pt}{}{#1}{#2}}
+
+
+\title{Positivity of the quartic solution of a\\
+discrete Painlev\'e-type recurrence}
+\author{Leslie P. Polzer}
+\newcommand{\authoraffiliation}{Independent Researcher}
+\newcommand{\authoremail}{polzer@fastmail.com}
+\date{October 23, 2026}
 
 \makeatletter
 \renewcommand{\section}{%
@@ -106,27 +126,7 @@
   {\quotation\noindent\small{\bfseries\abstractname.\enspace}}
   {\endquotation}
 
-\newcommand{\C}{\mathbb C}
-\newcommand{\N}{\mathbb N}
-\newcommand{\dd}{\,\mathrm d}
-\newcommand{\ii}{\mathrm i}
-\newcommand{\sgn}{\operatorname{sgn}}
-\newcommand{\Span}{\operatorname{span}}
-\newcommand{\e}{\mathrm e}
-\newcommand{\fh}{\mathfrak h}
-\newcommand{\fall}[1]{^{\underline{#1}}}
-\newcommand{\stir}[2]{\genfrac\{\}{0pt}{}{#1}{#2}}
-
-\title{Positivity of the Quartic Solution of a\\
-Discrete Painlev\'e-Type Recurrence}
-
-\author{Leslie P. Polzer}
-\newcommand{\authoraffiliation}{Independent Researcher}
-\newcommand{\authoremail}{polzer@fastmail.com}
-\date{\today}
-
 \begin{document}
-
 \maketitle
 
 \begin{abstract}
@@ -146,18 +146,19 @@ triangular factorization and Andr\'eief's identity then give every
 leading block minor as a prescribed sign times an explicit positive
 multiple integral.  Uniqueness follows from a weighted energy estimate
 for the convex variational structure of the recurrence.
+
 \vskip5pt
-\noindent\textbf{Keywords.}\enspace
-discrete Painlev\'e-type recurrence, indefinite orthogonal polynomials,
-quartic potential, bi-moment determinant, quantum minimal surface.
+\noindent\textbf{Keywords.}\enspace discrete Painlev\'e-type
+recurrence; indefinite orthogonal polynomials; quartic potential;
+bi-moment determinant; quantum minimal surface.
+
 \vskip5pt
 \noindent\textbf{MSC2020 Classification.}\enspace
-Primary 34M55; Secondary 39A36, 33C45, 15B52, 53A10.
+34M55; 39A36; 33C45; 15B52; 53A10.
 \end{abstract}
 
 \vskip50pt
 \baselineskip=13.5pt
-
 \section{Introduction}
 
 Discrete Painlev\'e-type recurrences occur both in matrix
@@ -1202,7 +1203,76 @@ repository README gives the build and checking commands.  The directory
 \path{runs/uniq} contains the numerical scans of initial values that were
 used as a sanity check for Theorem~\ref{thm:unique}.
 
-\bibliographystyle{alphacitation}
-\bibliography{references}
+\begin{thebibliography}{OLBC10}
+
+\bibitem[AHK19]{ArnlindHoppeKontsevich2019}
+J.~Arnlind, J.~Hoppe and M.~Kontsevich,
+\emph{Quantum minimal surfaces},
+\href{https://arxiv.org/abs/1903.10792}{arXiv:1903.10792} (2019).
+
+\bibitem[And86]{Andreief1886}
+C.~Andr\'eief,
+\emph{Note sur une relation entre les int\'egrales d\'efinies des
+produits des fonctions},
+M\'em. Soc. Sci. Phys. Nat. Bordeaux (3) \textbf{2} (1886) 1--14.
+
+\bibitem[Bor99]{Borodin1998}
+A.~Borodin,
+\emph{Biorthogonal ensembles},
+Nucl. Phys. B \textbf{536} (1999) 704--732,
+\href{https://doi.org/10.1016/S0550-3213(98)00642-7}%
+{doi:\allowbreak 10.1016/S0550-3213(98)00642-7}.
+
+\bibitem[CDHM25]{ClarksonEtAl2025}
+P.~A.~Clarkson, A.~V.~Dzhamay, A.~N.~W.~Hone and B.~Mitchell,
+\emph{Special solutions of a discrete Painlev\'e equation for quantum
+minimal surfaces},
+Theor. Math. Phys. \textbf{224} (2025) 1359--1397,
+\href{https://doi.org/10.1134/S0040577925080045}%
+{doi:\allowbreak 10.1134/S0040577925080045},
+\href{https://arxiv.org/abs/2503.14436}{arXiv:2503.14436}.
+
+\bibitem[CT99]{CornalbaTaylor1998}
+L.~Cornalba and W.~Taylor~IV,
+\emph{Holomorphic curves from matrices},
+Nucl. Phys. B \textbf{536} (1999) 513--552,
+\href{https://doi.org/10.1016/S0550-3213(98)00702-0}%
+{doi:\allowbreak 10.1016/S0550-3213(98)00702-0}.
+
+\bibitem[FH25]{FelderHoppe2025}
+G.~Felder and J.~Hoppe,
+\emph{Orthogonal polynomials with complex densities and quantum minimal
+surfaces},
+SIGMA \textbf{21} (2025) 103,
+\href{https://doi.org/10.3842/SIGMA.2025.103}%
+{doi:\allowbreak 10.3842/SIGMA.2025.103},
+\href{https://arxiv.org/abs/2504.06197}{arXiv:2504.06197}.
+
+\bibitem[For19]{Forrester2019}
+P.~J.~Forrester,
+\emph{Meet Andr\'eief, Bordeaux 1886, and Andreev, Kharkov 1882--1883},
+Random Matrices Theory Appl. \textbf{8} (2019) 1930001,
+\href{https://doi.org/10.1142/S2010326319300018}%
+{doi:\allowbreak 10.1142/S2010326319300018},
+\href{https://arxiv.org/abs/1806.10411}{arXiv:1806.10411}.
+
+\bibitem[GR15]{GradshteynRyzhik2015}
+I.~S.~Gradshteyn and I.~M.~Ryzhik,
+\emph{Table of Integrals, Series, and Products},
+8th ed., edited by D.~Zwillinger and V.~H.~Moll, Academic Press,
+Amsterdam (2015).
+
+\bibitem[Hop25]{Hoppe2025}
+J.~Hoppe,
+\emph{Quantum states from minimal surfaces},
+\href{https://arxiv.org/abs/2502.18422}{arXiv:2502.18422} (2025).
+
+\bibitem[OLBC10]{NISTHandbook2010}
+F.~W.~J.~Olver, D.~W.~Lozier, R.~F.~Boisvert and C.~W.~Clark (eds.),
+\emph{NIST Handbook of Mathematical Functions},
+Cambridge University Press, New York (2010),
+\href{https://dlmf.nist.gov/}{dlmf.nist.gov}.
+
+\end{thebibliography}
 
 \end{document}

@@ -18,7 +18,7 @@ Paper and Lean 4 formalization.
 
 ## Building
 
-Paper: `pdflatex paper && bibtex paper && pdflatex paper && pdflatex paper`.
+Paper: `pdflatex paper && pdflatex paper`.
 
 Lean (toolchain `leanprover/lean4:v4.33.0`, Mathlib pinned in
 `lean/lake-manifest.json`):
