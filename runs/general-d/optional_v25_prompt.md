@@ -1,0 +1,244 @@
+You are an independent referee. You reviewed the full manuscript (your report on release v2.4 is below) and made three optional suggestions. The author adopted suggestions 2 and 3 (diff below against release v2.5, which applied your required change R1) and declined suggestion 1. Check that the new sentence after Theorem 1.3 is correct (the substitution is V_n = a^{2/(d-2)} v_n, eps = a^{-d/(d-2)}, stated in the paragraph before Theorem 1.3), that its use of Theorem 1.3 and Theorem 1.1(ii) is justified, and that the commit identifier is placed correctly (the identifier is the commit of tag v2.4, which holds the Lean code that the paragraph describes). Report CONFIRMED or NOT CONFIRMED, with replacement text if anything is wrong.
+
+=== your report ===
+**Overall verdict: MINOR REVISION.** I found no false numbered statement or substantive obstruction to the proofs. One intermediate inequality in Lemma 8.1 is written with an invalid index range; the correction is local and does not change any conclusion.
+
+:::writing{variant="document" id="59387" title="Independent referee report — paper.tex, release v2.4"}
+## 1. Result-by-result assessment
+
+“FAIL” below concerns the literal proof step identified in R1, not the lemma’s statement. Results marked † pass after that correction; they have no additional defect.
+
+| Result | Assessment | Reasons |
+|---|---|---|
+| **Theorem 1.1(i)** | **PASS** | The block determinant signs imply nondegeneracy of every full leading Gram matrix. The quotient \(\Delta_{j+1}^{(r)}/\Delta_j^{(r)}\) has sign \((-1)^{r+j}=\varrho(r+dj)\), giving strictly positive signed norms. The argument includes \(d=2\). |
+| **Theorem 1.1(ii)** | **PASS** | Section 6 correctly derives the recurrence, including the conjugation signs in \(c_n\) and \(d_n\). The initial data have exactly the required range \(0\le j\le d-3\). Forward uniqueness holds among all real solutions with these data: the coefficient of the next unknown is a product of already identified, strictly positive terms. No positivity assumption on the competing solution is needed. |
+| **Theorem 1.2** | **PASS** | Lemma 7.2 identifies the stated Bessel combination with the planar integral. Positivity gives \(h>0\), \(-h'>0\), and \(h''>0\), so both initial values are defined and positive. The substitution \(V_n=av_n\), \(\epsilon=a^{-2}\), is correct. |
+| **Theorem 1.3** | **PASS†** | Proposition 8.3 proves the asymptotic without assuming growth in advance. For two positive solutions, their logarithmic difference belongs to \(\ell^2\); the final cutoff estimate then forces equality coordinatewise. The rescaling back to \(V_n\) is correct. |
+| **Lemma 3.1** | **PASS** | The independent-source argument is performed on compact disks, where analyticity is legitimate. Only derivatives along the real, equal-source path are passed to the full plane, with Gaussian domination. Thus the proof avoids the generally invalid use of a full-plane integral with arbitrary independent sources. |
+| **Corollary 3.2** | **PASS** | The row and column factors give exactly \((-1)^{rk}d^{k(k-1)}\). The two Stirling transformations are unitriangular, so no additional determinant factor or sign occurs. |
+| **Proposition 4.1** | **PASS** | The strip \(0<\Re z<\min(1/4,(r+1)/d)\) ensures absolute integrability for the Mellin interchange. Gauss multiplication cancels precisely the shape-one factor indexed by \(d-1-r\). The remaining scale is \(d^{d-2}a^{-d}\), and Fourier uniqueness after taking logarithms justifies identification. |
+| **Corollary 4.2** | **PASS** | Conditioning on the unique smallest-shape Gamma variable gives the stated power of \(a\) and constant. The remaining negative moments are finite because all other shapes are strictly larger. The empty-product case is valid. The first \(d\) monomials occupy distinct weight spaces, so the asserted limiting ranks follow. |
+| **Lemma 5.1** | **PASS** | The exponential-kernel orientation is correct: both \(e^w\) and \(-e^{-u}\) increase. The strict total-positivity argument establishes nonvanishing and the positive sign. Both applications of Andréief are absolutely integrable. Restriction to the ordered chamber correctly removes the factorial. Strictness follows from a nonvanishing, fixed-sign integrand on that chamber. |
+| **Proposition 5.2** | **PASS** | Combining Corollary 3.2 with Lemma 5.1 gives exactly \((-1)^{rk+\binom{k}{2}}\). All Gamma shapes are positive and \(m=d-1\ge1\). |
+| **Remark 5.3** | **PASS** | Unwinding the argument introduces \(k\) integration variables at each of \(d-1\) stages, giving the claimed \(k(d-1)\)-fold positive integral. The remark does not establish computational efficiency, but it does establish a nonoscillatory positive representation. |
+| **Lemma 7.1** | **PASS** | Gamma duplication gives \(G_\nu^2\overset{\mathrm{law}}=4G_{\nu/2}G_{(\nu+1)/2}\). All three shape lists and prefactors agree with Proposition 4.1; in particular, \(4y^{-2}=16a^{-4}\) and \(A_r\Gamma(\nu)y^{-\nu}=\pi r!a^{-r-1}\). |
+| **Lemma 7.2** | **PASS** | The planar and Bessel expressions satisfy the same third-order ODE and have matching one-sided values of the function and its first two derivatives at zero. The energy argument supplies uniqueness without assuming absolute convergence of the original planar integral at \(a=0\). |
+| **Lemma 8.1** | **FAIL as written: proof wording only** | The statement and constant \(K\) are correct. However, the proof applies \(v_i\le(i+1)\epsilon\) to “each” entry of all boundary windows, including negative indices. This inequality is false for \(i\le-2\). Discard the zero windows before applying the bound; see R1. |
+| **Lemma 8.2** | **PASS** | The bounds on \(q\), \(q(1)\), and \(Q_m\) are correct. The first-order terms in the residual cancel exactly. The large-index calculation gives \(15/4\), which is below the stated constant \(4\); the separate small-index estimate is also sufficient. |
+| **Proposition 8.3** | **PASS†** | The logarithmic-mean lower bound is applied with the known reference sequence \(q_n\). Both error series converge uniformly in the cutoff and independently of the solution. The choice \(p=1/(4(d-1))\) leaves a positive power after multiplying by \(w_n^2\), yielding the unweighted \(\ell^2\) bound. The asymptotic conclusion follows. |
+
+## 2. Required change
+
+### R1. Correct the boundary-window wording in Lemma 8.1
+
+For example, when \(d=4\) and \(n=0\), one of the nominal windows begins at \(-2\). Its product vanishes, but the printed intermediate bound would include
+\[
+v_{-2}=0\le(-2+1)\epsilon=-\epsilon,
+\]
+which is false.
+
+The intended argument is valid because such windows contribute zero. Replace the paragraph beginning “Factoring \(v_n\) out” through the end of the proof with:
+
+```latex
+Terms with \(m<0\) vanish.  Factoring \(v_n\) out of the remaining
+terms in \eqref{eq:integrated} gives
+\[
+v_n\left(
+1+\sum_{m=\max(0,n-d+2)}^{n}
+\prod_{\substack{m\leq i\leq m+d-2\\ i\neq n}}v_i
+\right)=(n+1)\epsilon.
+\]
+There are at most \(d-1\) products in the bracket, each containing
+\(d-2\) factors with \(0\leq i\leq n+d-2\).  The upper bound already
+proved therefore gives
+\[
+v_i\leq(i+1)\epsilon\leq(d-1)(n+1)\epsilon.
+\]
+Consequently the bracket is at most
+\[
+1+(d-1)\bigl((d-1)(n+1)\epsilon\bigr)^{d-2}
+\leq K(n+1)^{d-2}.
+\]
+Dividing yields
+\(v_n\geq(\epsilon/K)(n+1)^{-(d-3)}\).
+```
+
+No change to the lemma’s statement, its constant, or any downstream statement is required.
+
+## 3. Cross-section consistency and sensitive computations
+
+**Parameter ranges and uniqueness claims.** The manuscript correctly separates the Gram results for \(d\ge2\) from the normalized recurrence and uniqueness arguments for \(d\ge3\). Uniqueness with prescribed initial data in Theorems 1.1(ii) and 1.2 is distinguished correctly from uniqueness among all positive solutions in Theorem 1.3. Section 8’s recurrence argument is independent of the moment construction; only its final identification of the positive solution uses the earlier sections.
+
+**Recurrence coefficients and indexing.** I obtain
+\[
+c_n=\frac{\mathrm i}{a}\frac{\mathfrak h_n}{\mathfrak h_{n+1-d}},
+\qquad
+d_n=a\frac{\mathfrak h_n}{\mathfrak h_{n-1}},
+\]
+on their stated ranges. The path count in \(z^{d-1}P_n\) requires exactly one downward step and produces precisely \(\sum_{s=0}^{d-2}c_{n+s}\). Terms corresponding to inadmissible downward steps vanish through the stated convention for \(c_n\).
+
+**Normalization and growth.** The transformation
+\[
+V_n=a^{2/(d-2)}v_n,\qquad \epsilon=a^{-d/(d-2)}
+\]
+is correct. In particular, the growth theorem also implies
+\[
+V_n\sim\left(\frac{a(n+1)}{d-1}\right)^{1/(d-1)}.
+\]
+There is no missing power of \(a\) in the introduction.
+
+**Endpoint claim.** Since \(P_j=z^j\) for \(0\le j\le d-1\),
+\[
+V_{d-2}
+=\frac{\mathcal W_{d-1}(a;1)}{\mathcal W_{d-2}(a;1)}
+\longrightarrow0.
+\]
+Thus the introduction’s ratio claim follows from Corollary 4.2, even though that ratio is not one of the prescribed initial values. The distinction between an entrywise limit and an absolutely convergent integral at \(a=0\) is maintained correctly.
+
+**Quartic constants.** The common endpoint data in Lemma 7.2 simplify to
+\[
+H(0+)=\frac{\Gamma(1/4)^2}{2\sqrt2},\qquad
+H'(0+)=-\pi,\qquad
+H''(0+)=\sqrt2\,\Gamma(3/4)^2.
+\]
+These agree with the stated Bessel expression. The coefficient \(2+a_1^2+a_1\) in the energy estimate is sufficient.
+
+**Section 8 constants.** Writing \(L=d-1\), the large-index residual calculation gives
+\[
+|r_n|\leq\frac{15}{4}\frac{\epsilon L^4}{n+1}
+\leq\frac{4\epsilon L^4}{n+1}.
+\]
+The last uniqueness estimate is also valid:
+\[
+\sum_n A_nh_n^2\eta_n^2
+\leq\frac{\epsilon L^4}{R}\|\eta\|_{\ell^2}^2.
+\]
+Consequently, the reported use of constant \(6\) in the formalization does not require changing the paper’s constant \(4\).
+
+The abstract’s mathematical claims are supported. I found no unresolved equation or section reference, circular dependency, or further mismatch between a result’s hypotheses and its later use in the supplied source.
+
+## 4. Citation audit
+
+**Felder–Hoppe.** The published paper supports the attributed Hermitian form, twist, sign convention, recurrence, initial values, differential equation, and quartic Bessel formula. Conjecture 3.6 indeed says \(a\ge0\), whereas the monomial density is introduced for \(a>0\). The manuscript’s endpoint qualification is therefore accurate and important. [1]
+
+**Earlier recurrence and positivity results.** Cornalba–Taylor contains the stated recurrence background. Arnlind–Hoppe–Kontsevich Section 7 establishes cubic existence, while Clarkson–Dzhamay–Hone–Mitchell Theorem 2.1, completed in Section 4.2, establishes uniqueness. These attributions are correct. [2][3][4]
+
+**Quartic antecedents.** Hoppe’s equation (38) is the quartic recurrence used here. Clarkson and coauthors’ Section 5 gives the same recurrence and describes the positive-solution evidence as preliminary, as the manuscript reports. [5][4]
+
+**Special-function formulas.** The Mellin formula, Gamma multiplication and duplication formulas, and beta integrals agree with the cited DLMF entries and are used within admissible parameter ranges. In particular, the paper’s narrower Mellin strip supplies absolute convergence, rather than relying merely on conditional convergence of the Bessel integral. [6][7][8]
+
+**Andréief and Borodin.** The Andréief normalization is correct, including its conversion to an ordered-chamber integral. Forrester supports the publication year 1886. Borodin is an appropriate contextual reference for the product-of-determinants construction; the manuscript does not incorrectly attribute its strict-sign theorem to that source. [9][10]
+
+**Verification limitation.** I did not directly inspect entry 6.518 in the cited eighth edition of Gradshteyn–Ryzhik. The substitutions in the alternative Bessel derivation are consistent, but that edition-specific reference remains unchecked. This does not affect Lemma 7.2, which has an independent proof.
+
+## 5. Formalization and code availability
+
+The inspected release files support the stated correspondence between the manuscript and the frozen general-\(d\), endpoint, and quartic statements. In particular, the general uniqueness statement does not assume the moment initial data, and the endpoint statement includes the explicit constants and limiting rank. [11][12]
+
+The toolchain file specifies Lean 4.33.0, and the manifest pins the stated Mathlib commit. `Check.lean` checks the five theorem types and transitive axiom dependencies. Its deliberately unwanted axioms and admitted dependency are negative regression tests, not admissions in the main theorem statements. [13][14][15]
+
+**I did not run a Lean build or reproduce the numerical scans.** Thus this review confirms source-level consistency, not independent execution of the advertised kernel checks. The mathematical assessments above rest on the written proofs.
+
+## 6. Optional suggestions
+
+1. Display the particular Dixon–Ferrar identity and its parameter restrictions before describing the substitutions. This would make the alternative derivation independently auditable without consulting the table.
+2. State the unscaled asymptotic for \(V_n\) immediately after Theorem 1.3. It is an immediate consequence, but it connects the growth conclusion directly to the original recurrence.
+3. Add the release commit identifier or an archival identifier to the code availability statement for durable reproducibility.
+
+## Final recommendation
+
+**MINOR REVISION, limited to R1.** All numbered mathematical statements withstand the review. The sole required correction removes a false intermediate inequality at negative indices; it requires neither a new argument nor a weakened conclusion. After that correction, I recommend acceptance on mathematical grounds.
+:::
+
+The same findings can be formatted as a plain-text checklist for a terminal log.
+
+Sources:
+[1] https://sigma-journal.com/2025/103/sigma25-103.pdf
+[2] 1Introduction — https://arxiv.org/html/hep-th/9807060
+[3] Quantum Minimal Surfaces — https://arxiv.org/html/1903.10792
+[4] Special solutions of a discrete Painlevé equation for quantum minimal surfaces — https://arxiv.org/html/2503.14436v1
+[5] Quantum States from Minimal Surfaces — https://arxiv.org/html/2502.18422v1
+[6] DLMF: §10.22 Integrals ‣ Bessel and Hankel Functions ‣ Chapter 10 Bessel Functions — https://dlmf.nist.gov/10.22.E43
+[7] DLMF: §5.5 Functional Relations ‣ Properties ‣ Chapter 5 Gamma Function — https://dlmf.nist.gov/5.5.E6
+[8] DLMF: §5.12 Beta Function ‣ Properties ‣ Chapter 5 Gamma Function — https://dlmf.nist.gov/5.12
+[9] Meet Andréief, Bordeaux 1886, and Andreev, Kharkov 1882–83 — https://arxiv.org/html/1806.10411v1
+[10] Biorthogonal Ensembles — https://arxiv.org/html/math/9804027
+[11] https://raw.githubusercontent.com/skypher/painleve/v2.4/lean/Painleve/StatementD.lean
+[12] https://raw.githubusercontent.com/skypher/painleve/v2.4/lean/Painleve/Statement.lean
+[13] https://raw.githubusercontent.com/skypher/painleve/v2.4/lean/lean-toolchain
+[14] https://raw.githubusercontent.com/skypher/painleve/v2.4/lean/lake-manifest.json
+[15] https://raw.githubusercontent.com/skypher/painleve/v2.4/lean/Check.lean
+
+
+=== diff against v2.5 ===
+diff --git a/paper.tex b/paper.tex
+index 0592e03..737a543 100644
+--- a/paper.tex
++++ b/paper.tex
+@@ -309,6 +309,12 @@ Theorem~\ref{thm:quartic} is the unique positive solution of
+ \eqref{eq:quartic-recurrence}.
+ \end{theorem}
+ 
++Undoing the substitution, since \(a^{2/(d-2)}\epsilon^{1/(d-1)}=a^{1/(d-1)}\),
++the sequence \((V_n)\) of Theorem~\ref{thm:main}(ii) satisfies
++\[
++\lim_{n\to\infty}V_n\left(\frac{d-1}{a(n+1)}\right)^{1/(d-1)}=1 .
++\]
++
+ For the cubic analogue, the existence of a positive solution was
+ proved in \cite[Section~7]{ArnlindHoppeKontsevich2019} and its
+ uniqueness in \cite[Theorem~2.1, proved in Section~4.2]{ClarksonEtAl2025};
+@@ -1374,7 +1380,7 @@ mathematical claims, citations, computations, and wording.
+ The Lean~4 formalization of Theorems~\ref{thm:main}, \ref{thm:quartic}
+ and~\ref{thm:unique} and of Corollary~\ref{cor:endpoint} is in the
+ directory \path{lean} of release
+-\path{v2.4} of the repository
++\path{v2.4} (commit \path{ce56aeb14fff}) of the repository
+ \href{https://github.com/skypher/painleve}{github.com/skypher/painleve}
+ (Lean~4.33.0, Mathlib commit \path{db584cd6d46c}).  The statements
+ \path{Painleve.Stmt_mainD} (Theorem~\ref{thm:main}),
+
+=== context: the paragraph before Theorem 1.3, the theorem, and the new sentence ===
+\end{theorem}
+
+Uniqueness in Theorems~\ref{thm:main}(ii) and~\ref{thm:quartic} refers
+to the prescribed initial data.  For \(d\geq3\), the substitution
+\(V_n=a^{2/(d-2)}v_n\) and \(\epsilon=a^{-d/(d-2)}\) turns
+\eqref{eq:FH-recurrence} into
+\begin{equation}
+v_n+\sum_{m=n-d+2}^{n}v_mv_{m+1}\cdots v_{m+d-2}=(n+1)\epsilon,
+\qquad n\geq0,
+\label{eq:general-recurrence}
+\end{equation}
+where \(v_n=0\) for \(n<0\); for \(d=4\) this is
+\eqref{eq:quartic-recurrence}.  The next theorem shows that the positive
+solution itself is unique, so that the moment values
+\eqref{eq:FH-initial}, and for \(d=4\) the Bessel values
+\eqref{eq:initial-values}, are the only initial values leading to a
+positive solution.
+
+\begin{theorem}\label{thm:unique}
+Let \(d\geq3\) and \(\epsilon>0\).  Every sequence of positive numbers
+\((v_n)_{n\geq0}\) satisfying \eqref{eq:general-recurrence} for every
+\(n\geq0\) satisfies
+\[
+\lim_{n\to\infty}v_n\left(\frac{d-1}{\epsilon(n+1)}\right)^{1/(d-1)}=1,
+\]
+and there is at most one such sequence.  In particular, for \(a>0\) the
+sequence \((V_n)\) of Theorem~\ref{thm:main}(ii) is the unique positive
+solution of \eqref{eq:FH-recurrence}, and for \(d=4\) the sequence of
+Theorem~\ref{thm:quartic} is the unique positive solution of
+\eqref{eq:quartic-recurrence}.
+\end{theorem}
+
+Undoing the substitution, since \(a^{2/(d-2)}\epsilon^{1/(d-1)}=a^{1/(d-1)}\),
+the sequence \((V_n)\) of Theorem~\ref{thm:main}(ii) satisfies
+\[
+\lim_{n\to\infty}V_n\left(\frac{d-1}{a(n+1)}\right)^{1/(d-1)}=1 .
+\]
+
+For the cubic analogue, the existence of a positive solution was
+proved in \cite[Section~7]{ArnlindHoppeKontsevich2019} and its
+uniqueness in \cite[Theorem~2.1, proved in Section~4.2]{ClarksonEtAl2025};
+for \(d=3\), Theorem~\ref{thm:unique} gives a short proof of that
+uniqueness.  For the quartic recurrence, \cite[Section~5]{ClarksonEtAl2025}

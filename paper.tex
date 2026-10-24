@@ -309,6 +309,12 @@ Theorem~\ref{thm:quartic} is the unique positive solution of
 \eqref{eq:quartic-recurrence}.
 \end{theorem}
 
+Undoing the substitution, since \(a^{2/(d-2)}\epsilon^{1/(d-1)}=a^{1/(d-1)}\),
+the sequence \((V_n)\) of Theorem~\ref{thm:main}(ii) satisfies
+\[
+\lim_{n\to\infty}V_n\left(\frac{d-1}{a(n+1)}\right)^{1/(d-1)}=1 .
+\]
+
 For the cubic analogue, the existence of a positive solution was
 proved in \cite[Section~7]{ArnlindHoppeKontsevich2019} and its
 uniqueness in \cite[Theorem~2.1, proved in Section~4.2]{ClarksonEtAl2025};
@@ -1374,7 +1380,7 @@ mathematical claims, citations, computations, and wording.
 The Lean~4 formalization of Theorems~\ref{thm:main}, \ref{thm:quartic}
 and~\ref{thm:unique} and of Corollary~\ref{cor:endpoint} is in the
 directory \path{lean} of release
-\path{v2.4} of the repository
+\path{v2.4} (commit \path{ce56aeb14fff}) of the repository
 \href{https://github.com/skypher/painleve}{github.com/skypher/painleve}
 (Lean~4.33.0, Mathlib commit \path{db584cd6d46c}).  The statements
 \path{Painleve.Stmt_mainD} (Theorem~\ref{thm:main}),
