@@ -1171,12 +1171,14 @@ T_n\leq(n+1)\epsilon
 
 \begin{proof}
 All terms in \eqref{eq:integrated} are nonnegative, which gives the
-upper bounds.  Factoring \(v_n\) out of \eqref{eq:integrated} leaves the
-bracket \(1+\sum\prod v_i\), a sum over the \(d-1\) windows containing
-\(n\) of the products of their other \(d-2\) entries.  Each such entry
-has \(i\leq n+d-2\), so \(v_i\leq(i+1)\epsilon\leq(d-1)(n+1)\epsilon\),
+upper bounds.  The terms with \(m<0\) vanish.  Factoring \(v_n\) out of
+the others leaves the bracket \(1+\sum\prod v_i\), a sum over the at
+most \(d-1\) windows with \(\max(0,n-d+2)\leq m\leq n\) of the products
+of their other \(d-2\) entries.  Each such entry has
+\(0\leq i\leq n+d-2\), so \(v_i\leq(i+1)\epsilon\leq(d-1)(n+1)\epsilon\),
 and the bracket is at most
 \(1+(d-1)\bigl((d-1)(n+1)\epsilon\bigr)^{d-2}\leq K(n+1)^{d-2}\).
+Dividing \((n+1)\epsilon\) by this bound gives the lower bound.
 \end{proof}
 
 \emph{An approximate solution.}  For \(t>0\), let \(q(t)>0\) be the
